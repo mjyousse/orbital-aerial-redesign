@@ -1,0 +1,118 @@
+---
+import { url } from '../lib/site';
+import { Image } from 'astro:assets';
+import elev from '../assets/sample/sample-elevation.webp';
+---
+<div class="panel overflow-hidden" id="pc-root" data-height={url('sample/pc-height.png')} data-color={url('sample/pc-color.jpg')}>
+  <div class="flex flex-wrap items-center justify-between gap-3 px-4 py-3 border-b hairline">
+    <p class="tele flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-[var(--accent)] reticle"></span>Sample data · 3D point cloud</p>
+    <div class="flex flex-wrap gap-2" role="group" aria-label="Point cloud color">
+      <button type="button" class="pc-mode btn btn-ghost !min-h-9 !py-1.5 !px-3 text-sm" data-mode="photo" aria-pressed="true">Photo color</button>
+      <button type="button" class="pc-mode btn btn-ghost !min-h-9 !py-1.5 !px-3 text-sm" data-mode="elev" aria-pressed="false">Elevation</button>
+    </div>
+  </div>
+  <div class="relative aspect-[4/3] md:aspect-[16/9] bg-ink-950">
+    <Image src={elev} alt="Elevation preview of the sample area" width={800} class="absolute inset-0 w-full h-full object-cover opacity-40" id="pc-poster" />
+    <canvas id="pc-canvas" class="absolute inset-0 w-full h-full touch-none" aria-label="Interactive 3D point cloud of sample terrain in Austin, Texas. Drag to rotate, scroll or pinch to zoom." role="img"></canvas>
+    <div id="pc-status" class="absolute inset-0 grid place-items-center tele-muted pointer-events-none">Loading 3D viewer…</div>
+    <div class="absolute left-3 bottom-3 tele-muted !text-[10px] bg-ink-950/80 px-2 py-1 rounded pointer-events-none">Drag to orbit · Scroll / pinch to zoom</div>
+    <div id="pc-count" class="absolute right-3 bottom-3 tele-muted !text-[10px] bg-ink-950/80 px-2 py-1 rounded pointer-events-none"></div>
+  </div>
+  <p class="px-4 py-3 text-xs text-fg-3 border-t hairline">Sample data, not Orbital client work: about 4.8 × 4.8 km of west Austin. Elevation from USGS 3DEP via AWS Terrain Tiles; color from USGS National Map orthoimagery (public domain). Height exaggerated 3×.</p>
+</div>
+<script>
+  const root = document.getElementById('pc-root') as HTMLElement;
+  const canvas = document.getElementById('pc-canvas') as HTMLCanvasElement;
+  const status = document.getElementById('pc-status')!;
+  let started = false;
+  async function loadPixels(src: string, size: number) {
+    const img = new Image();
+    img.decoding = 'async';
+    img.src = src;
+    await img.decode();
+    const c = document.createElement('canvas');
+    c.width = size; c.height = size;
+    const ctx = c.getContext('2d', { colorSpace: 'srgb', willReadFrequently: true } as CanvasRenderingContext2DSettings)!;
+    ctx.drawImage(img, 0, 0, size, size);
+    return ctx.getImageData(0, 0, size, size).data;
+  }
+  async function start() {
+    if (started) return; started = true;
+    try {
+      const THREE = await import('three');
+      const { OrbitControls } = await import('three/examples/jsm/controls/OrbitControls.js');
+      const small = window.innerWidth < 768;
+      const N = small ? 256 : 512;
+      const [hd, cd] = await Promise.all([loadPixels(root.dataset.height!, 512), loadPixels(root.dataset.color!, N)]);
+      const step = 512 / N;
+      const count = N * N;
+      const pos = new Float32Array(count * 3), photo = new Float32Array(count * 3), elev = new Float32Array(count * 3);
+      let min = Infinity, max = -Infinity;
+      const H = new Float32Array(count);
+      for (let y = 0; y < N; y++) for (let x = 0; x < N; x++) {
+        const i = (y * step * 512 + x * step) * 4;
+        const h = hd[i] * 256 + hd[i + 1] + hd[i + 2] / 256 - 32768;
+        H[y * N + x] = h; if (h < min) min = h; if (h > max) max = h;
+      }
+      const size = 4800, ex = 3, sc = 100 / size;
+      const c1 = new THREE.Color(0x0a1a2e), c2 = new THREE.Color(0x00b8e6), c3 = new THREE.Color(0xe8a020), tmp = new THREE.Color();
+      for (let y = 0; y < N; y++) for (let x = 0; x < N; x++) {
+        const k = y * N + x, j = k * 3;
+        pos[j] = (x / N - 0.5) * 100;
+        pos[j + 1] = (H[k] - min) * ex * sc;
+        pos[j + 2] = (y / N - 0.5) * 100;
+        const ci = k * 4;
+        photo[j] = Math.pow(cd[ci] / 255, 2.2); photo[j + 1] = Math.pow(cd[ci + 1] / 255, 2.2); photo[j + 2] = Math.pow(cd[ci + 2] / 255, 2.2);
+        const t = (H[k] - min) / (max - min);
+        if (t < 0.6) tmp.copy(c1).lerp(c2, t / 0.6); else tmp.copy(c2).lerp(c3, (t - 0.6) / 0.4);
+        elev[j] = tmp.r; elev[j + 1] = tmp.g; elev[j + 2] = tmp.b;
+      }
+      const geo = new THREE.BufferGeometry();
+      geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+      const colorAttr = new THREE.BufferAttribute(photo.slice(), 3);
+      geo.setAttribute('color', colorAttr);
+      const mat = new THREE.PointsMaterial({ size: small ? 0.42 : 0.24, vertexColors: true, sizeAttenuation: true });
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color(0x05080d);
+      scene.fog = new THREE.Fog(0x05080d, 120, 220);
+      scene.add(new THREE.Points(geo, mat));
+      const grid = new THREE.GridHelper(110, 22, 0x00b8e6, 0x123040);
+      (grid.material as any).transparent = true; (grid.material as any).opacity = 0.25;
+      grid.position.y = -0.5; scene.add(grid);
+      const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 500);
+      camera.position.set(55, 45, 70);
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: 'high-performance' });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      const controls = new OrbitControls(camera, canvas);
+      controls.enableDamping = true; controls.minDistance = 25; controls.maxDistance = 170; controls.maxPolarAngle = Math.PI * 0.47;
+      controls.target.set(0, 5, 0);
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      controls.autoRotate = !reduce; controls.autoRotateSpeed = 0.6;
+      canvas.addEventListener('pointerdown', () => { controls.autoRotate = false; }, { once: true });
+      const resize = () => {
+        const r = canvas.getBoundingClientRect();
+        renderer.setSize(r.width, r.height, false);
+        camera.aspect = r.width / r.height; camera.updateProjectionMatrix();
+      };
+      new ResizeObserver(resize).observe(canvas); resize();
+      let visible = true;
+      new IntersectionObserver(([e]) => { visible = e.isIntersecting; }).observe(canvas);
+      renderer.setAnimationLoop(() => { if (!visible) return; controls.update(); renderer.render(scene, camera); });
+      document.querySelectorAll<HTMLButtonElement>('.pc-mode').forEach((b) => b.addEventListener('click', () => {
+        const src = b.dataset.mode === 'elev' ? elev : photo;
+        (colorAttr.array as Float32Array).set(src); colorAttr.needsUpdate = true;
+        document.querySelectorAll('.pc-mode').forEach((o) => o.setAttribute('aria-pressed', String(o === b)));
+      }));
+      status.remove();
+      document.getElementById('pc-poster')?.remove();
+      document.getElementById('pc-count')!.textContent = `${count.toLocaleString()} points`;
+    } catch (err) {
+      status.textContent = '3D viewer unavailable on this device';
+      console.error(err);
+    }
+  }
+  new IntersectionObserver((entries, obs) => { if (entries[0].isIntersecting) { obs.disconnect(); start(); } }, { rootMargin: '300px' }).observe(root);
+</script>
+<style>
+  .pc-mode[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); color: #fff; }
+</style>

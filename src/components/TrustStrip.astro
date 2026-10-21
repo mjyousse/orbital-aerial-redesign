@@ -1,0 +1,13 @@
+---
+const { items } = Astro.props as { items: { k: string; v: string }[] };
+---
+<section aria-label="Credentials" class="border-b hairline bg-ink-950/60">
+  <div class="wrap grid grid-cols-2 lg:grid-cols-4">
+    {items.map((it, i) => (
+      <div class:list={['py-7 px-4 lg:px-6', i > 0 && 'lg:border-l', i % 2 === 1 && 'border-l', i >= 2 && 'border-t lg:border-t-0', 'hairline']}>
+        <p class="tele-muted !text-[11px]">{it.k}</p>
+        <p class="mt-1.5 font-display text-lg text-white font-semibold">{it.v}</p>
+      </div>
+    ))}
+  </div>
+</section>

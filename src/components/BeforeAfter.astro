@@ -1,0 +1,21 @@
+---
+import { Image, Picture } from 'astro:assets';
+import ortho from '../assets/sample/sample-ortho.webp';
+import elev from '../assets/sample/sample-elevation.webp';
+---
+<figure class="panel overflow-hidden">
+  <div class="ba" style="--pos: 50%" id="ba">
+    <Picture src={ortho} alt="Sample aerial imagery of west Austin" widths={[480, 800, 1024]} sizes="(min-width: 1024px) 560px, 100vw" formats={['avif', 'webp']} pictureAttributes={{ class: 'contents' }} />
+    <Image src={elev} alt="The same area as a surface model with 5 metre contours" class="ba-after" widths={[480, 800, 1024]} sizes="(min-width: 1024px) 560px, 100vw" />
+    <span class="absolute left-3 top-3 tele-muted !text-[10px] bg-ink-950/85 px-2 py-1 rounded text-white">Aerial imagery</span>
+    <span class="absolute right-3 top-3 tele !text-[10px] bg-ink-950/85 px-2 py-1 rounded">Surface model + contours</span>
+    <div class="ba-handle"><div class="ba-knob" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6"/></svg></div></div>
+    <input type="range" min="0" max="100" value="50" aria-label="Compare aerial imagery with surface model" />
+  </div>
+  <figcaption class="px-4 py-3 text-xs text-fg-3 border-t hairline">Sample data, not Orbital client work. USGS public-domain imagery and 3DEP elevation of the same 4.8 km tile, processed into a shaded surface with 5 m contours.</figcaption>
+</figure>
+<script>
+  const ba = document.getElementById('ba');
+  const input = ba?.querySelector('input');
+  input?.addEventListener('input', () => ba!.style.setProperty('--pos', `${input.value}%`));
+</script>

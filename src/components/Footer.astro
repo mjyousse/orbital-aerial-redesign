@@ -1,0 +1,38 @@
+---
+import { SITE, url, sectors } from '../lib/site';
+---
+<footer class="border-t hairline bg-ink-950 pb-24 md:pb-0">
+  <div class="wrap py-16 grid gap-12 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
+    <div>
+      <img src={url('brand/logo-dark.svg')} alt="Orbital Aerial Solutions" width="96" height="67" class="h-14 w-auto" loading="lazy" />
+      <p class="mt-5 text-fg-2 max-w-sm text-[15px]">Drone mapping for industrial sites and aerial media for real estate. Clearly scoped, clearly priced, flown by our own crew.</p>
+      <p class="mt-4 tele-muted">Austin, TX · <a class="hover:text-white underline-offset-4 hover:underline" href={`mailto:${SITE.email}`}>{SITE.email}</a></p>
+    </div>
+    <div>
+      <h2 class="tele mb-4">Industrial</h2>
+      <ul class="space-y-2 text-fg-2 text-[15px]">
+        <li><a class="hover:text-white" href={url('industrial/#services')}>Stockpile measurement</a></li>
+        <li><a class="hover:text-white" href={url('industrial/#services')}>Site progress & digital twins</a></li>
+        <li><a class="hover:text-white" href={url('industrial/#services')}>Asset documentation</a></li>
+        <li><a class="hover:text-white" href={url('industrial/#credentials')}>Credentials</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2 class="tele !text-amber mb-4">Real Estate</h2>
+      <ul class="space-y-2 text-fg-2 text-[15px]">
+        <li><a class="hover:text-white" href={url('real-estate/#packages')}>Aerial packages · from $230</a></li>
+        <li><a class="hover:text-white" href={url('real-estate/#packages')}>Ground packages · from $150</a></li>
+        <li><a class="hover:text-white" href={url('real-estate/#work')}>Recent work</a></li>
+        <li><a class="hover:text-white" href={url('real-estate/#coverage')}>Coverage area</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2 class="tele-muted mb-4">Sectors</h2>
+      <ul class="space-y-2 text-fg-2 text-[15px]">{sectors.map((s) => <li>{s}</li>)}</ul>
+    </div>
+  </div>
+  <div class="wrap py-6 border-t hairline flex flex-col sm:flex-row gap-3 justify-between text-sm text-fg-3">
+    <p>© 2026 Orbital Aerial Solutions. All rights reserved.</p>
+    <p>Made by Mohammad Youssef</p>
+  </div>
+</footer>

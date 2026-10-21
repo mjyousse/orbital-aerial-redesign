@@ -1,0 +1,153 @@
+---
+import { Image, Picture, getImage } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import TrustStrip from '../../components/TrustStrip.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import CoverageMap from '../../components/CoverageMap.astro';
+import Process from '../../components/Process.astro';
+import Proof from '../../components/Proof.astro';
+import QuoteSection from '../../components/QuoteSection.astro';
+import { url, aerialPackages, groundPackages, reStandards, reProcess, reAddons, rePoints } from '../../lib/site';
+import hero from '../../assets/re/hero-aerial.jpg';
+import t1 from '../../assets/re/travis-1.jpg';
+import t2 from '../../assets/re/travis-2.jpg';
+import t3 from '../../assets/re/travis-3.jpg';
+import t4 from '../../assets/re/travis-4.jpg';
+import t5 from '../../assets/re/travis-5.jpg';
+import t6 from '../../assets/re/travis-6.jpg';
+const gallery = [t1, t2, t3, t4, t5, t6];
+const alts = ['Night aerial of a high-rise amenity deck with pool, Austin', 'Rooftop pool and lounge from above at night', 'High-rise residences and pool deck at dusk', 'Top-down night view of a lit courtyard pool', 'Downtown Austin towers at night from the air', 'Austin skyline and river at night from the air'];
+const large = await Promise.all(gallery.map((g) => getImage({ src: g, width: 1800, format: 'webp' })));
+const pkgSlug = (t: string) => t.split(' (')[0];
+---
+<Base title="Real estate drone photography Austin" division="realestate" description="Aerial photos and video for Austin listings, with ground photography in the same visit. Upfront prices from $150. FAA Part 107 certificated and insured.">
+  <section class="relative min-h-[calc(100svh-6rem)] flex items-end overflow-hidden border-b hairline" aria-labelledby="re-title">
+    <Picture src={hero} alt="" widths={[768, 1280, 1920, 2400]} sizes="100vw" formats={['avif', 'webp']} pictureAttributes={{ class: 'contents' }} loading="eager" fetchpriority="high" class="absolute inset-0 w-full h-full object-cover" />
+    <div class="absolute inset-0 bg-gradient-to-r from-ink-900/95 via-ink-900/65 to-ink-900/10"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-ink-900 via-transparent to-transparent"></div>
+    <div class="wrap relative pb-16 pt-24">
+      <p class="tele flex items-center gap-3"><span class="inline-block w-6 h-px bg-amber"></span>Aerial media for Austin properties</p>
+      <h1 id="re-title" class="mt-6 max-w-4xl text-[clamp(2.6rem,7vw,5.5rem)] font-bold text-white">Show the property.<br /><span class="text-amber">Reveal the full perspective.</span></h1>
+      <p class="mt-7 max-w-2xl text-[clamp(1.05rem,1.6vw,1.25rem)] text-fg leading-relaxed">Aerial photos and video that show scale, setting and approach, with ground photography in the same visit when the listing needs it.</p>
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a href="#quote" class="btn btn-primary text-base !px-6 !py-3.5">Request a quote</a>
+        <a href="#packages" class="btn btn-ghost text-base !px-6 !py-3.5 bg-ink-900/50">View packages</a>
+      </div>
+      <ul class="mt-10 flex flex-wrap gap-x-6 gap-y-2">
+        {['FAA-compliant operations', 'Within 15 miles of Austin', 'Delivery as soon as 24 hours'].map((n) => <li class="tele-muted !text-fg-2 flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-amber"></span>{n}</li>)}
+      </ul>
+    </div>
+  </section>
+  <TrustStrip items={[
+    { k: 'Aerial', v: 'Packages from $230' },
+    { k: 'Ground', v: 'Packages from $150' },
+    { k: 'Pricing', v: 'Approved before booking' },
+    { k: 'Pilots', v: 'Part 107 · Insured' },
+  ]} />
+
+  <section id="work" class="section border-b hairline scroll-mt-20">
+    <div class="wrap">
+      <SectionHead eyebrow="Selected work" title="Recent coverage." />
+      <ul class="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+        {gallery.map((g, i) => (
+          <li data-reveal>
+            <a href={large[i].src} class="group block relative overflow-hidden rounded-xl aspect-[4/3] gallery-link" data-index={i} aria-label={`Open photo: ${alts[i]}`}>
+              <Picture src={g} alt={alts[i]} widths={[360, 600, 900]} sizes="(min-width: 1024px) 390px, 50vw" formats={['avif', 'webp']} pictureAttributes={{ class: 'contents' }} loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+              <span class="absolute left-2 bottom-2 tele-muted !text-[10px] bg-ink-950/80 px-2 py-0.5 rounded">Frame 0{i + 1}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+      <dialog id="lightbox" class="m-auto bg-transparent backdrop:bg-ink-950/95 max-w-[94vw] max-h-[90vh] p-0">
+        <img id="lightbox-img" alt="" class="max-w-[94vw] max-h-[80vh] object-contain rounded-lg" />
+        <div class="mt-3 flex justify-center gap-2">
+          <button type="button" class="btn btn-ghost" data-lb="prev">Previous</button>
+          <button type="button" class="btn btn-ghost" data-lb="close">Close</button>
+          <button type="button" class="btn btn-ghost" data-lb="next">Next</button>
+        </div>
+      </dialog>
+      <script>
+        const links = Array.from(document.querySelectorAll<HTMLAnchorElement>('.gallery-link'));
+        const dlg = document.getElementById('lightbox') as HTMLDialogElement;
+        const img = document.getElementById('lightbox-img') as HTMLImageElement;
+        let idx = 0;
+        const open = (i: number) => { idx = (i + links.length) % links.length; img.src = links[idx].href; img.alt = links[idx].querySelector('img')?.alt || ''; if (!dlg.open) dlg.showModal(); };
+        links.forEach((a, i) => a.addEventListener('click', (e) => { e.preventDefault(); open(i); }));
+        dlg.addEventListener('click', (e) => { const b = (e.target as HTMLElement).closest('[data-lb]') as HTMLElement | null; if (b) { const k = b.dataset.lb; if (k === 'close') dlg.close(); else open(idx + (k === 'next' ? 1 : -1)); } else if (e.target === dlg) dlg.close(); });
+        dlg.addEventListener('keydown', (e) => { if (e.key === 'ArrowRight') open(idx + 1); if (e.key === 'ArrowLeft') open(idx - 1); });
+      </script>
+      <div class="mt-8 ph p-5" role="note"><p class="ph-tag">Editor placeholder · Video</p><p class="mt-2 text-[15px]">Add a 15–45 s aerial property clip (Vimeo/YouTube embed or MP4) here when one is ready.</p></div>
+    </div>
+  </section>
+
+  <section id="standards" class="section border-b hairline">
+    <div class="wrap">
+      <SectionHead eyebrow="The Orbital standard" title="Media built to move listings." lede="Every flight and ground session is planned for visual impact, MLS requirements and fast turnaround." />
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {reStandards.map((s) => (<div class="panel p-6" data-reveal><span class="tele">{s.id}</span><h3 class="mt-3 text-xl text-white font-semibold">{s.title}</h3><p class="mt-2 text-fg-2 text-[15px]">{s.body}</p></div>))}
+      </div>
+    </div>
+  </section>
+
+  <section id="packages" class="section border-b hairline scroll-mt-20">
+    <div class="wrap">
+      <SectionHead eyebrow="Packages · prices upfront" title="Aerial packages." lede="Start with aerial photos, video, or both. Add a ground package if the listing needs interiors and exteriors too." />
+      {[aerialPackages, groundPackages].map((group, gi) => (
+        <>
+          {gi === 1 && <div class="mt-16"><SectionHead eyebrow="Ground photography" title="Interior and exterior packages." lede="Choose the coverage that fits the property. We confirm access, scope and final price before the session." /></div>}
+          <div class="grid md:grid-cols-3 gap-5">
+            {group.map((p) => (
+              <article class:list={['panel p-7 flex flex-col relative', p.featured && '!border-amber/60 bg-amber-900/20']} data-reveal>
+                {p.featured && <span class="absolute -top-3 left-7 tele !text-ink-950 bg-amber px-2.5 py-1 rounded">{p.badge}</span>}
+                {!p.featured && <span class="tele">{p.badge}</span>}
+                <h3 class:list={['text-2xl text-white font-bold', p.featured ? 'mt-1' : 'mt-3']}>{p.title}</h3>
+                <p class="mt-1 text-fg-2 text-[15px]">{p.subtitle}</p>
+                <p class="mt-6 font-display text-5xl font-bold text-white">${p.price}</p>
+                <ul class="mt-6 space-y-2.5 text-[15px] flex-1">
+                  {p.features.map((f) => <li class="flex gap-2.5"><span class="mt-2.5 w-1.5 h-1.5 bg-amber rounded-full shrink-0"></span>{f}</li>)}
+                </ul>
+                <a href={url(`contact/?division=realestate&package=${encodeURIComponent(pkgSlug(p.title))}`)} class:list={['btn mt-8', p.featured ? 'btn-primary' : 'btn-ghost']}>Request this package</a>
+              </article>
+            ))}
+          </div>
+        </>
+      ))}
+      <div class="mt-8 grid md:grid-cols-[1fr_auto] gap-4 items-center panel p-6 !border-amber/40" data-reveal>
+        <div>
+          <p class="text-white font-semibold text-lg">Your approved quote is your final price.</p>
+          <p class="mt-1 text-fg-2 text-[15px]">Standard coverage is within 15 miles of Austin. Travel beyond that is quoted before you approve the scope. No surprise add-on fees.</p>
+        </div>
+        <p class="tele">Clear scope · Clear price</p>
+      </div>
+      <p class="mt-4 text-fg-2 text-[15px]">Builders: preferred rates are available for volume partners. <a href="#quote" class="text-amber underline underline-offset-4">Ask us for details.</a></p>
+    </div>
+  </section>
+
+  <section class="section border-b hairline">
+    <div class="wrap">
+      <SectionHead eyebrow="Available on request" title="More listing media when you need it." lede="Ask when you plan the shoot. Scope and price are confirmed before booking." />
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {reAddons.map((a) => <div class="panel p-6" data-reveal><h3 class="text-lg text-white font-semibold">{a.title}</h3><p class="mt-2 text-fg-2 text-[15px]">{a.body}</p></div>)}
+      </div>
+    </div>
+  </section>
+
+  <Process eyebrow="How we shoot" title="Arrival, context, detail, delivery." steps={reProcess} />
+
+  <section id="coverage" class="section border-b hairline scroll-mt-20">
+    <div class="wrap grid lg:grid-cols-[0.8fr_1.2fr] gap-10 items-center">
+      <div data-reveal>
+        <p class="tele">Coverage area</p>
+        <h2 class="mt-4 text-[clamp(2rem,4.2vw,3.25rem)] font-bold text-white">15 miles around Austin, no travel fee.</h2>
+        <p class="mt-5 text-lg text-fg-2">Farther out? We quote travel before you approve, so the price you see is still the price you pay.</p>
+        <div class="mt-8 grid gap-4">
+          {rePoints.map((p) => <div class="border-l-2 border-amber/60 pl-4"><h3 class="text-white font-semibold">{p.title}</h3><p class="text-fg-2 text-[15px] mt-1">{p.body}</p></div>)}
+        </div>
+      </div>
+      <div data-reveal><CoverageMap division="realestate" /></div>
+    </div>
+  </section>
+
+  <Proof division="realestate" />
+  <QuoteSection division="realestate" title="Let’s plan your property shoot." lede="Pick a package, share the address and a date. Standard coverage is within 15 miles of Austin." />
+</Base>

@@ -1,0 +1,19 @@
+---
+const { eyebrow, title, steps } = Astro.props as { eyebrow: string; title: string; steps: { step: string; title: string; body: string }[] };
+import SectionHead from './SectionHead.astro';
+---
+<section class="section border-b hairline" aria-label={title}>
+  <div class="wrap">
+    <SectionHead eyebrow={eyebrow} title={title} />
+    <ol class="relative grid gap-8 md:gap-6" style={`grid-template-columns: repeat(auto-fit, minmax(${steps.length > 4 ? 190 : 230}px, 1fr));`}>
+      <div class="hidden md:block absolute left-0 right-0 top-[1.15rem] h-px bg-gradient-to-r from-transparent via-[var(--accent-line)] to-transparent" aria-hidden="true"></div>
+      {steps.map((s) => (
+        <li class="relative" data-reveal>
+          <div class="relative z-10 w-9 h-9 rounded-full border border-[var(--accent)] bg-ink-900 grid place-items-center font-mono text-xs text-[var(--accent)]">{s.step}</div>
+          <h3 class="mt-5 text-xl text-white font-semibold">{s.title}</h3>
+          <p class="mt-2 text-fg-2 text-[15px]">{s.body}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

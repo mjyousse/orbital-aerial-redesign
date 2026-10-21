@@ -1,0 +1,88 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE, url } from '../lib/site';
+
+interface Props {
+  title: string;
+  description: string;
+  division?: 'industrial' | 'realestate';
+  hideStickyCta?: boolean;
+}
+const { title, description, division, hideStickyCta = false } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const ogImage = new URL(url('og-image.png'), Astro.site).href;
+const fullTitle = title === SITE.name ? `${SITE.name} — Drone mapping & aerial media, Austin TX` : `${title} | ${SITE.name}`;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: SITE.name,
+  url: SITE.liveUrl,
+  email: SITE.email,
+  image: ogImage,
+  description: 'Drone mapping, stockpile measurement, site progress capture and real estate aerial media.',
+  address: { '@type': 'PostalAddress', addressLocality: 'Austin', addressRegion: 'TX', addressCountry: 'US' },
+  areaServed: [
+    { '@type': 'GeoCircle', geoMidpoint: { '@type': 'GeoCoordinates', latitude: SITE.center.lat, longitude: SITE.center.lon }, geoRadius: '24140' },
+    { '@type': 'Country', name: 'United States' },
+  ],
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Real estate aerial media',
+    itemListElement: [
+      ['Aerial Photos', 230], ['Aerial Video', 315], ['Aerial Photo + Video', 435],
+      ['Ground Essential', 150], ['Ground Complete', 210], ['Ground Expanded', 330],
+    ].map(([name, price]) => ({ '@type': 'Offer', price, priceCurrency: 'USD', itemOffered: { '@type': 'Service', name } })),
+  },
+};
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#070b12" />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href={url('brand/logo-dark.svg')} />
+    <link rel="sitemap" href={url('sitemap-index.xml')} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <slot name="head" />
+  </head>
+  <body data-division={division} class="min-h-dvh">
+    <a href="#main" class="skip-link">Skip to content</a>
+    <div class="relative z-50 bg-placeholder/95 text-ink-950 text-center text-[13px] font-semibold py-1.5 px-4">
+      <span class="font-mono tracking-widest mr-2">BETA REDESIGN</span>
+      Preview only. The live site is <a class="underline underline-offset-2" href={SITE.liveUrl}>orbitalaerial.com</a>.
+    </div>
+    <Header division={division} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer division={division} />
+    {!hideStickyCta && (
+      <div class="md:hidden fixed inset-x-0 bottom-0 z-40 p-3 bg-ink-900/90 backdrop-blur border-t hairline flex gap-2" style="padding-bottom: max(.75rem, env(safe-area-inset-bottom));">
+        <a href={url(division ? `contact/?division=${division}` : 'contact/')} class="btn btn-primary flex-1">Get a quote</a>
+        <a href={`mailto:${SITE.email}`} class="btn btn-ghost" aria-label={`Email ${SITE.email}`}>Email</a>
+      </div>
+    )}
+    <script>
+      import { initReveal } from '../scripts/reveal';
+      initReveal();
+    </script>
+  </body>
+</html>

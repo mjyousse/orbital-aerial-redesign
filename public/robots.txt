@@ -1,0 +1,5 @@
+# Beta preview. Pages also carry a noindex tag so they stay out of search results.
+User-agent: *
+Allow: /
+
+Sitemap: https://mjyousse.github.io/orbital-aerial-redesign/sitemap-index.xml

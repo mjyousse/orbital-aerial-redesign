@@ -1,0 +1,46 @@
+---
+import { url } from '../lib/site';
+const { division } = Astro.props as { division?: string };
+const path = Astro.url.pathname;
+const links = [
+  { href: url('industrial/'), label: 'Industrial', key: 'industrial' },
+  { href: url('real-estate/'), label: 'Real Estate', key: 'real-estate' },
+  { href: url('#sample-data'), label: 'Sample data', key: 'sample' },
+  { href: url('contact/'), label: 'Contact', key: 'contact' },
+];
+const quoteHref = url(division ? `contact/?division=${division}` : 'contact/');
+---
+<header class="sticky top-0 z-40 border-b hairline bg-ink-900/80 backdrop-blur-md">
+  <div class="wrap flex items-center justify-between h-16">
+    <a href={url('')} class="flex items-center gap-3 shrink-0" aria-label="Orbital Aerial Solutions home">
+      <img src={url('brand/logo-dark.svg')} alt="" width="64" height="45" class="h-10 w-auto" />
+      <span class="hidden sm:block tele-muted !text-[11px]">{division === 'realestate' ? 'Real estate media' : division === 'industrial' ? 'Industrial data' : 'Aerial data & media'}</span>
+    </a>
+    <nav aria-label="Main" class="hidden md:flex items-center gap-1 text-[15px]">
+      {links.map((l) => {
+        const active = path.includes(`/${l.key}/`);
+        return <a href={l.href} class:list={['px-3 py-2 rounded-md hover:text-white transition-colors', active ? 'text-white' : 'text-fg-2']} aria-current={active ? 'page' : undefined}>{l.label}</a>;
+      })}
+      <a href={quoteHref} class="btn btn-primary ml-3 !py-2.5">Get a quote</a>
+    </nav>
+    <button id="menu-btn" class="md:hidden btn btn-ghost !px-3" aria-expanded="false" aria-controls="mobile-menu">
+      <span class="sr-only">Menu</span>
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+  <nav id="mobile-menu" aria-label="Mobile" class="md:hidden hidden border-t hairline bg-ink-900">
+    <div class="wrap py-3 flex flex-col">
+      {links.map((l) => <a href={l.href} class="py-3 text-lg border-b hairline last:border-0">{l.label}</a>)}
+    </div>
+  </nav>
+  <script>
+    const btn = document.getElementById('menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    btn?.addEventListener('click', () => {
+      const open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!open));
+      menu?.classList.toggle('hidden', open);
+    });
+    menu?.addEventListener('click', (e) => { if ((e.target as HTMLElement).tagName === 'A') { btn?.setAttribute('aria-expanded', 'false'); menu.classList.add('hidden'); } });
+  </script>
+</header>

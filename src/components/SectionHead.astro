@@ -1,0 +1,8 @@
+---
+const { eyebrow, title, lede, center = false } = Astro.props as { eyebrow: string; title: string; lede?: string; center?: boolean };
+---
+<div class:list={['max-w-3xl mb-12', center && 'mx-auto text-center']} data-reveal>
+  <p class="tele flex items-center gap-3" class:list={[center && 'justify-center']}><span class="inline-block w-6 h-px bg-[var(--accent)]"></span>{eyebrow}</p>
+  <h2 class="mt-4 text-[clamp(2rem,4.2vw,3.25rem)] font-bold text-white">{title}</h2>
+  {lede && <p class="mt-5 text-lg text-fg-2 leading-relaxed">{lede}</p>}
+</div>
