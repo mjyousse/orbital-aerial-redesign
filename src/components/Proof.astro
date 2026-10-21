@@ -2,15 +2,15 @@
 import Placeholder from './Placeholder.astro';
 const { division = 'industrial' } = Astro.props as { division?: 'industrial' | 'realestate' };
 const stats = division === 'industrial'
-  ? ['Acres mapped', 'Sites measured', 'Typical accuracy (cm)', 'Average turnaround (days)']
-  : ['Listings shot', 'Average delivery (hours)', 'Repeat agents', 'Neighborhoods covered'];
+  ? ['Acres mapped', 'Sites measured', 'Verified accuracy vs. ground control (cm)', 'Average turnaround (days)']
+  : ['Listings captured', 'Average delivery (hours)', 'Repeat agents and builders', 'Neighborhoods covered'];
 ---
 <section class="section border-b hairline" aria-labelledby={`proof-${division}`}>
   <div class="wrap">
     <div class="max-w-3xl mb-10" data-reveal>
-      <p class="tele">Proof</p>
-      <h2 id={`proof-${division}`} class="mt-4 text-[clamp(1.8rem,3.4vw,2.6rem)] font-bold text-white">Results, in numbers and in clients’ words.</h2>
-      <p class="mt-4 text-fg-2">These spots are ready for real figures, quotes and case studies. Nothing here is made up: fill them in once you have approved numbers.</p>
+      <p class="tele">Field record</p>
+      <h2 id={`proof-${division}`} class="mt-4 text-[clamp(1.8rem,3.4vw,2.6rem)] font-bold text-white">Proven in the field.</h2>
+      <p class="mt-4 text-fg-2">Reserved for verified project figures, approved client statements and documented case studies. Every number here will be one we can stand behind.</p>
     </div>
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-4" data-reveal>
       {stats.map((s) => (
@@ -23,11 +23,11 @@ const stats = division === 'industrial'
     <div class="mt-4 grid lg:grid-cols-3 gap-4" data-reveal>
       <Placeholder label="Case study" class="lg:col-span-2">
         <p class="font-display text-xl text-white font-semibold">Case study coming soon</p>
-        <p class="mt-2 text-sm">Suggested shape: the client’s problem → how we flew it → what we delivered → the result (time or money saved). Add a before/after image and a downloadable sample.</p>
+        <p class="mt-2 text-sm">Structure: site challenge → capture approach → deliverables → measured outcome (time, cost or risk reduced). Pair with a before/after image and a downloadable sample dataset.</p>
       </Placeholder>
       <Placeholder label="Testimonial">
         <p class="font-display text-xl text-white font-semibold">“Client quote goes here.”</p>
-        <p class="mt-2 text-sm">Name, role, company — with their permission.</p>
+        <p class="mt-2 text-sm">Name, role and company, shared with permission.</p>
       </Placeholder>
     </div>
     <Placeholder label="Client logos" class="mt-4">

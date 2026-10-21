@@ -20,7 +20,7 @@ const alts = ['Night aerial of a high-rise amenity deck with pool, Austin', 'Roo
 const large = await Promise.all(gallery.map((g) => getImage({ src: g, width: 1800, format: 'webp' })));
 const pkgSlug = (t: string) => t.split(' (')[0];
 ---
-<Base title="Real estate drone photography Austin" division="realestate" description="Aerial photos and video for Austin listings, with ground photography in the same visit. Upfront prices from $150. FAA Part 107 certificated and insured.">
+<Base title="Real estate drone photography Austin" division="realestate" description="48 MP aerial stills and 4K property motion for Austin listings, with ground photography in the same visit. Published prices from $150. FAA Part 107 certificated, $10M aviation liability coverage.">
   <section class="relative min-h-[calc(100svh-6rem)] flex items-end overflow-hidden border-b hairline" aria-labelledby="re-title">
     <Picture src={hero} alt="" widths={[768, 1280, 1920, 2400]} sizes="100vw" formats={['avif', 'webp']} pictureAttributes={{ class: 'contents' }} loading="eager" fetchpriority="high" class="absolute inset-0 w-full h-full object-cover" />
     <div class="absolute inset-0 bg-gradient-to-r from-ink-900/95 via-ink-900/65 to-ink-900/10"></div>
@@ -28,7 +28,7 @@ const pkgSlug = (t: string) => t.split(' (')[0];
     <div class="wrap relative pb-16 pt-24">
       <p class="tele flex items-center gap-3"><span class="inline-block w-6 h-px bg-amber"></span>Aerial media for Austin properties</p>
       <h1 id="re-title" class="mt-6 max-w-4xl text-[clamp(2.6rem,7vw,5.5rem)] font-bold text-white">Show the property.<br /><span class="text-amber">Reveal the full perspective.</span></h1>
-      <p class="mt-7 max-w-2xl text-[clamp(1.05rem,1.6vw,1.25rem)] text-fg leading-relaxed">Aerial photos and video that show scale, setting and approach, with ground photography in the same visit when the listing needs it.</p>
+      <p class="mt-7 max-w-2xl text-[clamp(1.05rem,1.6vw,1.25rem)] text-fg leading-relaxed">Purposeful aerial photos and cinematic motion that establish scale, setting and arrival, paired with ground coverage when the story calls for it.</p>
       <div class="mt-10 flex flex-wrap gap-3">
         <a href="#quote" class="btn btn-primary text-base !px-6 !py-3.5">Request a quote</a>
         <a href="#packages" class="btn btn-ghost text-base !px-6 !py-3.5 bg-ink-900/50">View packages</a>
@@ -39,15 +39,15 @@ const pkgSlug = (t: string) => t.split(' (')[0];
     </div>
   </section>
   <TrustStrip items={[
-    { k: 'Aerial', v: 'Packages from $230' },
-    { k: 'Ground', v: 'Packages from $150' },
-    { k: 'Pricing', v: 'Approved before booking' },
-    { k: 'Pilots', v: 'Part 107 · Insured' },
+    { k: 'Capture', v: '48 MP stills · 4K motion' },
+    { k: 'Pricing', v: 'Published, from $150' },
+    { k: 'Delivery', v: 'As soon as 24 hours' },
+    { k: 'Pilots', v: 'Part 107 · $10M insured' },
   ]} />
 
   <section id="work" class="section border-b hairline scroll-mt-20">
     <div class="wrap">
-      <SectionHead eyebrow="Selected work" title="Recent coverage." />
+      <SectionHead eyebrow="Selected work" title="Recent coverage, shot by Orbital." />
       <ul class="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
         {gallery.map((g, i) => (
           <li data-reveal>
@@ -82,7 +82,7 @@ const pkgSlug = (t: string) => t.split(' (')[0];
 
   <section id="standards" class="section border-b hairline">
     <div class="wrap">
-      <SectionHead eyebrow="The Orbital standard" title="Media built to move listings." lede="Every flight and ground session is planned for visual impact, MLS requirements and fast turnaround." />
+      <SectionHead eyebrow="The Orbital standard" title="Purpose-built media for high-performing listings." lede="Every flight and ground session is engineered for visual impact, MLS compliance and rapid turnaround." />
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {reStandards.map((s) => (<div class="panel p-6" data-reveal><span class="tele">{s.id}</span><h3 class="mt-3 text-xl text-white font-semibold">{s.title}</h3><p class="mt-2 text-fg-2 text-[15px]">{s.body}</p></div>))}
       </div>
@@ -91,10 +91,10 @@ const pkgSlug = (t: string) => t.split(' (')[0];
 
   <section id="packages" class="section border-b hairline scroll-mt-20">
     <div class="wrap">
-      <SectionHead eyebrow="Packages · prices upfront" title="Aerial packages." lede="Start with aerial photos, video, or both. Add a ground package if the listing needs interiors and exteriors too." />
+      <SectionHead eyebrow="Packages · prices upfront" title="Straightforward aerial packages, priced upfront." lede="Start with aerial photos, aerial video, or both. Add a ground package when the listing needs interiors and exteriors too." />
       {[aerialPackages, groundPackages].map((group, gi) => (
         <>
-          {gi === 1 && <div class="mt-16"><SectionHead eyebrow="Ground photography" title="Interior and exterior packages." lede="Choose the coverage that fits the property. We confirm access, scope and final price before the session." /></div>}
+          {gi === 1 && <div class="mt-16"><SectionHead eyebrow="Ground photography" title="Interior and exterior coverage, same upfront pricing." lede="Choose the coverage that fits the property. We confirm access, scope and final price before the session." /></div>}
           <div class="grid md:grid-cols-3 gap-5">
             {group.map((p) => (
               <article class:list={['panel p-7 flex flex-col relative', p.featured && '!border-amber/60 bg-amber-900/20']} data-reveal>
@@ -125,7 +125,7 @@ const pkgSlug = (t: string) => t.split(' (')[0];
 
   <section class="section border-b hairline">
     <div class="wrap">
-      <SectionHead eyebrow="Available on request" title="More listing media when you need it." lede="Ask when you plan the shoot. Scope and price are confirmed before booking." />
+      <SectionHead eyebrow="Available on request" title="Additional listing media when the property needs it." lede="Ask when you plan the shoot. Scope and price are confirmed before booking." />
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {reAddons.map((a) => <div class="panel p-6" data-reveal><h3 class="text-lg text-white font-semibold">{a.title}</h3><p class="mt-2 text-fg-2 text-[15px]">{a.body}</p></div>)}
       </div>

@@ -13,7 +13,7 @@ interface Props {
 const { title, description, division, hideStickyCta = false } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogImage = new URL(url('og-image.png'), Astro.site).href;
-const fullTitle = title === SITE.name ? `${SITE.name} — Drone mapping & aerial media, Austin TX` : `${title} | ${SITE.name}`;
+const fullTitle = title === SITE.name ? `${SITE.name} | Aerial intelligence & drone mapping, Austin TX` : `${title} | ${SITE.name}`;
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -22,7 +22,7 @@ const jsonLd = {
   url: SITE.liveUrl,
   email: SITE.email,
   image: ogImage,
-  description: 'Drone mapping, stockpile measurement, site progress capture and real estate aerial media.',
+  description: 'Aerial intelligence firm delivering survey-grade geospatial mapping, stockpile volumetrics, reality capture and real estate aerial media.',
   address: { '@type': 'PostalAddress', addressLocality: 'Austin', addressRegion: 'TX', addressCountry: 'US' },
   areaServed: [
     { '@type': 'GeoCircle', geoMidpoint: { '@type': 'GeoCoordinates', latitude: SITE.center.lat, longitude: SITE.center.lon }, geoRadius: '24140' },

@@ -21,12 +21,12 @@ export const industrialServices = [
     number: '01',
     tag: 'Inventory',
     title: 'Stockpile Measurement',
-    body: 'Repeatable volume measurements for aggregate, material and earthwork sites. We plan each flight around your site, your control and the report format your team already uses.',
+    body: 'Repeatable aerial inventory measurement for aggregate, material and earthwork operations. Every flight is planned around site conditions, control requirements and the reporting format your team already runs on.',
     deliverables: [
-      'Volume and tonnage, using your density values',
+      'Volume and tonnage calculated with your density values',
       'Georeferenced orthomosaic and surface model',
       'Pile-by-pile PDF and CSV report',
-      'Side-by-side history for recurring sites',
+      'Historical comparisons for recurring sites',
     ],
     formats: 'PDF · CSV · GeoTIFF',
     image: 'stockpile',
@@ -38,12 +38,12 @@ export const industrialServices = [
     number: '02',
     tag: 'Construction',
     title: 'Site Progress & Digital Twins',
-    body: 'Scheduled captures that give the whole project team the same up-to-date picture of the site, without everyone driving out to see it.',
+    body: 'Scheduled reality capture that gives every stakeholder one consistent visual and spatial record of changing site conditions, without putting the whole team in the field.',
     deliverables: [
-      'High-resolution orthomosaic and 3D model',
-      'Dated captures at the milestones you set',
-      'Plan and design overlays',
-      'Web access for office and field teams',
+      'High-resolution orthomosaic and interactive 3D model',
+      'Timestamped captures at defined milestones',
+      'Design and plan overlays for visual coordination',
+      'Cloud access for office and field stakeholders',
     ],
     formats: 'Web · GeoTIFF · LAS',
     image: 'progress',
@@ -55,10 +55,10 @@ export const industrialServices = [
     number: '03',
     tag: 'Engineering',
     title: 'Asset & Infrastructure Documentation',
-    body: 'Detailed, location-tagged imagery of roofs, structures, utilities and other hard-to-reach assets, organized so engineers and owners can review them from the office.',
+    body: 'High-resolution, coordinate-aware documentation of roofs, structures, utilities and other difficult-to-access assets, organized for engineers, owners and maintenance teams.',
     deliverables: [
       'Overview and detail imagery, organized by asset',
-      'Location-tagged observations for engineering review',
+      'Coordinate-tagged observations for engineering review',
       'Orthomosaic or 3D context where useful',
       'Controlled file delivery and access',
     ],
@@ -70,27 +70,27 @@ export const industrialServices = [
 ];
 
 export const industrialPoints = [
-  { title: 'Your site on any screen', body: 'Open 3D maps in a secure web workspace. Superintendents, operations teams and remote engineers can check progress from anywhere, with no GIS skills needed.' },
-  { title: 'Works with the data you have', body: 'We can process drone, LiDAR and GPS rover data and align it to your agreed coordinate system, so everyone reviews the same reference model.' },
-  { title: 'Plans on top of reality', body: 'Overlay PDF plans, blueprints or TIN surfaces on the site model to check progress, spot utility clashes and confirm the work matches the design.' },
-  { title: 'An in-house crew', body: 'Our own team plans and flies every job and delivers processed data on the schedule set in your scope.' },
+  { title: 'Your entire site in your pocket', body: 'High-fidelity 3D maps in a secure, cloud-hosted workspace. Operations teams, superintendents and remote engineers track completed work from anywhere, with no GIS expertise required.' },
+  { title: 'Hardware-agnostic data engine', body: 'Drone, LiDAR and GPS rover inputs are aligned to the agreed coordinate framework, so every team works from one consistent reference model.' },
+  { title: 'Design overlays on reality', body: 'PDF plans, blueprints and TIN surfaces overlaid directly on the reality model to verify progress, surface utility clashes and inspect design conformance.' },
+  { title: 'Air-gapped by design', body: 'Datasets move through air-gapped ingestion pipelines on NDAA-compliant platforms, engineered for zero data leakage from capture to handoff.' },
 ];
 
 export const industrialCredentials = [
-  { label: 'Safety', title: 'Structured flight safety', body: 'FAA Part 107 certificated pilots follow a safety management framework: preflight risk analysis, airspace review and standard mission checklists.' },
-  { label: 'Coordinates', title: 'Your coordinate system', body: 'Deliverables can be tied to state plane coordinates and local ground benchmarks, so they line up with your surveyor’s data and CAD grids.' },
-  { label: 'Insurance', title: 'Fully insured', body: 'Aviation liability coverage is in place for our flight operations. Project-specific insurance requirements are confirmed during scoping.' },
-  { label: 'Equipment', title: 'RTK-enabled aircraft', body: 'RTK-enabled drones and high-resolution cameras give repeatable mapping flights matched to your control requirements.' },
-  { label: 'Processing', title: 'Photogrammetry in-house', body: 'We turn imagery into the deliverables you agreed to: orthomosaics, point clouds, surface models and volume reports.' },
-  { label: 'Handoff', title: 'Documented method', body: 'Every handoff records the capture date, coordinate system, control approach, processing method and file formats.' },
+  { label: 'Safety', title: 'Aviation SMS framework', body: 'FAA Part 107 certificated remote pilots operate inside a Safety Management System framework: preflight risk analysis, airspace review and standardized mission checklists.' },
+  { label: 'Geospatial control', title: 'Unified coordinate engine', body: 'Deliverables align to state plane coordinates and local ground benchmarks, integrating with existing surveyor coordinates and CAD grids.' },
+  { label: 'Coverage', title: '$10M aviation liability', body: '$10M in specialized aviation liability coverage backs our flight operations. Project-specific insurance requirements are confirmed during scoping.' },
+  { label: 'Enterprise fleet', title: 'NDAA-compliant, RTK-enabled', body: 'RTK-enabled aircraft and high-resolution imaging systems on NDAA-compliant platforms, flying repeatable mapping missions matched to your control requirements.' },
+  { label: 'Processing', title: 'AI-driven photogrammetry', body: 'Imagery moves through air-gapped ingestion into AI-driven processing pipelines that produce orthomosaics, point clouds, surface models and volumetric reports.' },
+  { label: 'Handoff', title: 'Method-aware handoffs', body: 'Every handoff documents the capture date, coordinate framework, control approach, processing method and agreed output formats. Data you can defend.' },
 ];
 
 export const industrialProcess = [
-  { step: '01', title: 'Scope', body: 'Tell us the site, the deliverables and the deadline. We confirm price and availability within one business day.' },
-  { step: '02', title: 'Plan', body: 'We review site access, airspace, ground control and schedule before mobilizing.' },
-  { step: '03', title: 'Fly', body: 'RTK-enabled capture, flown by our Part 107 certificated crew.' },
-  { step: '04', title: 'Process', body: 'Imagery becomes orthomosaics, surface models, point clouds or volume reports.' },
-  { step: '05', title: 'Deliver', body: 'Files in your formats, with method notes, plus web access for your team.' },
+  { step: '01', title: 'Scope', body: 'Define the site, deliverables and deadline. Pricing and availability within one business day.' },
+  { step: '02', title: 'Plan', body: 'Site access, airspace, ground control and schedule are evaluated before every mobilization.' },
+  { step: '03', title: 'Capture', body: 'RTK-enabled flights on NDAA-compliant platforms, executed by our in-house FAA Part 107 crew.' },
+  { step: '04', title: 'Process', body: 'AI-driven photogrammetry converts raw imagery into orthomosaics, surface models, point clouds and volumetric reports.' },
+  { step: '05', title: 'Deliver', body: 'Georeferenced, metadata-tagged outputs in your formats, with method notes and secure cloud access.' },
 ];
 
 export const sectors = ['Aggregate & quarry operations', 'Critical infrastructure', 'Land & home development', 'Industrial facilities', 'Energy & utilities'];
@@ -108,15 +108,15 @@ export const groundPackages = [
 ];
 
 export const reStandards = [
-  { id: '01', title: '48 MP stills', body: 'Wide boundary aerials, architectural angles and detail shots with natural color.' },
-  { id: '02', title: '4K property motion', body: 'Reveals, orbits and neighborhood fly-overs formatted for MLS, YouTube and reels.' },
-  { id: '03', title: 'Delivery as soon as 24 hours', body: 'Edited stills and video, often the next day. Timing is confirmed with your scope.' },
-  { id: '04', title: 'One visit', body: 'Aerial and ground photography in the same session, so agents and sellers schedule once.' },
+  { id: '01', title: '48 MP high-resolution stills', body: 'Architectural perspectives, wide boundary aerials and contextual detail shots with natural color grading.' },
+  { id: '02', title: '4K cinematic property motion', body: 'Intentional reveals, orbits and community fly-overs formatted for MLS listings, YouTube and reels.' },
+  { id: '03', title: 'Delivery as soon as 24 hours', body: 'Curated listing-ready stills plus web and social video exports. Timing is confirmed with your approved scope.' },
+  { id: '04', title: 'Single-visit capture', body: 'Aerial flight and ground photography coordinated in one session, so agents and sellers schedule once.' },
 ];
 
 export const reProcess = [
   { step: '01', title: 'Arrival', body: 'A strong opening view that establishes the property.' },
-  { step: '02', title: 'Context', body: 'Aerial views that show the lot, access and setting.' },
+  { step: '02', title: 'Context', body: 'Aerial perspective that clarifies the lot, access and setting.' },
   { step: '03', title: 'Detail', body: 'Ground coverage of the rooms and features that matter.' },
   { step: '04', title: 'Delivery', body: 'Files ready for MLS and social, as soon as 24 hours after the shoot.' },
 ];
@@ -132,7 +132,7 @@ export const rePoints = [
   { title: 'Boundary overlays', body: 'For land tracts and subdivisions, we can draw marketing boundaries and amenity callouts on aerial photos. These are for marketing only, not a licensed survey.' },
   { title: 'Ready for MLS', body: 'Files are sized for MLS, builder websites and social channels, so you can publish without reformatting.' },
   { title: 'Flight logistics handled', body: 'We take care of airspace coordination and residential flight planning, so you don’t have to.' },
-  { title: 'Insured and Part 107', body: 'FAA Part 107 certificated pilots, aviation liability coverage, and a site-risk review before every shoot.' },
+  { title: 'Part 107 and $10M insured', body: 'FAA Part 107 certificated pilots, $10M in specialized aviation liability coverage, and a site-risk review before every shoot around occupied properties.' },
 ];
 
 export const serviceOptions: Record<Division, string[]> = {
