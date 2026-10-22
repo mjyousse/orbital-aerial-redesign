@@ -9,8 +9,9 @@ interface Props {
   description: string;
   division?: 'industrial' | 'realestate';
   hideStickyCta?: boolean;
+  headerTone?: 'overlay' | 'light';
 }
-const { title, description, division, hideStickyCta = false } = Astro.props;
+const { title, description, division, hideStickyCta = false, headerTone = 'overlay' } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogImage = new URL(url('og-image.png'), Astro.site).href;
 const fullTitle = title === SITE.name ? `${SITE.name} | Aerial intelligence & drone mapping, Austin TX` : `${title} | ${SITE.name}`;
@@ -46,7 +47,8 @@ const jsonLd = {
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
     <meta name="robots" content="noindex, nofollow" />
-    <meta name="theme-color" content="#070b12" />
+    <meta name="theme-color" content="#0a0a0b" />
+    <script is:inline>document.documentElement.classList.add('js')</script>
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href={url('brand/logo-dark.svg')} />
     <link rel="sitemap" href={url('sitemap-index.xml')} />
@@ -63,21 +65,21 @@ const jsonLd = {
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     <slot name="head" />
   </head>
-  <body data-division={division} class="min-h-dvh">
+  <body data-division={division} class="min-h-dvh theme-light">
     <a href="#main" class="skip-link">Skip to content</a>
-    <div class="relative z-50 bg-placeholder/95 text-ink-950 text-center text-[13px] font-semibold py-1.5 px-4">
-      <span class="font-mono tracking-widest mr-2">BETA REDESIGN</span>
+    <div class="relative z-50 bg-placeholder text-ink-950 text-center text-[13px] font-semibold py-1.5 px-4">
+      <span class="tracking-[.14em] mr-2">BETA REDESIGN · DESIGN B</span>
       Preview only. The live site is <a class="underline underline-offset-2" href={SITE.liveUrl}>orbitalaerial.com</a>.
     </div>
-    <Header division={division} />
+    <Header division={division} tone={headerTone} />
     <main id="main">
       <slot />
     </main>
     <Footer division={division} />
     {!hideStickyCta && (
-      <div class="md:hidden fixed inset-x-0 bottom-0 z-40 p-3 bg-ink-900/90 backdrop-blur border-t hairline flex gap-2" style="padding-bottom: max(.75rem, env(safe-area-inset-bottom));">
-        <a href={url(division ? `contact/?division=${division}` : 'contact/')} class="btn btn-primary flex-1">Get a quote</a>
-        <a href={`mailto:${SITE.email}`} class="btn btn-ghost" aria-label={`Email ${SITE.email}`}>Email</a>
+      <div class="md:hidden fixed inset-x-0 bottom-0 z-40 p-3 bg-white/90 backdrop-blur border-t border-black/10 flex gap-2" style="padding-bottom: max(.75rem, env(safe-area-inset-bottom));">
+        <a href={url(division ? `contact/?division=${division}` : 'contact/')} class="btn btn-dark flex-1">Request a quote</a>
+        <a href={`mailto:${SITE.email}`} class="btn btn-outline-dark" aria-label={`Email ${SITE.email}`}>Email</a>
       </div>
     )}
     <script>

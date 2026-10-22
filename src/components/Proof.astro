@@ -5,33 +5,32 @@ const stats = division === 'industrial'
   ? ['Acres mapped', 'Sites measured', 'Verified accuracy vs. ground control (cm)', 'Average turnaround (days)']
   : ['Listings captured', 'Average delivery (hours)', 'Repeat agents and builders', 'Neighborhoods covered'];
 ---
-<section class="section border-b hairline" aria-labelledby={`proof-${division}`}>
+<section class="section theme-warm" aria-labelledby={`proof-${division}`}>
   <div class="wrap">
-    <div class="max-w-3xl mb-10" data-reveal>
-      <p class="tele">Field record</p>
-      <h2 id={`proof-${division}`} class="mt-4 text-[clamp(1.8rem,3.4vw,2.6rem)] font-bold text-white">Proven in the field.</h2>
-      <p class="mt-4 text-fg-2">Reserved for verified project figures, approved client statements and documented case studies. Every number here will be one we can stand behind.</p>
+    <div class="grid lg:grid-cols-[1fr_1fr] gap-10 items-end mb-14" data-reveal>
+      <div>
+        <p class="eyebrow">Field record</p>
+        <h2 id={`proof-${division}`} class="mt-5 display-md">Proven in the field.</h2>
+      </div>
+      <p class="lede text-text-2">Reserved for verified project figures, approved client statements and documented case studies. Every number here will be one we can stand behind.</p>
     </div>
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-4" data-reveal>
       {stats.map((s) => (
-        <Placeholder label="Stat">
-          <p class="font-display text-3xl font-bold text-white">Your stat here</p>
-          <p class="mt-1 text-sm">{s}</p>
+        <Placeholder label="Stat" class="!bg-paper">
+          <p class="font-display text-4xl font-semibold tracking-tight text-text/40">—</p>
+          <p class="mt-2 text-sm">{s}</p>
         </Placeholder>
       ))}
     </div>
     <div class="mt-4 grid lg:grid-cols-3 gap-4" data-reveal>
-      <Placeholder label="Case study" class="lg:col-span-2">
-        <p class="font-display text-xl text-white font-semibold">Case study coming soon</p>
+      <Placeholder label="Case study" class="lg:col-span-2 !bg-paper">
+        <p class="font-display text-2xl font-semibold tracking-tight text-text">Case study coming soon</p>
         <p class="mt-2 text-sm">Structure: site challenge → capture approach → deliverables → measured outcome (time, cost or risk reduced). Pair with a before/after image and a downloadable sample dataset.</p>
       </Placeholder>
-      <Placeholder label="Testimonial">
-        <p class="font-display text-xl text-white font-semibold">“Client quote goes here.”</p>
+      <Placeholder label="Testimonial" class="!bg-paper">
+        <p class="font-display text-2xl font-semibold tracking-tight text-text">“Client quote goes here.”</p>
         <p class="mt-2 text-sm">Name, role and company, shared with permission.</p>
       </Placeholder>
     </div>
-    <Placeholder label="Client logos" class="mt-4">
-      <p class="text-sm">Add client or partner logos here once you have permission to show them.</p>
-    </Placeholder>
   </div>
 </section>

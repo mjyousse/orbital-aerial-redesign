@@ -10,8 +10,8 @@ Every page carries a `noindex` tag and a visible "Beta redesign" banner, so this
 
 | Path | What's on it |
 | --- | --- |
-| `/` | Terrain hero, both divisions, interactive sample data, services, process, coverage map, quote form |
-| `/industrial/` | Stockpile, progress and asset services, sample data, credentials, process |
+| `/` | Full-bleed aerial video hero, both divisions, deliverable mockups, interactive sample data, process, founder, coverage map, quote form |
+| `/industrial/` | Stockpile, progress and asset services with sample report screens, sample data, credentials, process |
 | `/real-estate/` | Recent work gallery, aerial and ground packages with prices, coverage map |
 | `/contact/` | Multi-step quote form |
 
@@ -52,22 +52,25 @@ The `github-pages` environment allows deployments from `main` and from any branc
 ## Editing content
 
 - Copy, services, packages and prices live in `src/lib/site.ts`.
-- Pink dashed boxes marked **Editor placeholder** (stats, case study, testimonial, client logos, property video) are for real content only. Replace them once you have approved numbers, quotes or permission, or delete them.
+- Pink dashed boxes marked **Placeholder** (stats, case study, testimonial, client logos, founder photo, property film) are for real content only. Replace them once you have approved numbers, quotes or permission, or delete them.
 - The quote form sends to the same FormSubmit inbox and uses the same Geoapify address autocomplete key as the live site (`src/scripts/quote.ts`).
 
 ## Performance notes
 
 - Photos are converted to AVIF and WebP at build time with responsive sizes.
-- Three.js (3D viewer), Leaflet (coverage map) and GSAP (scroll reveals) load only when their section is near the viewport.
+- Three.js (3D viewer) and Leaflet (coverage map) load only when their section is near the viewport. Scroll reveals use IntersectionObserver and CSS, with no animation library.
+- The hero video is a 14 s muted loop (960 px on phones, 1600 px on larger screens). It doesn't load when the visitor prefers reduced motion or has Data Saver on; the poster image shows instead.
 - Fonts are self-hosted. Motion is switched off when the visitor prefers reduced motion.
 
 ## Credits and licenses
 
 - Code: MIT, see `LICENSE`.
 - Real estate photos: Orbital Aerial Solutions.
+- Hero video: [Aerial View of Industrial Gravel Quarry](https://www.pexels.com/video/aerial-view-of-industrial-gravel-quarry-30911567/), free to use under the [Pexels license](https://www.pexels.com/license/). Trimmed and re-encoded. Stock footage, not client work.
 - Industrial photos: licensed from Pexels ([stockpile](https://www.pexels.com/photo/aerial-view-of-quarry-with-heavy-machinery-33122147/), [construction site](https://www.pexels.com/photo/aerial-view-of-construction-site-in-quebec-city-32211979/), [storage facility](https://www.pexels.com/photo/aerial-view-of-industrial-storage-facility-33369529/)). They show the type of site, not client work.
-- Sample data (hero terrain, point cloud, before/after): elevation from USGS 3DEP via [AWS Terrain Tiles](https://registry.opendata.aws/terrain-tiles/), and imagery from the [USGS National Map](https://www.usgs.gov/programs/national-geospatial-program/national-map) orthoimagery. Both are public domain US government data. Area: west Austin, TX. Not client work.
+- Product screens (stockpile report, site viewer, observation card, listing preview) are illustrative mockups. Their values are samples, not measurements.
+- Sample data (point cloud, before/after): elevation from USGS 3DEP via [AWS Terrain Tiles](https://registry.opendata.aws/terrain-tiles/), and imagery from the [USGS National Map](https://www.usgs.gov/programs/national-geospatial-program/national-map) orthoimagery. Both are public domain US government data. Area: west Austin, TX. Not client work.
 - Coverage map tiles: USGS The National Map (public domain), rendered with [Leaflet](https://leafletjs.com/).
-- Fonts: Space Grotesk, DM Sans and JetBrains Mono (SIL Open Font License) via Fontsource.
+- Fonts: Inter Tight and Inter (SIL Open Font License) via Fontsource.
 
 Made by Mohammad Youssef.

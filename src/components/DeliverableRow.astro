@@ -1,0 +1,21 @@
+---
+import Arrow from './Arrow.astro';
+const { tag, title, body, deliverables = [], formats, href, cta = 'Learn more', flip = false, id } = Astro.props as { tag: string; title: string; body: string; deliverables?: string[]; formats?: string; href?: string; cta?: string; flip?: boolean; id?: string };
+---
+<div id={id} class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center scroll-mt-24">
+  <div class:list={['sm:pb-10 lg:pb-0', flip && 'lg:order-2']} data-reveal><slot /></div>
+  <div class:list={[flip && 'lg:order-1']} data-reveal style="--d:120ms">
+    <p class="eyebrow">{tag}</p>
+    <h3 class="mt-5 font-display text-[clamp(1.9rem,3.2vw,2.9rem)] leading-[1.03] tracking-[-0.035em] font-semibold">{title}</h3>
+    <p class="mt-5 lede muted">{body}</p>
+    {deliverables.length > 0 && (
+      <ul class="mt-8 grid sm:grid-cols-2 gap-x-6 gap-y-3 text-[15px]">
+        {deliverables.map((d) => <li class="flex gap-3"><svg class="mt-1 shrink-0 text-signal-700" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>{d}</span></li>)}
+      </ul>
+    )}
+    <div class="mt-8 flex flex-wrap items-center gap-x-8 gap-y-3">
+      {formats && <p class="text-[13px] font-semibold text-text-3 tracking-wide">{formats}</p>}
+      {href && <a href={href} class="link-arrow text-[15px]">{cta}<Arrow /></a>}
+    </div>
+  </div>
+</div>

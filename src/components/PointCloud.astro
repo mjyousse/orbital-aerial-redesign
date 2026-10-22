@@ -55,7 +55,7 @@ import elev from '../assets/sample/sample-elevation.webp';
         H[y * N + x] = h; if (h < min) min = h; if (h > max) max = h;
       }
       const size = 4800, ex = 3, sc = 100 / size;
-      const c1 = new THREE.Color(0x0a1a2e), c2 = new THREE.Color(0x00b8e6), c3 = new THREE.Color(0xe8a020), tmp = new THREE.Color();
+      const c1 = new THREE.Color(0x1b1430), c2 = new THREE.Color(0xff6a2b), c3 = new THREE.Color(0xffe6c2), tmp = new THREE.Color();
       for (let y = 0; y < N; y++) for (let x = 0; x < N; x++) {
         const k = y * N + x, j = k * 3;
         pos[j] = (x / N - 0.5) * 100;
@@ -73,10 +73,10 @@ import elev from '../assets/sample/sample-elevation.webp';
       geo.setAttribute('color', colorAttr);
       const mat = new THREE.PointsMaterial({ size: small ? 0.42 : 0.24, vertexColors: true, sizeAttenuation: true });
       const scene = new THREE.Scene();
-      scene.background = new THREE.Color(0x05080d);
-      scene.fog = new THREE.Fog(0x05080d, 120, 220);
+      scene.background = new THREE.Color(0x0a0a0b);
+      scene.fog = new THREE.Fog(0x0a0a0b, 120, 220);
       scene.add(new THREE.Points(geo, mat));
-      const grid = new THREE.GridHelper(110, 22, 0x00b8e6, 0x123040);
+      const grid = new THREE.GridHelper(110, 22, 0x3a3a40, 0x1d1d21);
       (grid.material as any).transparent = true; (grid.material as any).opacity = 0.25;
       grid.position.y = -0.5; scene.add(grid);
       const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 500);

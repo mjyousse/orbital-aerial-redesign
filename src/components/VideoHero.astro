@@ -1,0 +1,49 @@
+---
+import { getImage } from 'astro:assets';
+import { url } from '../lib/site';
+import Arrow from './Arrow.astro';
+import poster from '../assets/stock/hero-quarry-poster.jpg';
+interface Props { eyebrow: string; title: string; lede: string; primary: { href: string; label: string }; secondary?: { href: string; label: string }; facts?: { k: string; v: string }[] }
+const { eyebrow, title, lede, primary, secondary, facts = [] } = Astro.props;
+const posterImg = await getImage({ src: poster, width: 1600, format: 'webp', quality: 70 });
+---
+<section class="hero-under relative min-h-[100svh] flex flex-col justify-end overflow-hidden theme-dark" aria-labelledby="hero-title">
+  <div class="absolute inset-0" aria-hidden="true">
+    <video id="hero-video" class="absolute inset-0 w-full h-full object-cover" autoplay muted loop playsinline preload="metadata" poster={posterImg.src}
+      data-src-sm={url('media/hero-quarry-960.mp4')} data-src-lg={url('media/hero-quarry.mp4')}></video>
+    <div class="absolute inset-0 bg-[linear-gradient(90deg,rgb(5_5_6/.82)_0%,rgb(5_5_6/.55)_45%,rgb(5_5_6/.15)_100%)]"></div>
+    <div class="absolute inset-0 bg-[linear-gradient(180deg,rgb(5_5_6/.55)_0%,transparent_22%,transparent_55%,rgb(5_5_6/.9)_100%)]"></div>
+  </div>
+  <div class="wrap relative pt-36 pb-8 md:pb-10">
+    <p class="eyebrow !text-white/85">{eyebrow}</p>
+    <h1 id="hero-title" class="mt-6 display-xl max-w-[15ch] text-white">{title}</h1>
+    <p class="mt-8 max-w-xl lede text-white/85">{lede}</p>
+    <div class="mt-10 flex flex-wrap gap-3">
+      <a href={primary.href} class="btn btn-white text-base !px-7">{primary.label}<Arrow /></a>
+      {secondary && <a href={secondary.href} class="btn btn-ghost text-base !px-7">{secondary.label}</a>}
+    </div>
+    {facts.length > 0 && (
+      <dl class="mt-14 md:mt-16 grid grid-cols-2 lg:grid-cols-4 border-t border-white/20">
+        {facts.map((f, i) => (
+          <div class:list={['pt-5 pb-1 pr-4', i % 2 === 1 && 'pl-4 border-l border-white/15 lg:pl-6', i >= 2 && 'lg:pl-6 lg:border-l lg:border-white/15', i >= 2 && 'max-lg:mt-4 max-lg:border-t max-lg:border-white/15']}>
+            <dt class="text-[13px] text-white/70">{f.k}</dt>
+            <dd class="mt-1 font-display text-lg md:text-xl font-semibold text-white tracking-tight">{f.v}</dd>
+          </div>
+        ))}
+      </dl>
+    )}
+    <p class="mt-8 text-[12px] text-white/70">Stock footage (Pexels) showing the type of site we fly. Not Orbital client work.</p>
+  </div>
+</section>
+<script>
+  const v = document.getElementById('hero-video') as HTMLVideoElement | null;
+  if (v) {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const save = (navigator as any).connection?.saveData;
+    if (reduce || save) { v.removeAttribute('autoplay'); }
+    else {
+      v.src = window.innerWidth < 900 ? v.dataset.srcSm! : v.dataset.srcLg!;
+      v.play().catch(() => {});
+    }
+  }
+</script>

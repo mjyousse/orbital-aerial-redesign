@@ -2,10 +2,10 @@
 import Base from '../layouts/Base.astro';
 import { url } from '../lib/site';
 ---
-<Base title="Page not found" description="This page doesn’t exist.">
-  <section class="section"><div class="wrap text-center py-20">
-    <p class="tele">Error 404 · Signal lost</p>
-    <h1 class="mt-4 text-5xl font-bold text-white">This page is off the map.</h1>
-    <div class="mt-8 flex justify-center gap-3"><a class="btn btn-primary" href={url('')}>Go home</a><a class="btn btn-ghost" href={url('contact/')}>Request a quote</a></div>
+<Base title="Page not found" description="This page doesn’t exist." headerTone="light">
+  <section class="section theme-light"><div class="wrap py-16 md:py-24">
+    <p class="eyebrow">Error 404</p>
+    <h1 class="mt-6 display-xl max-w-[12ch]">This page is off the map.</h1>
+    <div class="mt-10 flex flex-wrap gap-3"><a class="btn btn-dark" href={url('')}>Go home</a><a class="btn btn-outline-dark" href={url('contact/')}>Request a quote</a></div>
   </div></section>
 </Base>

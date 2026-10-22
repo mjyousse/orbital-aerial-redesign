@@ -1,0 +1,24 @@
+---
+import { Picture } from 'astro:assets';
+import Arrow from './Arrow.astro';
+interface Props { image: ImageMetadata; credit: string; eyebrow: string; title: string; accent?: string; lede: string; primary: { href: string; label: string }; secondary?: { href: string; label: string }; notes?: string[]; position?: string }
+const { image, credit, eyebrow, title, accent, lede, primary, secondary, notes = [], position = 'center' } = Astro.props;
+---
+<section class="hero-under relative min-h-[92svh] flex flex-col justify-end overflow-hidden theme-dark" aria-labelledby="hero-title">
+  <div class="absolute inset-0" aria-hidden="true">
+    <Picture src={image} alt="" widths={[768, 1280, 1920, 2560]} sizes="100vw" formats={['avif', 'webp']} pictureAttributes={{ class: 'contents' }} loading="eager" fetchpriority="high" class="ken absolute inset-0 w-full h-full object-cover" style={`object-position:${position}`} />
+    <div class="absolute inset-0 bg-[linear-gradient(90deg,rgb(5_5_6/.85)_0%,rgb(5_5_6/.55)_50%,rgb(5_5_6/.2)_100%)]"></div>
+    <div class="absolute inset-0 bg-[linear-gradient(180deg,rgb(5_5_6/.6)_0%,transparent_25%,transparent_55%,rgb(5_5_6/.92)_100%)]"></div>
+  </div>
+  <div class="wrap relative pt-40 pb-12 md:pb-16">
+    <p class="eyebrow !text-white/85">{eyebrow}</p>
+    <h1 id="hero-title" class="mt-6 display-xl max-w-[14ch] text-white">{title}{accent && <><br /><span class="text-white/60">{accent}</span></>}</h1>
+    <p class="mt-8 max-w-xl lede text-white/85">{lede}</p>
+    <div class="mt-10 flex flex-wrap gap-3">
+      <a href={primary.href} class="btn btn-white text-base !px-7">{primary.label}<Arrow /></a>
+      {secondary && <a href={secondary.href} class="btn btn-ghost text-base !px-7">{secondary.label}</a>}
+    </div>
+    {notes.length > 0 && <ul class="mt-12 flex flex-wrap gap-x-8 gap-y-2 text-[14px] text-white/80">{notes.map((n) => <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-signal"></span>{n}</li>)}</ul>}
+    <p class="mt-8 text-[12px] text-white/70">{credit}</p>
+  </div>
+</section>

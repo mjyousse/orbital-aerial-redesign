@@ -1,0 +1,40 @@
+---
+import { Picture } from 'astro:assets';
+import img from '../../assets/stock/progress-2560.jpg';
+const caps = ['Capture 01', 'Capture 02', 'Capture 03', 'Capture 04'];
+---
+<figure class="relative" data-progress-mock>
+  <div class="frame">
+    <div class="flex items-center gap-3 px-4 h-11 bg-ink-900 text-white text-[12px]">
+      <span class="flex gap-1.5" aria-hidden="true"><i class="w-2.5 h-2.5 rounded-full bg-white/25"></i><i class="w-2.5 h-2.5 rounded-full bg-white/25"></i><i class="w-2.5 h-2.5 rounded-full bg-white/25"></i></span>
+      <span class="font-semibold">Site viewer</span><span class="text-white/70 hidden sm:inline">Sample project</span>
+      <div class="ml-auto flex gap-1.5" role="group" aria-label="Layers">
+        <button type="button" class="chip bg-white/10 aria-pressed:bg-signal aria-pressed:text-black" aria-pressed="true" data-layer="design">Design overlay</button>
+        <span class="chip bg-white/10 hidden sm:inline-flex">3D model</span>
+      </div>
+    </div>
+    <div class="relative aspect-[16/9]">
+      <Picture src={img} alt="Top-down stock photo of an active construction and industrial site inside a sample site viewer" widths={[640, 960, 1280, 1600]} sizes="(min-width: 1024px) 680px, 100vw" formats={['avif', 'webp']} pictureAttributes={{ class: 'contents' }} loading="lazy" class="absolute inset-0 w-full h-full object-cover" />
+      <svg class="absolute inset-0 w-full h-full transition-opacity duration-500" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true" data-overlay data-reveal>
+        <g fill="none" stroke="#7cf3ff" stroke-width="3" stroke-dasharray="10 8">
+          <rect class="draw" x="540" y="90" width="300" height="170" />
+          <rect class="draw" x="770" y="400" width="230" height="120" />
+          <path class="draw" d="M450 700 L1050 700 L1050 880" />
+        </g>
+        <g fill="none" stroke="#ff6a2b" stroke-width="4"><path class="draw" d="M120 520 C 400 470, 700 600, 1000 560 S 1400 520, 1560 600" /></g>
+      </svg>
+      <span class="absolute left-3 bottom-3 chip chip-sample">Stock photo · sample overlay</span>
+    </div>
+    <div class="px-4 py-3 bg-ink-900 text-white">
+      <div class="relative h-1.5 rounded-full bg-white/15"><div class="absolute inset-y-0 left-0 w-[78%] rounded-full bg-signal"></div></div>
+      <ol class="mt-2.5 grid grid-cols-4 text-[11px] text-white/70">{caps.map((c, i) => <li class:list={[i === 3 && 'text-white font-semibold', i > 0 && 'text-center', i === 3 && '!text-right']}>{c}</li>)}</ol>
+    </div>
+  </div>
+</figure>
+<script>
+  document.querySelectorAll<HTMLElement>('[data-progress-mock]').forEach((root) => {
+    const b = root.querySelector<HTMLButtonElement>('[data-layer="design"]');
+    const o = root.querySelector<SVGElement>('[data-overlay]');
+    b?.addEventListener('click', () => { const on = b.getAttribute('aria-pressed') !== 'true'; b.setAttribute('aria-pressed', String(on)); if (o) o.style.opacity = on ? '1' : '0'; });
+  });
+</script>

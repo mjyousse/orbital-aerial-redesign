@@ -1,46 +1,58 @@
 ---
 import { url } from '../lib/site';
-const { division } = Astro.props as { division?: string };
+const { division, tone = 'overlay' } = Astro.props as { division?: string; tone?: 'overlay' | 'light' };
 const path = Astro.url.pathname;
 const links = [
-  { href: url('industrial/'), label: 'Industrial', key: 'industrial' },
-  { href: url('real-estate/'), label: 'Real Estate', key: 'real-estate' },
-  { href: url('#sample-data'), label: 'Sample data', key: 'sample' },
-  { href: url('contact/'), label: 'Contact', key: 'contact' },
+  { href: url('industrial/'), label: 'Industrial', key: '/industrial/' },
+  { href: url('real-estate/'), label: 'Real Estate', key: '/real-estate/' },
+  { href: url('#deliverables'), label: 'Deliverables', key: '#deliverables' },
+  { href: url('#company'), label: 'Company', key: '#company' },
 ];
 const quoteHref = url(division ? `contact/?division=${division}` : 'contact/');
 ---
-<header class="sticky top-0 z-40 border-b hairline bg-ink-900/80 backdrop-blur-md">
-  <div class="wrap flex items-center justify-between h-16">
+<header class="site-header" id="site-header" data-tone={tone} data-solid="false">
+  <div class="wrap h-full flex items-center justify-between gap-6">
     <a href={url('')} class="flex items-center gap-3 shrink-0" aria-label="Orbital Aerial Solutions home">
-      <img src={url('brand/logo-dark.svg')} alt="" width="64" height="45" class="h-10 w-auto" />
-      <span class="hidden sm:block tele-muted !text-[11px]">{division === 'realestate' ? 'Real estate media' : division === 'industrial' ? 'Industrial reality capture' : 'Aerial intelligence'}</span>
+      <img src={url('brand/logo-dark.svg')} alt="" width="64" height="45" class="logo-on-dark h-10 w-auto" />
+      <img src={url('brand/logo-light.svg')} alt="" width="64" height="45" class="logo-on-light h-10 w-auto" />
     </a>
-    <nav aria-label="Main" class="hidden md:flex items-center gap-1 text-[15px]">
+    <nav aria-label="Main" class="hidden md:flex items-center gap-7 text-[15px] font-medium">
       {links.map((l) => {
-        const active = path.includes(`/${l.key}/`);
-        return <a href={l.href} class:list={['px-3 py-2 rounded-md hover:text-white transition-colors', active ? 'text-white' : 'text-fg-2']} aria-current={active ? 'page' : undefined}>{l.label}</a>;
+        const active = path.includes(l.key);
+        return <a href={l.href} class="nav-link" aria-current={active ? 'page' : undefined}>{l.label}</a>;
       })}
-      <a href={quoteHref} class="btn btn-primary ml-3 !py-2.5">Get a quote</a>
     </nav>
-    <button id="menu-btn" class="md:hidden btn btn-ghost !px-3" aria-expanded="false" aria-controls="mobile-menu">
+    <div class="hidden md:flex items-center gap-5 text-[15px] font-medium">
+      <a href={url('contact/')} class="nav-link">Contact</a>
+      <a href={quoteHref} class="btn hdr-cta !min-h-10 !py-2 !px-5 text-[14px]">Request a quote</a>
+    </div>
+    <button id="menu-btn" class="md:hidden inline-flex items-center justify-center w-11 h-11 -mr-2" aria-expanded="false" aria-controls="mobile-menu">
       <span class="sr-only">Menu</span>
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg>
     </button>
   </div>
-  <nav id="mobile-menu" aria-label="Mobile" class="md:hidden hidden border-t hairline bg-ink-900">
-    <div class="wrap py-3 flex flex-col">
-      {links.map((l) => <a href={l.href} class="py-3 text-lg border-b hairline last:border-0">{l.label}</a>)}
-    </div>
-  </nav>
-  <script>
-    const btn = document.getElementById('menu-btn');
-    const menu = document.getElementById('mobile-menu');
-    btn?.addEventListener('click', () => {
-      const open = btn.getAttribute('aria-expanded') === 'true';
-      btn.setAttribute('aria-expanded', String(!open));
-      menu?.classList.toggle('hidden', open);
-    });
-    menu?.addEventListener('click', (e) => { if ((e.target as HTMLElement).tagName === 'A') { btn?.setAttribute('aria-expanded', 'false'); menu.classList.add('hidden'); } });
-  </script>
 </header>
+<nav id="mobile-menu" aria-label="Mobile" class="md:hidden hidden fixed inset-0 z-50 bg-ink-900 text-white">
+    <div class="wrap h-[var(--header-h)] flex items-center justify-between">
+      <img src={url('brand/logo-dark.svg')} alt="Orbital Aerial Solutions" width="64" height="45" class="h-10 w-auto" />
+      <button id="menu-close" class="inline-flex items-center justify-center w-11 h-11 -mr-2"><span class="sr-only">Close menu</span>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <div class="wrap pt-6 flex flex-col">
+      {[...links, { href: url('contact/'), label: 'Contact', key: 'c' }].map((l) => <a href={l.href} class="py-4 font-display text-4xl font-semibold tracking-tight border-b border-white/10">{l.label}</a>)}
+      <a href={quoteHref} class="btn btn-primary mt-8">Request a quote</a>
+    </div>
+</nav>
+<script>
+    const header = document.getElementById('site-header')!;
+    const onScroll = () => header.setAttribute('data-solid', String(window.scrollY > 24));
+    onScroll(); window.addEventListener('scroll', onScroll, { passive: true });
+    const btn = document.getElementById('menu-btn')!;
+    const menu = document.getElementById('mobile-menu')!;
+    const close = document.getElementById('menu-close')!;
+    const set = (open: boolean) => { btn.setAttribute('aria-expanded', String(open)); menu.classList.toggle('hidden', !open); document.documentElement.style.overflow = open ? 'hidden' : ''; if (open) close.focus(); };
+    btn.addEventListener('click', () => set(true));
+    close.addEventListener('click', () => { set(false); btn.focus(); });
+    menu.addEventListener('click', (e) => { if ((e.target as HTMLElement).closest('a')) set(false); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !menu.classList.contains('hidden')) { set(false); btn.focus(); } });
+</script>

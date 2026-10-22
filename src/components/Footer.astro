@@ -1,38 +1,45 @@
 ---
 import { SITE, url, sectors } from '../lib/site';
 ---
-<footer class="border-t hairline bg-ink-950 pb-24 md:pb-0">
-  <div class="wrap py-16 grid gap-12 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
-    <div>
-      <img src={url('brand/logo-dark.svg')} alt="Orbital Aerial Solutions" width="96" height="67" class="h-14 w-auto" loading="lazy" />
-      <p class="mt-5 text-fg-2 max-w-sm text-[15px]">Aerial intelligence for industrial operations and drone-led media for real estate. NDAA-compliant platforms, air-gapped data handling, flown by our in-house crew.</p>
-      <p class="mt-4 tele-muted">Austin, TX · <a class="hover:text-white underline-offset-4 hover:underline" href={`mailto:${SITE.email}`}>{SITE.email}</a></p>
+<footer class="theme-dark pb-24 md:pb-0">
+  <div class="wrap pt-24 pb-16">
+    <div class="grid gap-14 lg:grid-cols-[1.3fr_1fr_1fr_1fr]">
+      <div>
+        <img src={url('brand/logo-dark.svg')} alt="Orbital Aerial Solutions" width="96" height="67" class="h-14 w-auto" loading="lazy" />
+        <p class="mt-6 font-display text-2xl font-semibold tracking-tight max-w-sm leading-snug">Aerial intelligence for operations where precision matters.</p>
+        <p class="mt-5 text-fg-2 text-[15px]">Austin, TX · <a class="underline-offset-4 hover:underline text-white" href={`mailto:${SITE.email}`}>{SITE.email}</a></p>
+      </div>
+      <div>
+        <h2 class="text-sm font-semibold text-white mb-4">Industrial</h2>
+        <ul class="space-y-2.5 text-fg-2 text-[15px]">
+          <li><a class="hover:text-white" href={url('industrial/#services')}>Stockpile measurement</a></li>
+          <li><a class="hover:text-white" href={url('industrial/#services')}>Site progress & digital twins</a></li>
+          <li><a class="hover:text-white" href={url('industrial/#services')}>Asset documentation</a></li>
+          <li><a class="hover:text-white" href={url('industrial/#credentials')}>Credentials</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="text-sm font-semibold text-white mb-4">Real Estate</h2>
+        <ul class="space-y-2.5 text-fg-2 text-[15px]">
+          <li><a class="hover:text-white" href={url('real-estate/#packages')}>Aerial packages · from $230</a></li>
+          <li><a class="hover:text-white" href={url('real-estate/#packages')}>Ground packages · from $150</a></li>
+          <li><a class="hover:text-white" href={url('real-estate/#work')}>Recent work</a></li>
+          <li><a class="hover:text-white" href={url('real-estate/#coverage')}>Coverage area</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="text-sm font-semibold text-white mb-4">Sectors</h2>
+        <ul class="space-y-2.5 text-fg-2 text-[15px]">{sectors.map((s) => <li>{s}</li>)}</ul>
+      </div>
     </div>
-    <div>
-      <h2 class="tele mb-4">Industrial</h2>
-      <ul class="space-y-2 text-fg-2 text-[15px]">
-        <li><a class="hover:text-white" href={url('industrial/#services')}>Stockpile measurement</a></li>
-        <li><a class="hover:text-white" href={url('industrial/#services')}>Site progress & digital twins</a></li>
-        <li><a class="hover:text-white" href={url('industrial/#services')}>Asset documentation</a></li>
-        <li><a class="hover:text-white" href={url('industrial/#credentials')}>Credentials</a></li>
-      </ul>
-    </div>
-    <div>
-      <h2 class="tele !text-amber mb-4">Real Estate</h2>
-      <ul class="space-y-2 text-fg-2 text-[15px]">
-        <li><a class="hover:text-white" href={url('real-estate/#packages')}>Aerial packages · from $230</a></li>
-        <li><a class="hover:text-white" href={url('real-estate/#packages')}>Ground packages · from $150</a></li>
-        <li><a class="hover:text-white" href={url('real-estate/#work')}>Recent work</a></li>
-        <li><a class="hover:text-white" href={url('real-estate/#coverage')}>Coverage area</a></li>
-      </ul>
-    </div>
-    <div>
-      <h2 class="tele-muted mb-4">Sectors</h2>
-      <ul class="space-y-2 text-fg-2 text-[15px]">{sectors.map((s) => <li>{s}</li>)}</ul>
+    <div class="mt-16 pt-8 border-t border-white/10 text-[13px] text-fg-3 leading-relaxed max-w-4xl">
+      <p><strong class="text-fg-2 font-semibold">Image credits.</strong> Hero video and industrial site photos are licensed stock from <a class="underline hover:text-white" href="https://www.pexels.com/license/">Pexels</a> (free to use) and show the type of site, not Orbital client work: <a class="underline hover:text-white" href="https://www.pexels.com/video/aerial-view-of-industrial-gravel-quarry-30911567/">gravel quarry video</a>, <a class="underline hover:text-white" href="https://www.pexels.com/photo/aerial-view-of-quarry-with-heavy-machinery-33122147/">quarry</a>, <a class="underline hover:text-white" href="https://www.pexels.com/photo/aerial-view-of-construction-site-in-quebec-city-32211979/">construction site</a>, <a class="underline hover:text-white" href="https://www.pexels.com/photo/aerial-view-of-industrial-storage-facility-33369529/">storage facility</a>. Sample terrain, point cloud and surface model: USGS 3DEP elevation and National Map orthoimagery (public domain). Real estate photos: Orbital Aerial Solutions. Product screens are illustrative mockups with sample values.</p>
     </div>
   </div>
-  <div class="wrap py-6 border-t hairline flex flex-col sm:flex-row gap-3 justify-between text-sm text-fg-3">
-    <p>© 2026 Orbital Aerial Solutions. All rights reserved.</p>
-    <p>Made by Mohammad Youssef</p>
+  <div class="border-t border-white/10">
+    <div class="wrap py-6 flex flex-col sm:flex-row gap-3 justify-between text-sm text-fg-3">
+      <p>© 2026 Orbital Aerial Solutions. All rights reserved.</p>
+      <p>Made by Mohammad Youssef</p>
+    </div>
   </div>
 </footer>

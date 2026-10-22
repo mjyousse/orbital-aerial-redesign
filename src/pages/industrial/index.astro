@@ -1,109 +1,109 @@
 ---
-import { Image, Picture } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
-import TerrainHero from '../../components/TerrainHero.astro';
-import TrustStrip from '../../components/TrustStrip.astro';
+import PhotoHero from '../../components/PhotoHero.astro';
 import SectionHead from '../../components/SectionHead.astro';
+import DeliverableRow from '../../components/DeliverableRow.astro';
+import StockpileMock from '../../components/mock/StockpileMock.astro';
+import ProgressMock from '../../components/mock/ProgressMock.astro';
+import AssetMock from '../../components/mock/AssetMock.astro';
 import PointCloud from '../../components/PointCloud.astro';
 import BeforeAfter from '../../components/BeforeAfter.astro';
+import FactBand from '../../components/FactBand.astro';
 import Process from '../../components/Process.astro';
 import Proof from '../../components/Proof.astro';
 import QuoteSection from '../../components/QuoteSection.astro';
-import { url, industrialServices, industrialPoints, industrialCredentials, industrialProcess, sectors } from '../../lib/site';
-import stockpile from '../../assets/ind/industrial-stockpile.jpg';
-import progress from '../../assets/ind/industrial-progress.jpg';
-import infrastructure from '../../assets/ind/industrial-infrastructure.jpg';
-const imgs: Record<string, ImageMetadata> = { stockpile, progress, infrastructure };
+import { industrialServices, industrialPoints, industrialCredentials, industrialProcess, sectors } from '../../lib/site';
+import hero from '../../assets/stock/progress-2560.jpg';
+const mocks = [StockpileMock, ProgressMock, AssetMock];
+const icons = [
+  'M4 6h16v12H4zM4 10h16M9 6v12',
+  'M12 3l8 4.5v9L12 21l-8-4.5v-9zM12 12l8-4.5M12 12v9M12 12L4 7.5',
+  'M3 17l6-6 4 4 8-8M15 7h6v6',
+  'M12 3l7 3v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6zM9 12l2 2 4-4',
+];
 ---
 <Base title="Industrial drone mapping" division="industrial" description="Survey-grade stockpile volumetrics, site progress digital twins and asset documentation. RTK-enabled, NDAA-compliant platforms with air-gapped data handling. Based in Austin, TX.">
-  <TerrainHero
+  <PhotoHero
+    image={hero}
+    credit="Stock photo (Pexels) showing the type of site we fly. Not Orbital client work."
     eyebrow="Industrial reality capture · RTK-enabled workflows"
     title="Survey-grade data."
     accent="Stockpiles, sites, assets."
-    lede="We merge structured flight operations with AI-driven processing pipelines to capture complex physical assets as high-accuracy geospatial datasets. Volumes, orthomosaics, point clouds and 3D models your engineers can act on and defend."
+    lede="We merge structured flight operations with AI-driven processing pipelines to capture complex physical assets as high-accuracy geospatial datasets your engineers can act on and defend."
     primary={{ href: '#quote', label: 'Request a quote' }}
     secondary={{ href: '#services', label: 'View services' }}
     notes={['In-house photogrammetry', 'State plane & local benchmarks', 'Air-gapped data handling']}
   />
-  <TrustStrip items={[
-    { k: 'Positioning', v: 'RTK-enabled' },
-    { k: 'Validation', v: 'Local benchmark checks' },
-    { k: 'Fleet', v: 'NDAA-compliant' },
-    { k: 'Liability coverage', v: '$10M aviation-specific' },
-  ]} />
 
-  <section id="services" class="section border-b hairline scroll-mt-20">
+  <section id="services" class="section theme-light scroll-mt-16">
     <div class="wrap">
-      <SectionHead eyebrow="Services" title="Three workflows. One defensible dataset." lede="Measure material, document project progress and capture difficult-to-access assets with outputs built for engineering, inventory and site-management decisions." />
-      <div class="grid lg:grid-cols-3 gap-5">
-        {industrialServices.map((s) => (
-          <article class="panel overflow-hidden flex flex-col" data-reveal>
-            <div class="relative aspect-[16/10]">
-              <Picture src={imgs[s.image]} alt={s.imageAlt} widths={[400, 640, 800]} sizes="(min-width: 1024px) 400px, 100vw" formats={['avif', 'webp']} pictureAttributes={{ class: 'contents' }} class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
-              <div class="absolute inset-0 bg-gradient-to-t from-ink-900/90 to-transparent"></div>
-              <span class="absolute left-4 top-4 tele bg-ink-950/85 px-2 py-1 rounded">{s.number} · {s.tag}</span>
-              <a href={s.imageSource} class="absolute right-3 bottom-3 text-[11px] text-fg-2 underline bg-ink-950/80 px-2 py-0.5 rounded" target="_blank" rel="noreferrer">Licensed photo · Pexels</a>
-            </div>
-            <div class="p-6 flex flex-col flex-1">
-              <h3 class="text-2xl text-white font-bold">{s.title}</h3>
-              <p class="mt-3 text-fg-2 text-[15px]">{s.body}</p>
-              <p class="mt-6 tele-muted">Typical deliverables</p>
-              <ul class="mt-3 space-y-2 text-[15px]">
-                {s.deliverables.map((d) => <li class="flex gap-2.5"><span class="mt-2.5 w-1.5 h-1.5 bg-cyan rounded-full shrink-0"></span><span>{d}</span></li>)}
-              </ul>
-              <p class="mt-auto pt-6 font-mono text-xs text-cyan">{s.formats}</p>
-            </div>
-          </article>
-        ))}
+      <SectionHead eyebrow="Services" title="Three workflows. One defensible dataset." lede="Measure material, document project progress and capture difficult-to-access assets with outputs built for engineering, inventory and site-management decisions." size="lg" />
+      <div class="grid gap-28 md:gap-36">
+        {industrialServices.map((s, i) => {
+          const Mock = mocks[i];
+          return <DeliverableRow id={s.id} flip={i % 2 === 1} tag={`${s.number} · ${s.tag}`} title={s.title} body={s.body} deliverables={s.deliverables} formats={s.formats} href="#quote" cta="Scope this service"><Mock /></DeliverableRow>;
+        })}
       </div>
-      <p class="mt-6 text-sm text-fg-3">Photos are licensed stock that show the type of site, not Orbital client work. Radiometric thermal capture is in capability development and not yet offered.</p>
+      <p class="mt-20 text-sm text-text-3">Photos are licensed stock that show the type of site, not Orbital client work. Product screens are sample layouts. Radiometric thermal capture is in capability development and not yet offered.</p>
     </div>
   </section>
 
-  <section id="sample-data" class="section border-b hairline scroll-mt-20">
+  <section id="sample-data" class="section theme-dark scroll-mt-16">
     <div class="wrap">
-      <SectionHead eyebrow="Sample data · Interactive" title="Inspect the deliverable." lede="A single mapping flight yields orthoimagery, a surface model and a dense point cloud. Explore a public USGS sample of west Austin below. It isn’t client work." />
-      <div class="grid lg:grid-cols-[1.35fr_1fr] gap-5 items-start">
+      <div class="grid lg:grid-cols-2 gap-10 items-end mb-14" data-reveal>
+        <div><p class="eyebrow">Sample data · Interactive</p><h2 class="mt-5 display-lg text-white">Inspect the deliverable.</h2></div>
+        <p class="lede text-fg-2">A single mapping flight yields orthoimagery, a surface model and a dense point cloud. Explore a public USGS sample of west Austin below. It isn’t client work.</p>
+      </div>
+      <div class="grid lg:grid-cols-[1.45fr_1fr] gap-5 items-start">
         <div data-reveal><PointCloud /></div>
-        <div data-reveal><BeforeAfter /></div>
+        <div data-reveal style="--d:120ms"><BeforeAfter /></div>
       </div>
     </div>
   </section>
 
-  <section id="advantage" class="section border-b hairline">
-    <div class="wrap grid lg:grid-cols-[0.9fr_1.1fr] gap-12">
-      <div data-reveal>
-        <p class="tele">The Orbital advantage</p>
-        <h2 class="mt-4 text-[clamp(2rem,4.2vw,3.25rem)] font-bold text-white">Built for precision. Engineered for scale.</h2>
-        <p class="mt-5 text-lg text-fg-2">Orbital bridges the gap between field capture and operational insight, converting raw flights into structured geospatial intelligence delivered through cloud-hosted workflows. Outputs arrive georeferenced, metadata-tagged and ready for Autodesk, Trimble and Bentley. Final formats are confirmed during scoping.</p>
-        <div class="mt-8">
-          <p class="tele-muted">Sectors</p>
-          <ul class="mt-3 flex flex-wrap gap-2">{sectors.map((s) => <li class="px-3 py-1.5 rounded-full border hairline text-sm text-fg-2">{s}</li>)}</ul>
-        </div>
+  <section id="advantage" class="section theme-light">
+    <div class="wrap">
+      <div class="grid lg:grid-cols-2 gap-10 items-end mb-16" data-reveal>
+        <div><p class="eyebrow">The Orbital advantage</p><h2 class="mt-5 display-lg">Built for precision. Engineered for scale.</h2></div>
+        <p class="lede text-text-2">Orbital bridges the gap between field capture and operational insight. Outputs arrive georeferenced, metadata-tagged and ready for Autodesk, Trimble and Bentley. Final formats are confirmed during scoping.</p>
       </div>
-      <div class="grid sm:grid-cols-2 gap-4">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-line rounded-[20px] overflow-hidden">
         {industrialPoints.map((p, i) => (
-          <div class="panel p-6" data-reveal>
-            <span class="tele-muted">0{i + 1}</span>
-            <h3 class="mt-3 text-lg text-white font-semibold">{p.title}</h3>
-            <p class="mt-2 text-fg-2 text-[15px]">{p.body}</p>
+          <div class="bg-paper p-7 md:p-8" data-reveal style={`--d:${i * 80}ms`}>
+            <span class="grid place-items-center w-12 h-12 rounded-xl bg-ink-900 text-signal"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d={icons[i]} /></svg></span>
+            <h3 class="mt-8 text-xl">{p.title}</h3>
+            <p class="mt-3 text-text-2 text-[15px]">{p.body}</p>
           </div>
         ))}
       </div>
+      <div class="mt-12 flex flex-wrap items-center gap-3" data-reveal>
+        <p class="text-[14px] font-semibold mr-3">Sectors</p>
+        {sectors.map((s) => <span class="px-4 py-2 rounded-full bg-paper-2 text-[14px] font-medium text-text-2">{s}</span>)}
+      </div>
     </div>
   </section>
 
+  <FactBand items={[
+    { big: '$10M', label: 'Specialized aviation liability coverage' },
+    { big: 'RTK', label: 'Enabled aircraft for repeatable mapping missions' },
+    { big: 'NDAA', label: 'Compliant platforms, air-gapped ingestion' },
+    { big: '1 day', label: 'Pricing and availability after scoping' },
+  ]} />
+
   <Process eyebrow="Process" title="Scope to defensible deliverable in five steps." steps={industrialProcess} />
 
-  <section id="credentials" class="section border-b hairline scroll-mt-20">
+  <section id="credentials" class="section theme-dark scroll-mt-16">
     <div class="wrap">
-      <SectionHead eyebrow="Credentials" title="Structured. Insured. Documented." lede="Every engagement begins with structured aviation safety planning, $10M in specialized aviation liability coverage and a capture plan matched to the intended operational use." />
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {industrialCredentials.map((c) => (
-          <div class="panel p-6" data-reveal>
-            <p class="tele">{c.label}</p>
-            <h3 class="mt-3 text-xl text-white font-semibold">{c.title}</h3>
-            <p class="mt-2 text-fg-2 text-[15px]">{c.body}</p>
+      <div class="grid lg:grid-cols-2 gap-10 items-end mb-16" data-reveal>
+        <div><p class="eyebrow">Credentials</p><h2 class="mt-5 display-lg text-white">Structured. Insured. Documented.</h2></div>
+        <p class="lede text-fg-2">Every engagement begins with structured aviation safety planning, $10M in specialized aviation liability coverage and a capture plan matched to the intended operational use.</p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-white/10 rounded-[20px] overflow-hidden">
+        {industrialCredentials.map((c, i) => (
+          <div class="bg-ink-900 p-7 md:p-9" data-reveal style={`--d:${(i % 3) * 80}ms`}>
+            <p class="text-[13px] font-semibold text-signal">{c.label}</p>
+            <h3 class="mt-4 text-2xl text-white">{c.title}</h3>
+            <p class="mt-3 text-fg-2 text-[15px]">{c.body}</p>
           </div>
         ))}
       </div>

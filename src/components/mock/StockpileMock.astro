@@ -1,0 +1,48 @@
+---
+import { Picture } from 'astro:assets';
+import img from '../../assets/stock/stockpile-2560.jpg';
+const piles = [
+  { id: 'A', kind: 'ellipse', cx: 719, cy: 455, rx: 78, ry: 68, lx: 640, ly: 360, mat: 'Sand', vol: '4,820' },
+  { id: 'B', kind: 'ellipse', cx: 727, cy: 590, rx: 74, ry: 64, lx: 815, ly: 600, mat: 'Sand', vol: '4,135' },
+  { id: 'C', kind: 'ellipse', cx: 523, cy: 600, rx: 38, ry: 34, lx: 420, ly: 610, mat: 'Base', vol: '612' },
+  { id: 'D', kind: 'poly', pts: '90,520 232,512 238,600 216,705 96,712 84,612', lx: 110, ly: 490, mat: 'Fill', vol: '3,960' },
+  { id: 'E', kind: 'poly', pts: '1062,548 1240,538 1272,620 1250,684 1078,692 1058,620', lx: 1080, ly: 515, mat: 'Fill', vol: '2,740' },
+  { id: 'F', kind: 'poly', pts: '815,100 992,88 1092,160 1082,242 950,282 830,232', lx: 860, ly: 70, mat: 'Rock', vol: '6,310' },
+];
+---
+<figure class="relative">
+  <div class="frame aspect-[4/3]">
+    <Picture src={img} alt="Top-down stock photo of a quarry with sand and aggregate piles, shown inside a sample measurement view with piles outlined" widths={[640, 960, 1280, 1600]} sizes="(min-width: 1024px) 680px, 100vw" formats={['avif', 'webp']} pictureAttributes={{ class: 'contents' }} loading="lazy" class="absolute inset-0 w-full h-full object-cover" />
+    <svg class="absolute inset-0 w-full h-full" viewBox="0 0 1280 960" preserveAspectRatio="xMidYMid slice" aria-hidden="true" data-reveal>
+      {piles.map((p) => (
+        <g>
+          {p.kind === 'ellipse'
+            ? <ellipse class="draw" cx={p.cx} cy={p.cy} rx={p.rx} ry={p.ry} fill="rgb(255 106 43 / .16)" stroke="#ff6a2b" stroke-width="3" />
+            : <polygon class="draw" points={p.pts} fill="rgb(255 106 43 / .16)" stroke="#ff6a2b" stroke-width="3" stroke-linejoin="round" />}
+          <g transform={`translate(${p.lx} ${p.ly})`}>
+            <rect width="176" height="54" rx="27" fill="#0a0a0b" fill-opacity=".86" />
+            <circle cx="27" cy="27" r="8" fill="#ff6a2b" />
+            <text x="46" y="36" fill="#fff" font-size="26" font-weight="600" font-family="Inter Variable, sans-serif">Pile {p.id}</text>
+          </g>
+        </g>
+      ))}
+    </svg>
+    <div class="absolute left-3 top-3 right-3 flex justify-between gap-2">
+      <span class="chip chip-sample">Sample view · stock photo</span>
+      <span class="chip chip-sample hidden sm:inline-flex">Illustrative values</span>
+    </div>
+  </div>
+  <div class="ui-card relative mt-4 sm:mt-0 sm:absolute sm:-bottom-10 sm:right-[-1.5rem] sm:w-[300px] p-4 text-[13px]" data-reveal style="--d:200ms">
+    <div class="flex items-center justify-between">
+      <p class="font-semibold">Stockpile report</p>
+      <span class="chip bg-black/5 text-text-2">PDF · CSV</span>
+    </div>
+    <table class="mt-3 w-full num">
+      <thead><tr class="text-left text-text-3 text-[11px] uppercase tracking-wide"><th class="font-semibold pb-1.5">Pile</th><th class="font-semibold pb-1.5">Material</th><th class="font-semibold pb-1.5 text-right">Vol. yd³</th></tr></thead>
+      <tbody>
+        {piles.slice(0, 4).map((p) => <tr class="border-t border-black/5"><td class="py-1.5 font-semibold">{p.id}</td><td class="py-1.5 text-text-2">{p.mat}</td><td class="py-1.5 text-right">{p.vol}</td></tr>)}
+      </tbody>
+    </table>
+    <p class="mt-2 text-[11px] text-text-3">Sample layout. Numbers are illustrative, not measured.</p>
+  </div>
+</figure>
