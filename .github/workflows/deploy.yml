@@ -1,36 +1,71 @@
 name: Deploy to GitHub Pages
 
+# Every branch is built on push so broken builds show up early, but only the
+# branch named in the PAGES_BRANCH repository variable (default: main) is
+# published. "Run workflow" publishes PAGES_BRANCH, or the branch typed in.
+
 on:
   push:
-    branches: [main]
+    branches: ['**']
   workflow_dispatch:
+    inputs:
+      branch:
+        description: Branch to publish (leave blank to use the PAGES_BRANCH variable)
+        required: false
+        default: ''
 
 permissions:
   contents: read
   pages: write
   id-token: write
 
-concurrency:
-  group: pages
-  cancel-in-progress: true
-
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      deploy: ${{ steps.pick.outputs.deploy }}
+      ref: ${{ steps.pick.outputs.ref }}
     steps:
+      - id: pick
+        name: Decide what to build and whether to publish it
+        env:
+          PAGES_BRANCH: ${{ vars.PAGES_BRANCH }}
+          INPUT_BRANCH: ${{ inputs.branch }}
+          EVENT: ${{ github.event_name }}
+          REF_NAME: ${{ github.ref_name }}
+        run: |
+          live="${PAGES_BRANCH:-main}"
+          if [ "$EVENT" = "workflow_dispatch" ]; then
+            ref="${INPUT_BRANCH:-$live}"
+            deploy=true
+          else
+            ref="$REF_NAME"
+            if [ "$ref" = "$live" ]; then deploy=true; else deploy=false; fi
+          fi
+          echo "ref=$ref" >> "$GITHUB_OUTPUT"
+          echo "deploy=$deploy" >> "$GITHUB_OUTPUT"
+          echo "Live branch: $live. Building: $ref. Publish: $deploy." >> "$GITHUB_STEP_SUMMARY"
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.pick.outputs.ref }}
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
       - run: npm ci
       - run: npm run build
-      - uses: actions/upload-pages-artifact@v3
+      - if: steps.pick.outputs.deploy == 'true'
+        uses: actions/upload-pages-artifact@v3
         with:
           path: dist
+
   deploy:
     needs: build
+    if: needs.build.outputs.deploy == 'true'
     runs-on: ubuntu-latest
+    concurrency:
+      group: pages
+      cancel-in-progress: false
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
