@@ -212,22 +212,68 @@ h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.03em; line
    dark (cinematic) sections drop to the deepest black so the rhythm survives. */
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --color-paper: #121214;
-  --color-paper-2: #1a1a1d;
-  --color-paper-3: #232327;
-  --color-line: #2a2a2f;
+  --dk-black: #060607;     /* hero, sample data, coverage, closing CTA */
+  --dk-slate: #15181d;     /* sections that are white in light mode */
+  --dk-graphite: #1e1c1a;  /* sections that are warm gray in light mode, and cards */
+  --dk-graphite-2: #292623;/* cards that sit on graphite */
+  --color-paper: var(--dk-slate);
+  --color-paper-2: var(--dk-graphite);
+  --color-paper-3: #2b2825;
+  --color-line: #2c2f36;
   --color-text: #f4f4f2;
-  --color-text-2: #bdbdc2;
-  --color-text-3: #9d9da3;
+  --color-text-2: #c0c0c4;
+  --color-text-3: #a0a0a6;
   --color-signal-700: #ff8a55;
+  --dk-rule: rgb(255 106 43 / .36);
+  --dk-glow: rgb(255 106 43 / .11);
 }
-[data-theme="dark"] body { background: var(--color-paper); color: var(--color-text); }
-[data-theme="dark"] .theme-dark { background: var(--color-ink-950); }
-[data-theme="dark"] footer.theme-dark { background: #000; }
+[data-theme="dark"] body { background: var(--dk-slate); color: var(--color-text); }
+[data-theme="dark"] .theme-dark { background-color: var(--dk-black); }
+[data-theme="dark"] footer.theme-dark { background: #030304; }
 [data-theme="dark"] .accent-text { color: var(--color-signal); }
 
+/* Slate sections carry a faint contour texture, a nod to mapping */
+[data-theme="dark"] section.theme-light:not(.invert-band) {
+  background-color: var(--dk-slate);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='640' viewBox='0 0 640 640' fill='none' stroke='%23ffffff' stroke-opacity='.065' stroke-width='1'%3E%3Cpath d='M-20 80c90-40 160 30 250 0s150-70 240-30 130 40 190 10'/%3E%3Cpath d='M-20 130c100-35 170 35 260 5s140-60 230-25 140 45 190 15'/%3E%3Cpath d='M-20 185c80-25 150 30 240 10s160-55 250-20 120 35 190 10'/%3E%3Cpath d='M-20 300c70 30 150-40 240-10s150 60 240 30 130-50 200-20'/%3E%3Cpath d='M-20 350c80 25 160-35 250-5s140 55 230 25 140-45 200-15'/%3E%3Cpath d='M-20 405c90 20 150-30 240 0s150 50 240 20 130-40 200-10'/%3E%3Cpath d='M180 520c40-40 120-40 160 0s120 40 160 0'/%3E%3Cpath d='M-20 560c100-30 170 30 260 0s150-50 240-20 120 35 180 10'/%3E%3Cpath d='M-20 610c90-25 160 35 250 5s160-45 250-15 110 30 180 5'/%3E%3Cellipse cx='470' cy='250' rx='46' ry='22'/%3E%3Cellipse cx='470' cy='250' rx='86' ry='44'/%3E%3C/svg%3E");
+  background-size: 640px 640px;
+}
+[data-theme="dark"] section.theme-warm { background-color: var(--dk-graphite); }
+
+/* Cards: graphite on slate, a lifted graphite on graphite */
+[data-theme="dark"] section.theme-light:not(.invert-band) .bg-paper { background-color: var(--dk-graphite); }
+[data-theme="dark"] section.theme-warm .bg-paper { background-color: var(--dk-graphite-2); }
+[data-theme="dark"] section.theme-light:not(.invert-band) .bg-paper-2 { background-color: var(--dk-graphite); }
+[data-theme="dark"] section.theme-warm .bg-paper-2 { background-color: var(--dk-graphite-2); }
+
+/* Orange hairline at each section boundary */
+[data-theme="dark"] main > section:not(.hero-under), [data-theme="dark"] main > div > section, [data-theme="dark"] footer { box-shadow: inset 0 1px 0 var(--dk-rule); }
+[data-theme="dark"] .invert-band { box-shadow: none !important; }
+[data-theme="dark"] main section { overflow-x: clip; }
+
+/* Orange as light: a soft glow behind section headings and mockups */
+[data-theme="dark"] section:is(.theme-light, .theme-warm, .theme-dark):not(.hero-under) div:has(> .eyebrow) { position: relative; isolation: isolate; }
+[data-theme="dark"] section:is(.theme-light, .theme-warm, .theme-dark):not(.hero-under) div:has(> .eyebrow)::before {
+  content: ""; position: absolute; z-index: -1; pointer-events: none;
+  left: -12%; top: -45%; width: min(780px, 120%); height: 190%;
+  background: radial-gradient(closest-side, var(--dk-glow), transparent 72%);
+}
+[data-theme="dark"] .frame { box-shadow: 0 40px 80px -40px rgb(0 0 0 / .85), 0 0 0 1px rgb(255 255 255 / .08), 0 30px 140px -30px rgb(255 106 43 / .22); }
+
+/* The one inverted band: the fact strip stays off-white in dark mode */
+[data-theme="dark"] .invert-band {
+  --color-paper: #f2f0eb;
+  --color-paper-2: #e8e5de;
+  --color-line: #d8d4cb;
+  --color-text: #0a0a0b;
+  --color-text-2: #3f4045;
+  --color-text-3: #5c5d63;
+  --color-signal-700: #b93d0b;
+  background: #f2f0eb; color: #0a0a0b; color-scheme: light;
+}
+
 /* Header when solid: charcoal glass instead of white glass */
-[data-theme="dark"] .site-header[data-solid="true"], [data-theme="dark"] .site-header[data-tone="light"] { background: rgb(12 12 14 / .92); color: #f4f4f2; box-shadow: 0 1px 0 rgb(255 255 255 / .08); }
+[data-theme="dark"] .site-header[data-solid="true"], [data-theme="dark"] .site-header[data-tone="light"] { background: rgb(14 16 20 / .92); color: #f4f4f2; box-shadow: 0 1px 0 var(--dk-rule); }
 [data-theme="dark"] .site-header[data-solid="true"] .logo-on-dark, [data-theme="dark"] .site-header[data-tone="light"] .logo-on-dark { display: block; }
 [data-theme="dark"] .site-header[data-solid="true"] .logo-on-light, [data-theme="dark"] .site-header[data-tone="light"] .logo-on-light { display: none; }
 [data-theme="dark"] .site-header[data-solid="true"] .hdr-cta, [data-theme="dark"] .site-header[data-tone="light"] .hdr-cta { background: #fff; color: #0a0a0b; }
@@ -239,11 +285,11 @@ h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.03em; line
 [data-theme="dark"] .btn-outline-dark:hover { background: #f4f4f2; color: #0a0a0b; border-color: #f4f4f2; }
 
 /* Mockups and cards */
-[data-theme="dark"] .frame { box-shadow: 0 40px 80px -40px rgb(0 0 0 / .8), 0 0 0 1px rgb(255 255 255 / .08); }
-[data-theme="dark"] .ui-card { background: rgb(24 24 27 / .95); color: #f4f4f2; box-shadow: 0 24px 48px -20px rgb(0 0 0 / .8), 0 0 0 1px rgb(255 255 255 / .1); }
+[data-theme="dark"] .ui-card { background: rgb(35 32 29 / .96); color: #f4f4f2; box-shadow: 0 24px 48px -20px rgb(0 0 0 / .8), 0 0 0 1px rgb(255 255 255 / .1); }
 [data-theme="dark"] .pkg-featured { box-shadow: 0 0 0 1px rgb(255 106 43 / .55); }
 
 /* Placeholders stay pink and obvious on dark */
 [data-theme="dark"] .ph, [data-theme="dark"] .ph-logo { border-color: rgb(255 107 214 / .6); background: rgb(255 107 214 / .06); color: #f6d3ea; }
 [data-theme="dark"] .ph-logo { color: #ff9be2; }
 [data-theme="dark"] .ph-tag { color: #ff9be2; }
+[data-theme="dark"] section.theme-warm .bg-paper .bg-paper-2 { background-color: #3a3632; color: var(--color-text-2); }

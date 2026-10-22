@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.5.0 (design-b)
+
+- Dark theme now has three surfaces instead of one flat charcoal: near-black (#060607) for the hero, sample data, coverage and closing sections; slate (#15181D) where light mode is white; graphite (#1E1C1A) where light mode is warm gray, and for cards.
+- Soft orange glow behind section headings and around product mockups, and thin orange hairlines at section boundaries.
+- The fact strip stays off-white in dark mode, as a single inverted band with dark text.
+- Faint contour-line texture on slate sections.
+- Light theme unchanged.
+
 ## 0.4.0 (design-b)
 
 - Dark theme: charcoal and near-black surfaces, same orange accent, dark mockups, cards and buttons, pink placeholders kept visible.

@@ -1,7 +1,7 @@
 ---
 const { items, note } = Astro.props as { items: { big: string; label: string }[]; note?: string };
 ---
-<section class="theme-light border-y line" aria-label="Operating standards">
+<section class="theme-light invert-band border-y line" aria-label="Operating standards">
   <div class="wrap">
     <dl class="grid grid-cols-2 lg:grid-cols-4">
       {items.map((it, i) => (
