@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.8.0 (design-b)
+
+- New navigation. **Services** is a dropdown with two separate entries: Industrial (mapping, volumetrics, reality capture and inspection, plus a "Sample deliverables" link) and Real Estate Media. **Company** is a dropdown with Operations, Data security and Coverage, which link to /#operations, /#security and /#coverage from any page. Contact, the theme toggle and Request a quote sit on the right.
+- Dropdowns open on click or hover, with aria-expanded buttons. Esc, an outside click or tabbing away closes them. The panels are solid in both themes and in both header states (over the video and solid).
+- The mobile menu is grouped under Services and Company headings.
+- Footer columns now follow the same structure: Services, Company, Contact.
+- The header logo now matches orbitalaerial.com: 68 px tall at the top of the page and 58 px once the header turns solid, inside a 96 px header. It is 60 px / 54 px on phones (84 px header) and from 768 to 1023 px.
+- Section anchors leave room for the taller header.
+
 ## 0.7.1 (design-b)
 
 - Leadership section replaced by a firm-level "How we operate" section ("The standard behind every flight."): Part 107 pilots with manned-aviation training, Safety Management System framework, airspace review, risk assessment and checklists on every mission, datasets built to hold up to engineering, owner and audit review, and "Our team holds" certifications. No names, titles or founder photo placeholder.

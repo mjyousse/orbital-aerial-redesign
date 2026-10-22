@@ -43,7 +43,7 @@
   --accent: var(--color-signal);
   --accent-soft: rgb(255 106 43 / 0.12);
   --accent-line: rgb(255 106 43 / 0.35);
-  --header-h: 72px;
+  --header-h: 96px;
 }
 
 @layer components {
@@ -299,3 +299,44 @@ h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.03em; line
 .client-logo:hover { opacity: 1; }
 :root[data-theme="dark"] .client-logo { filter: invert(1); opacity: .62; }
 :root[data-theme="dark"] .client-logo:hover { opacity: 1; }
+
+/* Header dropdowns */
+.nav-dd-chev { transition: transform .2s ease; opacity: .7; }
+.nav-dd[data-open] .nav-dd-chev { transform: rotate(180deg); }
+.site-header .nav-dd-btn[data-current="true"] { opacity: 1; }
+.site-header .nav-dd[data-open] .nav-dd-btn { opacity: 1; }
+.nav-panel { position: absolute; top: calc(100% + 10px); left: -12px; min-width: 300px; padding: 14px; border-radius: 18px; background: #fff; color: #0a0a0b; box-shadow: 0 1px 0 rgb(0 0 0 / .04), 0 24px 60px -18px rgb(0 0 0 / .28), 0 0 0 1px rgb(0 0 0 / .06); z-index: 60; }
+.nav-panel::before { content: ""; position: absolute; left: 0; right: 0; top: -12px; height: 12px; }
+#dd-services { width: min(620px, calc(100vw - 48px)); }
+.nav-panel-kicker { padding: 4px 10px 10px; font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: #6b6b72; }
+.nav-panel-link { display: block; padding: 12px 12px; border-radius: 12px; transition: background .15s ease; }
+.nav-panel-link:hover, .nav-panel-link:focus-visible { background: #f4f3f0; }
+.nav-panel-title { display: block; font-family: var(--font-display); font-weight: 600; font-size: 16px; letter-spacing: -.01em; }
+.nav-panel-desc { display: block; margin-top: 2px; font-size: 14px; font-weight: 400; color: #55555c; line-height: 1.4; }
+.nav-panel-tile { border-radius: 14px; background: #faf9f7; box-shadow: inset 0 0 0 1px rgb(0 0 0 / .06); padding: 4px; display: flex; flex-direction: column; }
+.nav-panel-tile .nav-panel-link { flex: 1; padding: 16px 14px; }
+.nav-panel-tile .nav-panel-title { font-size: 18px; }
+.nav-panel-sub { display: inline-flex; gap: 6px; margin: 0 14px 12px; font-size: 14px; font-weight: 600; color: var(--color-signal-700); }
+.nav-panel-sub:hover { text-decoration: underline; text-underline-offset: 3px; }
+.mob-h { font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--color-fg-3, #9a9aa0); padding-top: 8px; }
+[data-theme="dark"] .nav-panel { background: #17191e; color: #f4f4f2; box-shadow: 0 24px 60px -18px rgb(0 0 0 / .7), 0 0 0 1px rgb(255 255 255 / .08), 0 -1px 0 rgb(255 106 43 / .3); }
+[data-theme="dark"] .nav-panel-kicker { color: #a0a0a6; }
+[data-theme="dark"] .nav-panel-link:hover, [data-theme="dark"] .nav-panel-link:focus-visible { background: #22252b; }
+[data-theme="dark"] .nav-panel-desc { color: #b4b4ba; }
+[data-theme="dark"] .nav-panel-tile { background: #1e2026; box-shadow: inset 0 0 0 1px rgb(255 255 255 / .06); }
+[data-theme="dark"] .nav-panel-sub { color: #ff8a55; }
+
+/* Header logo: sized to match orbitalaerial.com (68px tall at the top, 58px once the bar turns solid) */
+.hdr-logo { height: 68px; width: auto; transition: height .3s ease; }
+.site-header[data-solid="true"] .hdr-logo { height: 58px; }
+@media (max-width: 767px) {
+  :root { --header-h: 84px; }
+  .hdr-logo { height: 60px; }
+  .site-header[data-solid="true"] .hdr-logo { height: 54px; }
+}
+section[id] { scroll-margin-top: calc(var(--header-h) - 1px) !important; }
+@media (min-width: 768px) and (max-width: 1023px) {
+  .hdr-logo { height: 60px; }
+  .site-header[data-solid="true"] .hdr-logo { height: 54px; }
+  .site-header .hdr-cta { padding-left: 1rem !important; padding-right: 1rem !important; }
+}

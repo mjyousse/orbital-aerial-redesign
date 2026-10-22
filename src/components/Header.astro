@@ -3,25 +3,50 @@ import { url } from '../lib/site';
 import ThemeToggle from './ThemeToggle.astro';
 const { division, tone = 'overlay' } = Astro.props as { division?: string; tone?: 'overlay' | 'light' };
 const path = Astro.url.pathname;
-const links = [
-  { href: url('industrial/'), label: 'Industrial', key: '/industrial/' },
-  { href: url('real-estate/'), label: 'Real Estate', key: '/real-estate/' },
-  { href: url('#deliverables'), label: 'Deliverables', key: '#deliverables' },
-  { href: url('#operations'), label: 'Operations', key: '#operations' },
+const services = [
+  { href: url('industrial/'), label: 'Industrial', desc: 'Mapping, volumetrics, reality capture and inspection', key: '/industrial/', sub: { href: url('industrial/#services'), label: 'Sample deliverables' } },
+  { href: url('real-estate/'), label: 'Real Estate Media', desc: 'Aerial and ground photo and video for Austin listings', key: '/real-estate/' },
+];
+const company = [
+  { href: url('#operations'), label: 'Operations', desc: 'How we operate' },
+  { href: url('#security'), label: 'Data security', desc: 'Controlled from capture to handoff' },
+  { href: url('#coverage'), label: 'Coverage', desc: 'Austin-based, deployed nationwide' },
+];
+const menus = [
+  { id: 'services', label: 'Services', items: services, active: services.some((x) => path.includes(x.key)) },
+  { id: 'company', label: 'Company', items: company, active: false },
 ];
 const quoteHref = url(division ? `contact/?division=${division}` : 'contact/');
 ---
 <header class="site-header" id="site-header" data-tone={tone} data-solid="false">
-  <div class="wrap h-full flex items-center justify-between gap-6">
+  <div class="wrap h-full flex items-center justify-between gap-4 lg:gap-6">
     <a href={url('')} class="flex items-center gap-3 shrink-0" aria-label="Orbital Aerial Solutions home">
-      <img src={url('brand/logo-dark.svg')} alt="" width="64" height="45" class="logo-on-dark h-10 w-auto" />
-      <img src={url('brand/logo-light.svg')} alt="" width="64" height="45" class="logo-on-light h-10 w-auto" />
+      <img src={url('brand/logo-dark.svg')} alt="" width="97" height="68" class="hdr-logo logo-on-dark" />
+      <img src={url('brand/logo-light.svg')} alt="" width="97" height="68" class="hdr-logo logo-on-light" />
     </a>
-    <nav aria-label="Main" class="hidden md:flex items-center gap-5 lg:gap-7 text-[15px] font-medium">
-      {links.map((l) => {
-        const active = path.includes(l.key);
-        return <a href={l.href} class="nav-link" aria-current={active ? 'page' : undefined}>{l.label}</a>;
-      })}
+    <nav aria-label="Main" class="hidden md:flex items-center gap-2 lg:gap-4 text-[15px] font-medium">
+      {menus.map((m) => (
+        <div class="nav-dd relative" data-dd>
+          <button type="button" class="nav-link nav-dd-btn inline-flex items-center gap-1.5 px-2 py-2" aria-expanded="false" aria-controls={`dd-${m.id}`} data-current={m.active ? 'true' : undefined}>
+            {m.label}
+            <svg class="nav-dd-chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div id={`dd-${m.id}`} class="nav-panel" hidden>
+            <p class="nav-panel-kicker">{m.label}</p>
+            <ul class:list={['grid gap-1', m.id === 'services' && 'sm:grid-cols-2 sm:gap-2']}>
+              {m.items.map((it: any) => (
+                <li class:list={[m.id === 'services' && 'nav-panel-tile']}>
+                  <a href={it.href} class="nav-panel-link" aria-current={it.key && path.includes(it.key) ? 'page' : undefined}>
+                    <span class="nav-panel-title">{it.label}</span>
+                    <span class="nav-panel-desc">{it.desc}</span>
+                  </a>
+                  {it.sub && <a href={it.sub.href} class="nav-panel-sub">{it.sub.label}<span aria-hidden="true">→</span></a>}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      ))}
     </nav>
     <div class="hidden md:flex items-center gap-3 lg:gap-5 text-[15px] font-medium">
       <a href={url('contact/')} class="nav-link">Contact</a>
@@ -37,12 +62,22 @@ const quoteHref = url(division ? `contact/?division=${division}` : 'contact/');
 </header>
 <nav id="mobile-menu" aria-label="Mobile" class="md:hidden hidden fixed inset-0 z-50 bg-ink-900 text-white">
     <div class="wrap h-[var(--header-h)] flex items-center justify-between">
-      <img src={url('brand/logo-dark.svg')} alt="Orbital Aerial Solutions" width="64" height="45" class="h-10 w-auto" />
+      <img src={url('brand/logo-dark.svg')} alt="Orbital Aerial Solutions" width="97" height="68" class="hdr-logo" />
       <button id="menu-close" class="inline-flex items-center justify-center w-11 h-11 -mr-2"><span class="sr-only">Close menu</span>
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
     </div>
-    <div class="wrap pt-6 flex flex-col">
-      {[...links, { href: url('contact/'), label: 'Contact', key: 'c' }].map((l) => <a href={l.href} class="py-4 font-display text-4xl font-semibold tracking-tight border-b border-white/10">{l.label}</a>)}
+    <div class="wrap pt-4 pb-10 flex flex-col overflow-y-auto max-h-[calc(100svh-var(--header-h))]">
+      <p class="mob-h">Services</p>
+      {services.map((l) => (
+        <div class="py-4 border-b border-white/10">
+          <a href={l.href} class="block font-display text-3xl font-semibold tracking-tight">{l.label}</a>
+          <p class="mt-1 text-[15px] text-fg-2">{l.desc}</p>
+          {l.sub && <a href={l.sub.href} class="mt-2 inline-block text-[15px] font-semibold text-signal">{l.sub.label} →</a>}
+        </div>
+      ))}
+      <p class="mob-h mt-8">Company</p>
+      {company.map((l) => <a href={l.href} class="py-3.5 font-display text-2xl font-semibold tracking-tight border-b border-white/10">{l.label}</a>)}
+      <a href={url('contact/')} class="mt-8 py-3.5 font-display text-2xl font-semibold tracking-tight border-b border-white/10">Contact</a>
       <a href={quoteHref} class="btn btn-primary mt-8">Request a quote</a>
     </div>
 </nav>
@@ -58,4 +93,25 @@ const quoteHref = url(division ? `contact/?division=${division}` : 'contact/');
     close.addEventListener('click', () => { set(false); btn.focus(); });
     menu.addEventListener('click', (e) => { if ((e.target as HTMLElement).closest('a')) set(false); });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !menu.classList.contains('hidden')) { set(false); btn.focus(); } });
+
+    // Desktop dropdowns: click or hover to open, Esc / outside click / focus leaving to close
+    const dds = Array.from(document.querySelectorAll<HTMLElement>('[data-dd]'));
+    const ddOpen = (dd: HTMLElement, open: boolean) => {
+      const b = dd.querySelector<HTMLButtonElement>('.nav-dd-btn')!; const panel = dd.querySelector<HTMLElement>('.nav-panel')!;
+      b.setAttribute('aria-expanded', String(open)); panel.hidden = !open; dd.toggleAttribute('data-open', open);
+      header.toggleAttribute('data-menu-open', dds.some((d) => d.hasAttribute('data-open')));
+    };
+    const closeAll = (except?: HTMLElement) => dds.forEach((d) => d !== except && ddOpen(d, false));
+    const canHover = window.matchMedia('(hover: hover) and (pointer: fine)');
+    dds.forEach((dd) => {
+      const b = dd.querySelector<HTMLButtonElement>('.nav-dd-btn')!;
+      let t: number | undefined; let hoverAt = 0;
+      b.addEventListener('click', () => { const isOpen = b.getAttribute('aria-expanded') === 'true'; const open = isOpen && Date.now() - hoverAt < 600 ? true : !isOpen; closeAll(dd); ddOpen(dd, open); });
+      dd.addEventListener('mouseenter', () => { if (!canHover.matches) return; clearTimeout(t); if (!dd.hasAttribute('data-open')) hoverAt = Date.now(); closeAll(dd); ddOpen(dd, true); });
+      dd.addEventListener('mouseleave', () => { if (!canHover.matches) return; t = window.setTimeout(() => ddOpen(dd, false), 180); });
+      dd.addEventListener('focusout', (e) => { if (!dd.contains(e.relatedTarget as Node)) ddOpen(dd, false); });
+      dd.addEventListener('keydown', (e) => { if (e.key === 'Escape' && dd.hasAttribute('data-open')) { e.stopPropagation(); ddOpen(dd, false); b.focus(); } });
+      dd.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => ddOpen(dd, false)));
+    });
+    document.addEventListener('click', (e) => { if (!(e.target as HTMLElement).closest('[data-dd]')) closeAll(); });
 </script>
