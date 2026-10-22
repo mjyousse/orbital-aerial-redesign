@@ -1,0 +1,27 @@
+---
+const record = [
+  { k: 'Flight operations', v: 'FAA Part 107 certified remote pilots with manned-aviation (private pilot) training' },
+  { k: 'Safety framework', v: 'Safety Management System: airspace review, risk assessment and checklists on every mission' },
+  { k: 'Data standard', v: 'Every dataset built to hold up when an engineer, owner or auditor checks it' },
+];
+const certs = ['Microsoft Azure Fundamentals', 'Azure AI Fundamentals', 'Jamf Certified Associate', 'DoD IAT Level I'];
+---
+<section id="operations" class="section border-b hairline scroll-mt-20" aria-labelledby="operate-title">
+  <div class="wrap grid lg:grid-cols-[1.1fr_0.9fr] gap-12 items-start">
+    <div data-reveal>
+      <p class="tele flex items-center gap-3"><span class="inline-block w-6 h-px bg-[var(--accent)]"></span>How we operate</p>
+      <h2 id="operate-title" class="mt-4 text-[clamp(2rem,4.2vw,3.25rem)] font-bold text-white">The standard behind every flight.</h2>
+      <p class="mt-5 text-lg text-fg-2 leading-relaxed">Our flight operations are run by FAA Part 107 certified remote pilots with manned-aviation training. Every mission goes through airspace review, a risk assessment and a standardized checklist inside a Safety Management System framework.</p>
+      <p class="mt-4 text-lg text-fg-2 leading-relaxed">Every dataset we deliver is built to hold up when an engineer, an owner or an auditor checks it. Capture, processing and handoff are documented end to end, and the systems that store and deliver your data are held to the same standard.</p>
+    </div>
+    <div class="grid gap-4" data-reveal>
+      <dl class="panel p-6 grid gap-5">
+        {record.map((r) => (<div class="border-l-2 border-[var(--accent-line)] pl-4"><dt class="tele-muted">{r.k}</dt><dd class="mt-1 text-white font-semibold">{r.v}</dd></div>))}
+      </dl>
+      <div class="panel p-6">
+        <p class="tele-muted">Our team holds</p>
+        <ul class="mt-4 flex flex-wrap gap-2">{certs.map((c) => <li class="px-3 py-1.5 rounded-full border hairline text-sm text-fg-2">{c}</li>)}</ul>
+      </div>
+    </div>
+  </div>
+</section>

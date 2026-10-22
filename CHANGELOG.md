@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.2
+
+- Leadership section replaced by a firm-level "How we operate" section ("The standard behind every flight."), with no names, titles or founder photo placeholder.
+- "Made by" credit removed from the site footer (it stays in the README and LICENSE).
+- Firm-voice wording: hero refers to pilots rather than a single licensed pilot; quote form, contact page and confirmation say "our team replies".
+
 ## 0.2.1
 
 - Leadership section is about Orbital only: founder and CTO role, FAA Part 107 and private pilot credentials, Azure, Jamf and DoD IAT certifications, and the approach to defensible data. No employer names or history.

@@ -9,7 +9,7 @@ import BeforeAfter from '../components/BeforeAfter.astro';
 import CoverageMap from '../components/CoverageMap.astro';
 import Process from '../components/Process.astro';
 import Proof from '../components/Proof.astro';
-import Founder from '../components/Founder.astro';
+import Operate from '../components/Operate.astro';
 import QuoteSection from '../components/QuoteSection.astro';
 import { url, industrialProcess } from '../lib/site';
 
@@ -32,7 +32,7 @@ const services = [
     secondary={{ href: '#sample-data', label: 'Explore sample data' }}
   />
   <TrustStrip items={[
-    { k: 'Flight crew', v: 'FAA Part 107 · Licensed pilot' },
+    { k: 'Flight crew', v: 'Part 107 · Manned-aviation trained' },
     { k: 'Fleet', v: 'NDAA-compliant platforms' },
     { k: 'Data handling', v: 'Air-gapped ingestion' },
     { k: 'Liability coverage', v: '$10M aviation-specific' },
@@ -93,7 +93,7 @@ const services = [
     </div>
   </section>
 
-  <Founder />
+  <Operate />
   <Proof />
   <QuoteSection />
 </Base>
