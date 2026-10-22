@@ -70,6 +70,7 @@ The theme button in the header cycles **Auto → Light → Dark**. Auto follows 
 
 - Code: MIT, see `LICENSE`.
 - Real estate photos: Orbital Aerial Solutions.
+- Client logos (`public/logos/`): each company's own mark, single-color, trademarks of their owners. SpaceX and OpenAI from the wordmarks on spacex.com and openai.com, Martin Marietta from martinmarietta.com, Samsung from Samsung's brand identity download, Tesla from Wikimedia Commons (`Tesla_Motors_Logo.svg`).
 - Hero video: [Aerial View of Industrial Gravel Quarry](https://www.pexels.com/video/aerial-view-of-industrial-gravel-quarry-30911567/), free to use under the [Pexels license](https://www.pexels.com/license/). Trimmed and re-encoded. Stock footage, not client work.
 - Industrial photos: licensed from Pexels ([stockpile](https://www.pexels.com/photo/aerial-view-of-quarry-with-heavy-machinery-33122147/), [construction site](https://www.pexels.com/photo/aerial-view-of-construction-site-in-quebec-city-32211979/), [storage facility](https://www.pexels.com/photo/aerial-view-of-industrial-storage-facility-33369529/)). They show the type of site, not client work.
 - Product screens (stockpile report, site viewer, observation card, listing preview) are illustrative mockups. Their values are samples, not measurements.

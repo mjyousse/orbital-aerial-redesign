@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.6.1 (design-b)
+
+- Client logo strip on the home and industrial pages now shows SpaceX, Samsung, Martin Marietta, Tesla and OpenAI, labeled "Trusted by teams at". Replaces the placeholders.
+- Official marks stored unaltered as single-color SVGs in `public/logos/` (optimized with svgo, shapes unchanged). Shown unlinked in neutral gray in light mode and light gray at reduced opacity in dark mode, full opacity on hover. Wraps evenly on mobile.
+
 ## 0.6.0 (design-b)
 
 - Leadership section is about Orbital only: founder and CTO role, FAA Part 107 and private pilot credentials, Azure, Jamf and DoD IAT certifications, and the approach to defensible data. No employer names or history.

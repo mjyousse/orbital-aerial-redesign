@@ -1,9 +1,24 @@
-<section class="theme-light" aria-label="Clients">
-  <div class="wrap py-12 md:py-14 flex flex-col md:flex-row md:items-center gap-6 md:gap-12">
-    <p class="text-[14px] text-text-2 md:max-w-[16ch] shrink-0">Clients and partners</p>
-    <div class="flex-1 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3" role="note" aria-label="Placeholder: client logos">
-      {Array.from({ length: 6 }).map(() => <div class="h-14 rounded-xl ph-logo grid place-items-center text-[12px] font-semibold">Client logo</div>)}
-    </div>
+---
+import { url } from '../lib/site';
+// Official marks, stored unaltered in public/logos/ (single-color black). Heights are tuned per mark for even optical size.
+const logos = [
+  { file: 'spacex.svg', name: 'SpaceX', h: 19, ratio: 8.212 },
+  { file: 'samsung.svg', name: 'Samsung', h: 21, ratio: 6.529 },
+  { file: 'martin-marietta.svg', name: 'Martin Marietta', h: 34, ratio: 3.431 },
+  { file: 'tesla.svg', name: 'Tesla', h: 17, ratio: 7.671 },
+  { file: 'openai.svg', name: 'OpenAI', h: 25, ratio: 3.719 },
+];
+---
+<section class="theme-light logo-band" aria-labelledby="logos-title">
+  <div class="wrap py-12 md:py-16 flex flex-col lg:flex-row lg:items-center gap-8 lg:gap-14">
+    <p id="logos-title" class="text-[14px] text-text-2 lg:max-w-[12ch] shrink-0 text-center lg:text-left">Trusted by teams at</p>
+    <ul class="flex-1 flex flex-wrap items-center justify-center lg:justify-between gap-x-12 gap-y-8 sm:gap-x-14">
+      {logos.map((l) => (
+        <li class="flex items-center justify-center px-1 py-2">
+          <img src={url(`logos/${l.file}`)} alt={l.name} width={Math.round(l.h * l.ratio)} height={l.h} style={`height:${l.h}px;width:auto`} class="client-logo" loading="lazy" decoding="async" />
+        </li>
+      ))}
+    </ul>
   </div>
-  <p class="wrap -mt-6 pb-10 text-[12px] text-text-3">Placeholder: add client or partner logos once you have permission to show them.</p>
+  <p class="wrap -mt-4 pb-8 text-[12px] text-text-3 text-center lg:text-left">Logos are trademarks of their respective owners.</p>
 </section>

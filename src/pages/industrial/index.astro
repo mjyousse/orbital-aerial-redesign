@@ -11,6 +11,7 @@ import BeforeAfter from '../../components/BeforeAfter.astro';
 import FactBand from '../../components/FactBand.astro';
 import Process from '../../components/Process.astro';
 import Proof from '../../components/Proof.astro';
+import LogoBand from '../../components/LogoBand.astro';
 import QuoteSection from '../../components/QuoteSection.astro';
 import { industrialServices, industrialPoints, industrialCredentials, industrialProcess, sectors } from '../../lib/site';
 import hero from '../../assets/stock/progress-2560.jpg';
@@ -34,6 +35,8 @@ const icons = [
     secondary={{ href: '#services', label: 'View services' }}
     notes={['In-house photogrammetry', 'State plane & local benchmarks', 'Air-gapped data handling']}
   />
+
+  <LogoBand />
 
   <section id="services" class="section theme-light scroll-mt-16">
     <div class="wrap">
