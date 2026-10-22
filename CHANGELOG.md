@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.7.0 (design-b)
+
+- New Data security section on the home page (after the process) and the industrial page (before the fact strip). It has five pillars, each with an icon: NDAA-compliant platforms, air-gapped ingestion engineered for zero data leakage, controlled and documented handoffs, a Part 107 crew and licensed pilot inside an SMS framework, and $10M aviation liability coverage.
+- It uses only claims already made elsewhere on the site, and names no vendors or products.
+- A closing line offers a security brief or a completed vendor questionnaire on request, linking to the contact form.
+- The section is dark in both themes.
+
 ## 0.6.2 (design-b)
 
 - DroneDeploy added to the "Trusted by teams at" strip on the home and industrial pages, using the DroneDeploy wordmark from dronedeploy.com in the same single neutral color.

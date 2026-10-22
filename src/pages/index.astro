@@ -15,6 +15,7 @@ import CoverageMap from '../components/CoverageMap.astro';
 import Process from '../components/Process.astro';
 import Proof from '../components/Proof.astro';
 import Founder from '../components/Founder.astro';
+import SecuritySection from '../components/SecuritySection.astro';
 import QuoteSection from '../components/QuoteSection.astro';
 import { url, industrialProcess, industrialServices } from '../lib/site';
 const [stock, progress, assets] = industrialServices;
@@ -80,6 +81,8 @@ const [stock, progress, assets] = industrialServices;
   ]} />
 
   <Process eyebrow="How it works" title="Scope to defensible deliverable in five steps." steps={industrialProcess} tone="light" />
+
+  <SecuritySection />
 
   <Founder />
 
