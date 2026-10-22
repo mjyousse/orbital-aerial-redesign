@@ -10,7 +10,7 @@ Every page carries a `noindex` tag and a visible "Beta redesign" banner, so this
 
 | Path | What's on it |
 | --- | --- |
-| `/` | Industrial-first: aerial video hero, industrial deliverable mockups, interactive sample data, process, data security, founder, coverage map, one separate Real Estate Media band linking to `/real-estate/`, quote form |
+| `/` | Industrial-first: aerial video hero, industrial deliverable mockups, interactive sample data, process, data security, how we operate, coverage map, one separate Real Estate Media band linking to `/real-estate/`, quote form |
 | `/industrial/` | Stockpile, progress and asset services with sample report screens, sample data, data security, credentials, process |
 | `/real-estate/` | Real estate media only: recent work gallery, aerial and ground packages with prices, coverage map |
 | `/contact/` | Multi-step quote form |
@@ -52,7 +52,7 @@ The `github-pages` environment allows deployments from `main` and from any branc
 ## Editing content
 
 - Copy, services, packages and prices live in `src/lib/site.ts`.
-- Pink dashed boxes marked **Placeholder** (stats, case study, testimonial, client logos, founder photo, property film) are for real content only. Replace them once you have approved numbers, quotes or permission, or delete them.
+- Pink dashed boxes marked **Placeholder** (stats, case study, testimonial, property film) are for real content only. Replace them once you have approved numbers, quotes or permission, or delete them.
 - The quote form sends to the same FormSubmit inbox and uses the same Geoapify address autocomplete key as the live site (`src/scripts/quote.ts`).
 
 ## Light and dark themes

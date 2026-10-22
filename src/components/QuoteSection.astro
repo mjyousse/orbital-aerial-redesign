@@ -1,7 +1,7 @@
 ---
 import QuoteForm from './QuoteForm.astro';
 import { SITE } from '../lib/site';
-const { division = 'industrial', both = false, title = 'Tell us about your site.', lede = 'Three quick steps. We reply within one business day with pricing and availability.' } = Astro.props as { division?: 'industrial' | 'realestate'; both?: boolean; title?: string; lede?: string };
+const { division = 'industrial', both = false, title = 'Tell us about your site.', lede = 'Three quick steps. Our team replies within one business day with pricing and availability.' } = Astro.props as { division?: 'industrial' | 'realestate'; both?: boolean; title?: string; lede?: string };
 ---
 <section id="quote" class="section theme-dark relative overflow-hidden scroll-mt-16" aria-labelledby="quote-title">
   <div class="absolute inset-0 pointer-events-none" aria-hidden="true">

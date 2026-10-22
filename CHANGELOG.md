@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.7.1 (design-b)
+
+- Leadership section replaced by a firm-level "How we operate" section ("The standard behind every flight."): Part 107 pilots with manned-aviation training, Safety Management System framework, airspace review, risk assessment and checklists on every mission, datasets built to hold up to engineering, owner and audit review, and "Our team holds" certifications. No names, titles or founder photo placeholder.
+- Nav link "Company" is now "Operations" (#operations).
+- "Made by" credit removed from the site footer (it stays in the README and LICENSE).
+- Firm-voice wording pass: hero, fact strip and security copy refer to pilots rather than a single licensed pilot; quote form, contact page and confirmation say "our team replies".
+
 ## 0.7.0 (design-b)
 
 - New Data security section on the home page (after the process) and the industrial page (before the fact strip). It has five pillars, each with an icon: NDAA-compliant platforms, air-gapped ingestion engineered for zero data leakage, controlled and documented handoffs, a Part 107 crew and licensed pilot inside an SMS framework, and $10M aviation liability coverage.

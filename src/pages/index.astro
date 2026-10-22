@@ -14,7 +14,7 @@ import LogoBand from '../components/LogoBand.astro';
 import CoverageMap from '../components/CoverageMap.astro';
 import Process from '../components/Process.astro';
 import Proof from '../components/Proof.astro';
-import Founder from '../components/Founder.astro';
+import Operate from '../components/Operate.astro';
 import SecuritySection from '../components/SecuritySection.astro';
 import QuoteSection from '../components/QuoteSection.astro';
 import { url, industrialProcess, industrialServices } from '../lib/site';
@@ -28,7 +28,7 @@ const [stock, progress, assets] = industrialServices;
     primary={{ href: url('contact/'), label: 'Request a quote' }}
     secondary={{ href: '#deliverables', label: 'See the deliverables' }}
     facts={[
-      { k: 'Flight crew', v: 'FAA Part 107 · Licensed pilot' },
+      { k: 'Flight crew', v: 'Part 107 · Manned-aviation trained' },
       { k: 'Fleet', v: 'NDAA-compliant platforms' },
       { k: 'Data handling', v: 'Air-gapped ingestion' },
       { k: 'Liability coverage', v: '$10M aviation-specific' },
@@ -75,7 +75,7 @@ const [stock, progress, assets] = industrialServices;
 
   <FactBand items={[
     { big: '$10M', label: 'Specialized aviation liability coverage' },
-    { big: 'Part 107', label: 'FAA-certificated remote pilots, plus a private pilot license' },
+    { big: 'Part 107', label: 'FAA-certificated remote pilots with manned-aviation training' },
     { big: 'NDAA', label: 'Compliant aircraft with air-gapped data ingestion' },
     { big: '1 day', label: 'Scoped pricing and availability, within one business day' },
   ]} />
@@ -84,7 +84,7 @@ const [stock, progress, assets] = industrialServices;
 
   <SecuritySection />
 
-  <Founder />
+  <Operate />
 
   <section id="coverage" class="section theme-dark" aria-labelledby="coverage-title">
     <div class="wrap grid lg:grid-cols-[0.8fr_1.2fr] gap-12 items-center">
