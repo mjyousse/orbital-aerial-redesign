@@ -8,19 +8,18 @@ const creds = [
   'DoD IAT Level I',
 ];
 const record = [
-  { k: 'Orbital', v: 'Founder & CTO, Orbital Aerial Solutions' },
-  { k: 'Enterprise IT', v: 'Senior IT Specialist, The University of Texas at Austin' },
-  { k: 'Financial infrastructure', v: 'Advanced Technical Operations, BlackRock' },
-  { k: 'Technical service', v: 'Apple' },
+  { k: 'Role', v: 'Founder & CTO, Orbital Aerial Solutions' },
+  { k: 'In the air', v: 'FAA Part 107 remote pilot and FAA private pilot' },
+  { k: 'On the ground', v: 'Certified in Microsoft Azure, Jamf and DoD IAT Level I' },
 ];
 ---
 <section id="founder" class="section border-b hairline scroll-mt-20" aria-labelledby="founder-title">
   <div class="wrap grid lg:grid-cols-[1.1fr_0.9fr] gap-12 items-start">
     <div data-reveal>
       <p class="tele flex items-center gap-3"><span class="inline-block w-6 h-px bg-[var(--accent)]"></span>Leadership</p>
-      <h2 id="founder-title" class="mt-4 text-[clamp(2rem,4.2vw,3.25rem)] font-bold text-white">Built to the standard of zero-downtime infrastructure.</h2>
-      <p class="mt-5 text-lg text-fg-2 leading-relaxed">Orbital Aerial Solutions was founded by Mohammad Youssef, a licensed pilot and technology leader whose career spans enterprise IT, financial infrastructure and aerial intelligence. Before Orbital, he supported live trading floors, pre-trade clearance systems and remote sales divisions across the Americas on BlackRock’s Advanced Technical Operations team, with 24/7 follow-the-sun handoffs to engineering teams in Europe and APAC.</p>
-      <p class="mt-4 text-lg text-fg-2 leading-relaxed">That environment demanded precision, multi-platform discipline and zero tolerance for downtime. Orbital runs every mission the same way.</p>
+      <h2 id="founder-title" class="mt-4 text-[clamp(2rem,4.2vw,3.25rem)] font-bold text-white">Precision you can defend.</h2>
+      <p class="mt-5 text-lg text-fg-2 leading-relaxed">Orbital Aerial Solutions is led by founder and CTO Mohammad Youssef, an FAA Part 107 commercial remote pilot who also holds an FAA private pilot license. He plans and flies missions with a manned-aviation mindset: airspace reviewed, risks assessed and every flight run to a checklist.</p>
+      <p class="mt-4 text-lg text-fg-2 leading-relaxed">He built Orbital around one rule: every dataset has to hold up when an engineer, an owner or an auditor checks it. Capture, processing and handoff are documented end to end, and the systems that store and deliver your data are run to the same standard.</p>
       <ul class="mt-8 flex flex-wrap gap-2">{creds.map((c) => <li class="px-3 py-1.5 rounded-full border hairline text-sm text-fg-2">{c}</li>)}</ul>
     </div>
     <div class="grid gap-4" data-reveal>
