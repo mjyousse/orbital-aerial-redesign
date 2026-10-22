@@ -93,7 +93,7 @@ export const industrialProcess = [
   { step: '05', title: 'Deliver', body: 'Georeferenced, metadata-tagged outputs in your formats, with method notes and secure cloud access.' },
 ];
 
-export const sectors = ['Aggregate & quarry operations', 'Critical infrastructure', 'Land & home development', 'Industrial facilities', 'Energy & utilities'];
+export const sectors = ['Aggregate & quarry operations', 'Critical infrastructure', 'Land & site development', 'Industrial facilities', 'Energy & utilities'];
 
 export const aerialPackages = [
   { id: 'aerial-photos', badge: 'Aerial stills', title: 'Aerial Photos', subtitle: '12–18 edited aerial photos', price: 230, features: ['Edited aerial photo set', 'Wide, medium and detail views', 'Property, lot and surrounding context', 'Full-resolution and web-ready JPEGs'] },

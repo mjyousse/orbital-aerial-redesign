@@ -1,7 +1,7 @@
 ---
 import QuoteForm from './QuoteForm.astro';
 import { SITE } from '../lib/site';
-const { division = 'industrial', title = 'Tell us about your site.', lede = 'Three quick steps. We reply within one business day with pricing and availability.' } = Astro.props as { division?: 'industrial' | 'realestate'; title?: string; lede?: string };
+const { division = 'industrial', both = false, title = 'Tell us about your site.', lede = 'Three quick steps. We reply within one business day with pricing and availability.' } = Astro.props as { division?: 'industrial' | 'realestate'; both?: boolean; title?: string; lede?: string };
 ---
 <section id="quote" class="section theme-dark relative overflow-hidden scroll-mt-16" aria-labelledby="quote-title">
   <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
@@ -15,7 +15,8 @@ const { division = 'industrial', title = 'Tell us about your site.', lede = 'Thr
       <dl class="mt-12 grid gap-6 border-t border-white/10 pt-8">
         <div><dt class="text-[13px] text-fg-3">Email</dt><dd class="mt-1"><a class="text-white text-xl font-display font-semibold hover:text-signal" href={`mailto:${SITE.email}`}>{SITE.email}</a></dd></div>
         <div><dt class="text-[13px] text-fg-3">Based in</dt><dd class="mt-1 text-white text-xl font-display font-semibold">Austin, Texas</dd></div>
-        <div><dt class="text-[13px] text-fg-3">Coverage</dt><dd class="mt-1 text-fg-2">Real estate: 15 miles from Austin, travel quoted beyond. Industrial: projects scoped nationwide.</dd></div>
+        {(division === 'industrial' || both) && <div><dt class="text-[13px] text-fg-3">{both ? 'Industrial coverage' : 'Coverage'}</dt><dd class="mt-1 text-fg-2">Projects scoped and mobilized nationwide from Austin.</dd></div>}
+        {(division === 'realestate' || both) && <div><dt class="text-[13px] text-fg-3">{both ? 'Real estate media coverage' : 'Coverage'}</dt><dd class="mt-1 text-fg-2">Within 15 miles of Austin, travel quoted beyond.</dd></div>}
       </dl>
     </div>
     <div data-reveal style="--d:120ms"><QuoteForm division={division} /></div>

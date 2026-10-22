@@ -1,0 +1,25 @@
+---
+import { Picture } from 'astro:assets';
+import { url } from '../lib/site';
+import Arrow from './Arrow.astro';
+import img from '../assets/re/travis-1.jpg';
+---
+<section id="real-estate-division" class="theme-dark re-band relative overflow-hidden scroll-mt-16" aria-labelledby="re-band-title">
+  <Picture src={img} alt="" widths={[960, 1600, 2400]} sizes="100vw" formats={['avif', 'webp']} pictureAttributes={{ class: 'contents' }} loading="lazy" class="absolute inset-0 w-full h-full object-cover" />
+  <div class="absolute inset-0 bg-[linear-gradient(90deg,rgb(8_7_6/.94)_0%,rgb(8_7_6/.78)_45%,rgb(8_7_6/.25)_100%)]" aria-hidden="true"></div>
+  <span class="absolute right-5 top-5 chip chip-sample">Shot by Orbital</span>
+  <div class="wrap relative py-[clamp(5rem,10vw,8.5rem)]">
+    <div class="max-w-xl" data-reveal>
+      <p class="re-lockup"><span class="re-lockup-mark">Orbital</span><span class="re-lockup-rule" aria-hidden="true"></span><span>Real Estate Media</span></p>
+      <p class="mt-4 text-[14px] font-medium text-white/70">A separate division for agents, builders and sellers</p>
+      <h2 id="re-band-title" class="mt-8 font-display text-[clamp(2.2rem,4.6vw,4rem)] leading-[1.02] tracking-[-0.035em] font-semibold text-white">Show the property. Reveal the full perspective.</h2>
+      <p class="mt-6 text-lg text-white/80 max-w-lg">Aerial stills, cinematic property video and ground photography for Austin listings. Packages and prices are on the Real Estate Media page.</p>
+      <a href={url('real-estate/')} class="mt-10 btn btn-white">Visit Real Estate Media<Arrow /></a>
+    </div>
+  </div>
+</section>
+<style>
+  .re-lockup { display: inline-flex; align-items: center; gap: .75rem; font-family: var(--font-display); font-size: 15px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: #f3d9b8; }
+  .re-lockup-mark { color: #fff; }
+  .re-lockup-rule { width: 28px; height: 1px; background: #f3d9b8; }
+</style>

@@ -3,7 +3,7 @@ import { SITE } from '../lib/site';
 const { division = 'realestate' } = Astro.props as { division?: 'industrial' | 'realestate' };
 ---
 <div class="panel overflow-hidden">
-  <div class="relative aspect-[4/3] lg:aspect-[16/10] map-dark" id="cov-map" data-lat={SITE.center.lat} data-lon={SITE.center.lon} data-radius={SITE.radiusMiles} data-accent="#ff6a2b">
+  <div class="relative aspect-[4/3] lg:aspect-[16/10] map-dark" id="cov-map" data-lat={SITE.center.lat} data-lon={SITE.center.lon} data-radius={SITE.radiusMiles} data-division={division} data-accent="#ff6a2b">
     <div class="absolute inset-0 grid place-items-center">
       <div class="text-center">
         <div class="mx-auto w-40 h-40 rounded-full border-2 border-dashed border-[var(--accent)] grid place-items-center"><span class="tele">Austin</span></div>
@@ -12,7 +12,7 @@ const { division = 'realestate' } = Astro.props as { division?: 'industrial' | '
     </div>
   </div>
   <div class="grid sm:grid-cols-2 border-t hairline text-sm">
-    <div class="p-4 flex gap-3"><span class="mt-1.5 w-3 h-3 rounded-full bg-[var(--accent)] shrink-0"></span><p><strong class="text-white">Within {SITE.radiusMiles} miles of downtown Austin:</strong> <span class="text-fg-2">standard coverage, no travel fee.</span></p></div>
+    <div class="p-4 flex gap-3"><span class="mt-1.5 w-3 h-3 rounded-full bg-[var(--accent)] shrink-0"></span><p>{division === 'industrial' ? <><strong class="text-white">Home base:</strong> <span class="text-fg-2">Austin, Texas.</span></> : <><strong class="text-white">Within {SITE.radiusMiles} miles of downtown Austin:</strong> <span class="text-fg-2">standard coverage, no travel fee.</span></>}</p></div>
     <div class="p-4 flex gap-3 sm:border-l hairline"><span class="mt-1.5 w-3 h-3 rounded-full border-2 border-dashed border-fg-3 shrink-0"></span><p><strong class="text-white">{division === 'industrial' ? 'Industrial projects nationwide:' : 'Beyond 15 miles:'}</strong> <span class="text-fg-2">{division === 'industrial' ? 'travel and mobilization quoted per project.' : 'travel is quoted before you approve the scope.'}</span></p></div>
   </div>
 </div>
@@ -28,6 +28,12 @@ const { division = 'realestate' } = Astro.props as { division?: 'industrial' | '
     L.tileLayer('https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}', {
       maxZoom: 16, attribution: 'Tiles: <a href="https://www.usgs.gov/programs/national-geospatial-program/national-map">USGS The National Map</a>',
     }).addTo(map);
+    if (el.dataset.division === 'industrial') {
+      L.circleMarker([lat, lon], { radius: 7, color: accent, fillColor: accent, fillOpacity: 1 }).addTo(map)
+        .bindTooltip('Home base · Austin, TX', { permanent: true, direction: 'top', className: 'cov-tip' });
+      map.setView([lat, lon], 5);
+      return;
+    }
     L.circle([lat, lon], { radius: r * 1.9, color: '#9a9aa0', weight: 1, dashArray: '4 6', fill: false }).addTo(map);
     L.circle([lat, lon], { radius: r, color: accent, weight: 2, fillColor: accent, fillOpacity: 0.14 }).addTo(map)
       .bindTooltip('Standard coverage · 15 mi', { permanent: true, direction: 'top', className: 'cov-tip' });

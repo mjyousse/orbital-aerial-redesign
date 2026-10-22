@@ -10,9 +10,9 @@ Every page carries a `noindex` tag and a visible "Beta redesign" banner, so this
 
 | Path | What's on it |
 | --- | --- |
-| `/` | Full-bleed aerial video hero, both divisions, deliverable mockups, interactive sample data, process, founder, coverage map, quote form |
+| `/` | Industrial-first: aerial video hero, industrial deliverable mockups, interactive sample data, process, founder, coverage map, one separate Real Estate Media band linking to `/real-estate/`, quote form |
 | `/industrial/` | Stockpile, progress and asset services with sample report screens, sample data, credentials, process |
-| `/real-estate/` | Recent work gallery, aerial and ground packages with prices, coverage map |
+| `/real-estate/` | Real estate media only: recent work gallery, aerial and ground packages with prices, coverage map |
 | `/contact/` | Multi-step quote form |
 
 ## Develop

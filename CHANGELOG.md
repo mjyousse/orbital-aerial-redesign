@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.6.0 (design-b)
+
+- Leadership section is about Orbital only: founder and CTO role, FAA Part 107 and private pilot credentials, Azure, Jamf and DoD IAT certifications, and the approach to defensible data. No employer names or history.
+- Homepage is industrial-first. Real estate wording is gone from the hero, meta description, fact strip, deliverables and coverage section; the two-division cards and the real estate deliverable row are removed.
+- Real estate now appears on the homepage as one separate Real Estate Media band that links to `/real-estate/`. Real estate prices appear only on the real estate page and in the quote form.
+- Footer drops real estate prices and labels the columns Industrial, Real Estate Media and Industrial sectors.
+- Quote section coverage note matches the division; the contact page lists both, separately. The form keeps its division choice.
+- Structured data: the real estate price list and 15-mile service area appear only on the real estate page.
+- Homepage coverage map shows the Austin home base for nationwide industrial work instead of the real estate radius.
+
 ## 0.5.0 (design-b)
 
 - Dark theme now has three surfaces instead of one flat charcoal: near-black (#060607) for the hero, sample data, coverage and closing sections; slate (#15181D) where light mode is white; graphite (#1E1C1A) where light mode is warm gray, and for cards.

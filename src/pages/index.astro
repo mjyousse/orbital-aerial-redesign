@@ -2,12 +2,11 @@
 import Base from '../layouts/Base.astro';
 import VideoHero from '../components/VideoHero.astro';
 import SectionHead from '../components/SectionHead.astro';
-import DivisionCards from '../components/DivisionCards.astro';
+import RealEstateBand from '../components/RealEstateBand.astro';
 import DeliverableRow from '../components/DeliverableRow.astro';
 import StockpileMock from '../components/mock/StockpileMock.astro';
 import ProgressMock from '../components/mock/ProgressMock.astro';
 import AssetMock from '../components/mock/AssetMock.astro';
-import ListingMock from '../components/mock/ListingMock.astro';
 import PointCloud from '../components/PointCloud.astro';
 import BeforeAfter from '../components/BeforeAfter.astro';
 import FactBand from '../components/FactBand.astro';
@@ -20,11 +19,11 @@ import QuoteSection from '../components/QuoteSection.astro';
 import { url, industrialProcess, industrialServices } from '../lib/site';
 const [stock, progress, assets] = industrialServices;
 ---
-<Base title="Orbital Aerial Solutions" description="Aerial intelligence from Austin, TX: survey-grade mapping, stockpile volumetrics, reality capture and real estate aerial media. NDAA-compliant platforms, air-gapped data handling, $10M aviation liability coverage.">
+<Base title="Orbital Aerial Solutions" description="Aerial intelligence from Austin, TX: survey-grade mapping, stockpile volumetrics, reality capture and asset inspection for industrial teams. NDAA-compliant platforms, air-gapped data handling, $10M aviation liability coverage.">
   <VideoHero
     eyebrow="Aerial intelligence · Austin, TX · Deployed nationwide"
     title="Aerial intelligence for operations where precision matters."
-    lede="Subcentimeter geospatial mapping, survey-grade volumetrics and reality capture for industrial teams, plus cinematic aerial media for Austin real estate."
+    lede="Subcentimeter geospatial mapping, survey-grade volumetrics, reality capture and asset inspection for aggregate, construction, infrastructure and energy teams."
     primary={{ href: url('contact/'), label: 'Request a quote' }}
     secondary={{ href: '#deliverables', label: 'See the deliverables' }}
     facts={[
@@ -43,16 +42,6 @@ const [stock, progress, assets] = industrialServices;
     </div>
   </section>
 
-  <section class="theme-light pb-[clamp(5rem,10vw,9rem)]" aria-labelledby="divisions-title">
-    <div class="wrap">
-      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10" data-reveal>
-        <h2 id="divisions-title" class="display-md max-w-[18ch]">Two divisions. One aviation-grade standard.</h2>
-        <p class="text-text-2 max-w-md">Same crew, same safety framework, same discipline, whether the job is a quarry inventory or a listing launch.</p>
-      </div>
-      <DivisionCards />
-    </div>
-  </section>
-
   <LogoBand />
 
   <section id="deliverables" class="section theme-warm scroll-mt-16" aria-labelledby="deliv-title">
@@ -62,7 +51,6 @@ const [stock, progress, assets] = industrialServices;
         <DeliverableRow tag={`01 · ${stock.tag}`} title={stock.title} body={stock.body} deliverables={stock.deliverables} formats={stock.formats} href={url('industrial/#services')}><StockpileMock /></DeliverableRow>
         <DeliverableRow flip tag={`02 · ${progress.tag}`} title={progress.title} body={progress.body} deliverables={progress.deliverables} formats={progress.formats} href={url('industrial/#services')}><ProgressMock /></DeliverableRow>
         <DeliverableRow tag={`03 · ${assets.tag}`} title={assets.title} body={assets.body} deliverables={assets.deliverables} formats={assets.formats} href={url('industrial/#services')}><AssetMock /></DeliverableRow>
-        <DeliverableRow flip tag="04 · Real estate" title="Listing media that sells the setting." body="48 MP aerial stills and 4K cinematic motion that establish scale, setting and arrival, with ground photography in the same visit. Files are sized for MLS, builder websites and social channels." deliverables={['Aerial photos from $230', 'Aerial video from $315', 'Ground packages from $150', 'Delivery as soon as 24 hours']} formats="JPEG · MP4 · MLS-ready" href={url('real-estate/#packages')} cta="See packages"><ListingMock /></DeliverableRow>
       </div>
       <p class="mt-20 text-sm text-text-3">Radiometric thermal capture is in capability development and not yet offered.</p>
     </div>
@@ -88,7 +76,7 @@ const [stock, progress, assets] = industrialServices;
     { big: '$10M', label: 'Specialized aviation liability coverage' },
     { big: 'Part 107', label: 'FAA-certificated remote pilots, plus a private pilot license' },
     { big: 'NDAA', label: 'Compliant aircraft with air-gapped data ingestion' },
-    { big: '24 h', label: 'Real estate delivery, as soon as the next day' },
+    { big: '1 day', label: 'Scoped pricing and availability, within one business day' },
   ]} />
 
   <Process eyebrow="How it works" title="Scope to defensible deliverable in five steps." steps={industrialProcess} tone="light" />
@@ -100,12 +88,13 @@ const [stock, progress, assets] = industrialServices;
       <div data-reveal>
         <p class="eyebrow">Coverage</p>
         <h2 id="coverage-title" class="mt-5 display-md text-white">Austin-based. Deployed nationwide.</h2>
-        <p class="mt-6 lede text-fg-2">Industrial projects are scoped and mobilized wherever the site is. Real estate shoots within 15 miles of downtown Austin carry no travel fee, and travel beyond that is quoted before you approve.</p>
+        <p class="mt-6 lede text-fg-2">Flight crews mobilize from Austin to wherever the site is. Travel and mobilization are scoped per project and quoted before you approve.</p>
       </div>
-      <div data-reveal style="--d:120ms"><CoverageMap division="realestate" /></div>
+      <div data-reveal style="--d:120ms"><CoverageMap division="industrial" /></div>
     </div>
   </section>
 
   <Proof />
+  <RealEstateBand />
   <QuoteSection />
 </Base>

@@ -23,20 +23,23 @@ const jsonLd = {
   url: SITE.liveUrl,
   email: SITE.email,
   image: ogImage,
-  description: 'Aerial intelligence firm delivering survey-grade geospatial mapping, stockpile volumetrics, reality capture and real estate aerial media.',
+  description: division === 'realestate'
+    ? 'Real estate media division of Orbital Aerial Solutions: aerial photos, cinematic property video and ground photography for Austin listings.'
+    : 'Aerial intelligence firm delivering survey-grade geospatial mapping, stockpile volumetrics, reality capture and asset inspection.',
   address: { '@type': 'PostalAddress', addressLocality: 'Austin', addressRegion: 'TX', addressCountry: 'US' },
-  areaServed: [
-    { '@type': 'GeoCircle', geoMidpoint: { '@type': 'GeoCoordinates', latitude: SITE.center.lat, longitude: SITE.center.lon }, geoRadius: '24140' },
-    { '@type': 'Country', name: 'United States' },
-  ],
-  hasOfferCatalog: {
-    '@type': 'OfferCatalog',
-    name: 'Real estate aerial media',
-    itemListElement: [
-      ['Aerial Photos', 230], ['Aerial Video', 315], ['Aerial Photo + Video', 435],
-      ['Ground Essential', 150], ['Ground Complete', 210], ['Ground Expanded', 330],
-    ].map(([name, price]) => ({ '@type': 'Offer', price, priceCurrency: 'USD', itemOffered: { '@type': 'Service', name } })),
-  },
+  areaServed: division === 'realestate'
+    ? [{ '@type': 'GeoCircle', geoMidpoint: { '@type': 'GeoCoordinates', latitude: SITE.center.lat, longitude: SITE.center.lon }, geoRadius: '24140' }]
+    : [{ '@type': 'Country', name: 'United States' }],
+  ...(division === 'realestate' ? {
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Real estate aerial media',
+      itemListElement: [
+        ['Aerial Photos', 230], ['Aerial Video', 315], ['Aerial Photo + Video', 435],
+        ['Ground Essential', 150], ['Ground Complete', 210], ['Ground Expanded', 330],
+      ].map(([name, price]) => ({ '@type': 'Offer', price, priceCurrency: 'USD', itemOffered: { '@type': 'Service', name } })),
+    },
+  } : {}),
 };
 ---
 <!doctype html>
