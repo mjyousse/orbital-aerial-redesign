@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.6.2 (design-b)
+
+- DroneDeploy added to the "Trusted by teams at" strip on the home and industrial pages, using the DroneDeploy wordmark from dronedeploy.com in the same single neutral color.
+- Six logos now sit in one row on desktop and an even 2 × 3 grid on phones (3 × 2 on small tablets). Logos scale down proportionally on very narrow screens.
+- Header link spacing tightens slightly between 768 and 1023 px so the header no longer overflows at 768 px.
+
 ## 0.6.1 (design-b)
 
 - Client logo strip on the home and industrial pages now shows SpaceX, Samsung, Martin Marietta, Tesla and OpenAI, labeled "Trusted by teams at". Replaces the placeholders.

@@ -7,18 +7,19 @@ const logos = [
   { file: 'martin-marietta.svg', name: 'Martin Marietta', h: 34, ratio: 3.431 },
   { file: 'tesla.svg', name: 'Tesla', h: 17, ratio: 7.671 },
   { file: 'openai.svg', name: 'OpenAI', h: 25, ratio: 3.719 },
+  { file: 'dronedeploy.svg', name: 'DroneDeploy', h: 21, ratio: 6.121 },
 ];
 ---
 <section class="theme-light logo-band" aria-labelledby="logos-title">
-  <div class="wrap py-12 md:py-16 flex flex-col lg:flex-row lg:items-center gap-8 lg:gap-14">
-    <p id="logos-title" class="text-[14px] text-text-2 lg:max-w-[12ch] shrink-0 text-center lg:text-left">Trusted by teams at</p>
-    <ul class="flex-1 flex flex-wrap items-center justify-center lg:justify-between gap-x-12 gap-y-8 sm:gap-x-14">
+  <div class="wrap py-12 md:py-16 flex flex-col xl:flex-row xl:items-center gap-8 xl:gap-14">
+    <p id="logos-title" class="text-[14px] text-text-2 xl:max-w-[12ch] shrink-0 text-center xl:text-left">Trusted by teams at</p>
+    <ul class="flex-1 grid grid-cols-2 sm:grid-cols-3 gap-x-8 gap-y-10 lg:flex lg:items-center lg:justify-between lg:gap-x-8">
       {logos.map((l) => (
-        <li class="flex items-center justify-center px-1 py-2">
-          <img src={url(`logos/${l.file}`)} alt={l.name} width={Math.round(l.h * l.ratio)} height={l.h} style={`height:${l.h}px;width:auto`} class="client-logo" loading="lazy" decoding="async" />
+        <li class="flex items-center justify-center min-w-0 py-1">
+          <img src={url(`logos/${l.file}`)} alt={l.name} width={Math.round(l.h * l.ratio)} height={l.h} style={`width:${Math.round(l.h * l.ratio)}px`} class="client-logo" loading="lazy" decoding="async" />
         </li>
       ))}
     </ul>
   </div>
-  <p class="wrap -mt-4 pb-8 text-[12px] text-text-3 text-center lg:text-left">Logos are trademarks of their respective owners.</p>
+  <p class="wrap -mt-4 pb-8 text-[12px] text-text-3 text-center xl:text-left">Logos are trademarks of their respective owners.</p>
 </section>

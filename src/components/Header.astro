@@ -17,13 +17,13 @@ const quoteHref = url(division ? `contact/?division=${division}` : 'contact/');
       <img src={url('brand/logo-dark.svg')} alt="" width="64" height="45" class="logo-on-dark h-10 w-auto" />
       <img src={url('brand/logo-light.svg')} alt="" width="64" height="45" class="logo-on-light h-10 w-auto" />
     </a>
-    <nav aria-label="Main" class="hidden md:flex items-center gap-7 text-[15px] font-medium">
+    <nav aria-label="Main" class="hidden md:flex items-center gap-5 lg:gap-7 text-[15px] font-medium">
       {links.map((l) => {
         const active = path.includes(l.key);
         return <a href={l.href} class="nav-link" aria-current={active ? 'page' : undefined}>{l.label}</a>;
       })}
     </nav>
-    <div class="hidden md:flex items-center gap-5 text-[15px] font-medium">
+    <div class="hidden md:flex items-center gap-3 lg:gap-5 text-[15px] font-medium">
       <a href={url('contact/')} class="nav-link">Contact</a>
       <ThemeToggle />
       <a href={quoteHref} class="btn hdr-cta !min-h-10 !py-2 !px-5 text-[14px]">Request a quote</a>

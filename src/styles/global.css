@@ -295,7 +295,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.03em; line
 [data-theme="dark"] section.theme-warm .bg-paper .bg-paper-2 { background-color: #3a3632; color: var(--color-text-2); }
 
 /* Client logos: official marks shown in one neutral color */
-.client-logo { display: block; max-width: none; opacity: .55; transition: opacity .2s ease; }
+.client-logo { display: block; height: auto; max-width: 100%; opacity: .55; transition: opacity .2s ease; }
 .client-logo:hover { opacity: 1; }
 :root[data-theme="dark"] .client-logo { filter: invert(1); opacity: .62; }
 :root[data-theme="dark"] .client-logo:hover { opacity: 1; }
