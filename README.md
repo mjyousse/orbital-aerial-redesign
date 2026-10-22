@@ -55,6 +55,10 @@ The `github-pages` environment allows deployments from `main` and from any branc
 - Pink dashed boxes marked **Placeholder** (stats, case study, testimonial, client logos, founder photo, property film) are for real content only. Replace them once you have approved numbers, quotes or permission, or delete them.
 - The quote form sends to the same FormSubmit inbox and uses the same Geoapify address autocomplete key as the live site (`src/scripts/quote.ts`).
 
+## Light and dark themes
+
+The theme button in the header cycles **Auto → Light → Dark**. Auto follows the device's light or dark setting and switches live when it changes. The choice is saved in the browser (`localStorage` key `oas-theme`). An inline script in `src/layouts/Base.astro` applies the theme before the page paints, and sets `color-scheme` and `theme-color` to match. Dark colors are the `[data-theme="dark"]` overrides at the end of `src/styles/global.css`.
+
 ## Performance notes
 
 - Photos are converted to AVIF and WebP at build time with responsive sizes.

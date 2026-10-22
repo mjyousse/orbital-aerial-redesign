@@ -93,7 +93,7 @@ const pkgSlug = (t: string) => t.split(' (')[0];
           {gi === 1 && <div class="mt-24"><SectionHead eyebrow="Ground photography" title="Interior and exterior coverage, same upfront pricing." lede="Choose the coverage that fits the property. We confirm access, scope and final price before the session." /></div>}
           <div class="grid md:grid-cols-3 gap-4">
             {group.map((p, i) => (
-              <article class:list={['rounded-[22px] p-8 flex flex-col relative', p.featured ? 'bg-ink-900 text-white' : 'bg-paper']} data-reveal style={`--d:${i * 80}ms`}>
+              <article class:list={['rounded-[22px] p-8 flex flex-col relative', p.featured ? 'bg-ink-900 text-white pkg-featured' : 'bg-paper']} data-reveal style={`--d:${i * 80}ms`}>
                 <span class:list={['self-start chip', p.featured ? 'bg-signal text-black' : 'bg-paper-2 text-text-2']}>{p.badge}</span>
                 <h3 class="mt-5 text-2xl">{p.title}</h3>
                 <p class:list={['mt-1 text-[15px]', p.featured ? 'text-fg-2' : 'text-text-2']}>{p.subtitle}</p>

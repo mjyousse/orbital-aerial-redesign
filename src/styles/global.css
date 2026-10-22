@@ -142,6 +142,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.03em; line
 /* Editor placeholders: calm but unmistakable */
 .ph { border: 1.5px dashed #d9a3c8; background: #fdf7fb; color: #5b4453; border-radius: 16px; }
 .theme-dark .ph { border-color: rgb(255 107 214 / .55); background: rgb(255 107 214 / .05); color: #f3cfe6; }
+.ph-logo { border: 1.5px dashed #d9a3c8; background: #fdf7fb; color: #a3307f; border-radius: 12px; height: 3.5rem; }
 .ph-tag { font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #a3307f; display: inline-flex; align-items: center; gap: .45rem; }
 .ph-tag::before { content: ""; width: .45rem; height: .45rem; border-radius: 99px; background: var(--color-placeholder); }
 .theme-dark .ph-tag { color: #ff9be2; }
@@ -199,3 +200,50 @@ h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.03em; line
 .reticle { animation: pulse 2.6s ease-in-out infinite; }
 @keyframes pulse { 0%,100% { opacity: .45; } 50% { opacity: 1; } }
 @media (prefers-reduced-motion: reduce) { .reticle { animation: none; } }
+
+/* ---------- Theme toggle ---------- */
+.theme-toggle { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 999px; border: 1px solid currentColor; border-color: color-mix(in srgb, currentColor 30%, transparent); transition: background .2s, border-color .2s; }
+.theme-toggle:hover { border-color: currentColor; background: color-mix(in srgb, currentColor 8%, transparent); }
+.theme-toggle svg { display: none; }
+.theme-toggle[data-mode="auto"] .ti-auto, .theme-toggle[data-mode="light"] .ti-light, .theme-toggle[data-mode="dark"] .ti-dark { display: block; }
+
+/* ---------- Dark theme ----------
+   Same brand, not inverted: light and warm sections become charcoal surfaces,
+   dark (cinematic) sections drop to the deepest black so the rhythm survives. */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --color-paper: #121214;
+  --color-paper-2: #1a1a1d;
+  --color-paper-3: #232327;
+  --color-line: #2a2a2f;
+  --color-text: #f4f4f2;
+  --color-text-2: #bdbdc2;
+  --color-text-3: #9d9da3;
+  --color-signal-700: #ff8a55;
+}
+[data-theme="dark"] body { background: var(--color-paper); color: var(--color-text); }
+[data-theme="dark"] .theme-dark { background: var(--color-ink-950); }
+[data-theme="dark"] footer.theme-dark { background: #000; }
+[data-theme="dark"] .accent-text { color: var(--color-signal); }
+
+/* Header when solid: charcoal glass instead of white glass */
+[data-theme="dark"] .site-header[data-solid="true"], [data-theme="dark"] .site-header[data-tone="light"] { background: rgb(12 12 14 / .92); color: #f4f4f2; box-shadow: 0 1px 0 rgb(255 255 255 / .08); }
+[data-theme="dark"] .site-header[data-solid="true"] .logo-on-dark, [data-theme="dark"] .site-header[data-tone="light"] .logo-on-dark { display: block; }
+[data-theme="dark"] .site-header[data-solid="true"] .logo-on-light, [data-theme="dark"] .site-header[data-tone="light"] .logo-on-light { display: none; }
+[data-theme="dark"] .site-header[data-solid="true"] .hdr-cta, [data-theme="dark"] .site-header[data-tone="light"] .hdr-cta { background: #fff; color: #0a0a0b; }
+
+/* Buttons that were dark-on-light flip to light-on-dark */
+[data-theme="dark"] .btn-dark { background: #f4f4f2; color: #0a0a0b; }
+[data-theme="dark"] .btn-dark:hover { background: #fff; }
+[data-theme="dark"] .btn-outline-dark { border-color: rgb(255 255 255 / .5); color: #f4f4f2; }
+[data-theme="dark"] .btn-outline-dark:hover { background: #f4f4f2; color: #0a0a0b; border-color: #f4f4f2; }
+
+/* Mockups and cards */
+[data-theme="dark"] .frame { box-shadow: 0 40px 80px -40px rgb(0 0 0 / .8), 0 0 0 1px rgb(255 255 255 / .08); }
+[data-theme="dark"] .ui-card { background: rgb(24 24 27 / .95); color: #f4f4f2; box-shadow: 0 24px 48px -20px rgb(0 0 0 / .8), 0 0 0 1px rgb(255 255 255 / .1); }
+[data-theme="dark"] .pkg-featured { box-shadow: 0 0 0 1px rgb(255 106 43 / .55); }
+
+/* Placeholders stay pink and obvious on dark */
+[data-theme="dark"] .ph, [data-theme="dark"] .ph-logo { border-color: rgb(255 107 214 / .6); background: rgb(255 107 214 / .06); color: #f6d3ea; }
+[data-theme="dark"] .ph-logo { color: #ff9be2; }
+[data-theme="dark"] .ph-tag { color: #ff9be2; }

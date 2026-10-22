@@ -1,5 +1,6 @@
 ---
 import { url } from '../lib/site';
+import ThemeToggle from './ThemeToggle.astro';
 const { division, tone = 'overlay' } = Astro.props as { division?: string; tone?: 'overlay' | 'light' };
 const path = Astro.url.pathname;
 const links = [
@@ -24,12 +25,14 @@ const quoteHref = url(division ? `contact/?division=${division}` : 'contact/');
     </nav>
     <div class="hidden md:flex items-center gap-5 text-[15px] font-medium">
       <a href={url('contact/')} class="nav-link">Contact</a>
+      <ThemeToggle />
       <a href={quoteHref} class="btn hdr-cta !min-h-10 !py-2 !px-5 text-[14px]">Request a quote</a>
     </div>
+    <div class="md:hidden flex items-center gap-1"><ThemeToggle />
     <button id="menu-btn" class="md:hidden inline-flex items-center justify-center w-11 h-11 -mr-2" aria-expanded="false" aria-controls="mobile-menu">
       <span class="sr-only">Menu</span>
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg>
-    </button>
+    </button></div>
   </div>
 </header>
 <nav id="mobile-menu" aria-label="Mobile" class="md:hidden hidden fixed inset-0 z-50 bg-ink-900 text-white">

@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.4.0 (design-b)
+
+- Dark theme: charcoal and near-black surfaces, same orange accent, dark mockups, cards and buttons, pink placeholders kept visible.
+- Theme button in the header (desktop and mobile) cycles Auto, Light and Dark. Auto follows the device setting and updates live; the choice is saved in the browser.
+- The theme is applied by an inline script in the head, so pages never flash the wrong theme. `color-scheme` and `theme-color` follow the active theme.
+- The coverage map keeps its dark-styled USGS tiles in both themes.
+
 ## 0.3.0 (design-b)
 
 - Design B: full-bleed aerial video hero with large type, alternating light and dark sections, sticky header that turns solid on scroll.

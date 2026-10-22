@@ -47,8 +47,33 @@ const jsonLd = {
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
     <meta name="robots" content="noindex, nofollow" />
-    <meta name="theme-color" content="#0a0a0b" />
-    <script is:inline>document.documentElement.classList.add('js')</script>
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#ffffff" />
+    <script is:inline>
+      (function () {
+        var d = document.documentElement, KEY = 'oas-theme', mode = 'auto';
+        d.classList.add('js');
+        try { var s = localStorage.getItem(KEY); if (s === 'light' || s === 'dark' || s === 'auto') mode = s; } catch (e) {}
+        var mq = window.matchMedia('(prefers-color-scheme: dark)');
+        function apply() {
+          var t = mode === 'auto' ? (mq.matches ? 'dark' : 'light') : mode;
+          d.setAttribute('data-theme', t);
+          d.setAttribute('data-theme-mode', mode);
+          d.style.colorScheme = t;
+          var m = document.querySelector('meta[name="theme-color"]');
+          if (m) m.setAttribute('content', t === 'dark' ? '#0a0a0b' : '#ffffff');
+          document.dispatchEvent(new CustomEvent('themechange', { detail: { theme: t, mode: mode } }));
+        }
+        window.__oasTheme = {
+          get mode() { return mode; },
+          get theme() { return d.getAttribute('data-theme'); },
+          set: function (v) { mode = v; try { localStorage.setItem(KEY, v); } catch (e) {} apply(); },
+        };
+        var onChange = function () { if (mode === 'auto') apply(); };
+        if (mq.addEventListener) mq.addEventListener('change', onChange); else mq.addListener(onChange);
+        apply();
+      })();
+    </script>
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href={url('brand/logo-dark.svg')} />
     <link rel="sitemap" href={url('sitemap-index.xml')} />
@@ -77,7 +102,7 @@ const jsonLd = {
     </main>
     <Footer division={division} />
     {!hideStickyCta && (
-      <div class="md:hidden fixed inset-x-0 bottom-0 z-40 p-3 bg-white/90 backdrop-blur border-t border-black/10 flex gap-2" style="padding-bottom: max(.75rem, env(safe-area-inset-bottom));">
+      <div class="md:hidden fixed inset-x-0 bottom-0 z-40 p-3 bg-paper/90 backdrop-blur border-t border-line flex gap-2" style="padding-bottom: max(.75rem, env(safe-area-inset-bottom));">
         <a href={url(division ? `contact/?division=${division}` : 'contact/')} class="btn btn-dark flex-1">Request a quote</a>
         <a href={`mailto:${SITE.email}`} class="btn btn-outline-dark" aria-label={`Email ${SITE.email}`}>Email</a>
       </div>
