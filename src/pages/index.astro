@@ -1,90 +1,53 @@
 ---
 import Base from '../layouts/Base.astro';
 import VideoHero from '../components/VideoHero.astro';
-import SectionHead from '../components/SectionHead.astro';
-import RealEstateBand from '../components/RealEstateBand.astro';
-import DeliverableRow from '../components/DeliverableRow.astro';
-import StockpileMock from '../components/mock/StockpileMock.astro';
-import ProgressMock from '../components/mock/ProgressMock.astro';
-import AssetMock from '../components/mock/AssetMock.astro';
-import PointCloud from '../components/PointCloud.astro';
-import BeforeAfter from '../components/BeforeAfter.astro';
+import ServiceFork from '../components/ServiceFork.astro';
 import FactBand from '../components/FactBand.astro';
 import LogoBand from '../components/LogoBand.astro';
-import CoverageMap from '../components/CoverageMap.astro';
-import Process from '../components/Process.astro';
-import Proof from '../components/Proof.astro';
+import CoverageGraphic from '../components/CoverageGraphic.astro';
+import FieldRecord from '../components/FieldRecord.astro';
 import Operate from '../components/Operate.astro';
 import SecuritySection from '../components/SecuritySection.astro';
 import QuoteSection from '../components/QuoteSection.astro';
-import { url, industrialProcess, industrialServices } from '../lib/site';
-const [stock, progress, assets] = industrialServices;
+import { url } from '../lib/site';
 ---
-<Base title="Orbital Aerial Solutions" description="Aerial intelligence from Austin, TX: survey-grade mapping, stockpile volumetrics, reality capture and asset inspection for industrial teams. NDAA-compliant platforms, air-gapped data handling, $10M aviation liability coverage.">
+<Base title="Orbital Aerial Solutions" description="Orbital Aerial Solutions is an Austin, TX aerial intelligence firm: industrial mapping, volumetrics and reality capture nationwide, plus Real Estate Media for Austin listings. NDAA-compliant platforms, $10M aviation liability coverage.">
   <VideoHero
     eyebrow="Aerial intelligence · Austin, TX · Deployed nationwide"
     title="Aerial intelligence for operations where precision matters."
-    lede="Subcentimeter geospatial mapping, survey-grade volumetrics, reality capture and asset inspection for aggregate, construction, infrastructure and energy teams."
+    lede="Survey-grade mapping and reality capture for industrial teams, and cinematic aerial media for real estate. Two services, flown to one aviation standard."
     primary={{ href: url('contact/'), label: 'Request a quote' }}
-    secondary={{ href: '#deliverables', label: 'See the deliverables' }}
+    secondary={{ href: '#services', label: 'Choose a service' }}
     facts={[
-      { k: 'Flight crew', v: 'Part 107 · Manned-aviation trained' },
+      { k: 'Flight crew', v: 'Part 107 · Structured crew training' },
       { k: 'Fleet', v: 'NDAA-compliant platforms' },
       { k: 'Data handling', v: 'Air-gapped ingestion' },
       { k: 'Liability coverage', v: '$10M aviation-specific' },
     ]}
   />
 
+  <ServiceFork />
+
   <section class="section theme-light" aria-label="About Orbital">
     <div class="wrap">
       <p class="font-display text-[clamp(1.7rem,3.6vw,3.2rem)] leading-[1.12] tracking-[-0.03em] font-medium max-w-[30ch]" data-reveal>
-        Orbital merges structured flight operations with AI-driven processing pipelines, <span class="text-text-3">turning raw aerial capture into georeferenced, survey-grade data that operations teams and engineers can act on and defend.</span>
+        Orbital merges structured flight operations with careful processing pipelines, <span class="text-text-3">turning aerial capture into data and media our clients can act on, publish and defend.</span>
       </p>
     </div>
   </section>
 
   <LogoBand />
 
-  <section id="deliverables" class="section theme-warm scroll-mt-16" aria-labelledby="deliv-title">
-    <div class="wrap">
-      <SectionHead eyebrow="Deliverables" title="From raw capture to decision-ready data." lede="Every flight ends in something your team can open, measure and share. These are the outputs we hand over, shown as sample layouts." size="lg" />
-      <div class="grid gap-28 md:gap-36">
-        <DeliverableRow tag={`01 · ${stock.tag}`} title={stock.title} body={stock.body} deliverables={stock.deliverables} formats={stock.formats} href={url('industrial/#services')}><StockpileMock /></DeliverableRow>
-        <DeliverableRow flip tag={`02 · ${progress.tag}`} title={progress.title} body={progress.body} deliverables={progress.deliverables} formats={progress.formats} href={url('industrial/#services')}><ProgressMock /></DeliverableRow>
-        <DeliverableRow tag={`03 · ${assets.tag}`} title={assets.title} body={assets.body} deliverables={assets.deliverables} formats={assets.formats} href={url('industrial/#services')}><AssetMock /></DeliverableRow>
-      </div>
-      <p class="mt-20 text-sm text-text-3">Radiometric thermal capture is in capability development and not yet offered.</p>
-    </div>
-  </section>
-
-  <section id="sample-data" class="section theme-dark scroll-mt-16" aria-labelledby="sample-title">
-    <div class="wrap">
-      <div class="grid lg:grid-cols-[1fr_1fr] gap-10 items-end mb-14" data-reveal>
-        <div>
-          <p class="eyebrow">Sample data · Interactive</p>
-          <h2 id="sample-title" class="mt-5 display-lg text-white">Raw capture in. Measurable terrain out.</h2>
-        </div>
-        <p class="lede text-fg-2">Every mapping flight becomes a georeferenced 3D dataset. Orbit the point cloud, then drag the slider to compare orthoimagery with its surface model. This demo uses free public USGS data for west Austin, not client work.</p>
-      </div>
-      <div class="grid lg:grid-cols-[1.45fr_1fr] gap-5 items-start">
-        <div data-reveal><PointCloud /></div>
-        <div data-reveal style="--d:120ms"><BeforeAfter /></div>
-      </div>
-    </div>
-  </section>
-
   <FactBand items={[
     { big: '$10M', label: 'Specialized aviation liability coverage' },
-    { big: 'Part 107', label: 'FAA-certificated remote pilots with manned-aviation training' },
+    { big: 'Part 107', label: 'FAA-certificated remote pilots in a managed aviation training program' },
     { big: 'NDAA', label: 'Compliant aircraft with air-gapped data ingestion' },
     { big: '1 day', label: 'Scoped pricing and availability, within one business day' },
   ]} />
 
-  <Process eyebrow="How it works" title="Scope to defensible deliverable in five steps." steps={industrialProcess} tone="light" />
+  <Operate />
 
   <SecuritySection />
-
-  <Operate />
 
   <section id="coverage" class="section theme-dark scroll-mt-16" aria-labelledby="coverage-title">
     <div class="wrap grid lg:grid-cols-[0.8fr_1.2fr] gap-12 items-center">
@@ -93,11 +56,10 @@ const [stock, progress, assets] = industrialServices;
         <h2 id="coverage-title" class="mt-5 display-md text-white">Austin-based. Deployed nationwide.</h2>
         <p class="mt-6 lede text-fg-2">Flight crews mobilize from Austin to wherever the site is. Travel and mobilization are scoped per project and quoted before you approve.</p>
       </div>
-      <div data-reveal style="--d:120ms"><CoverageMap division="industrial" /></div>
+      <div data-reveal style="--d:120ms"><CoverageGraphic division="industrial" /></div>
     </div>
   </section>
 
-  <Proof />
-  <RealEstateBand />
-  <QuoteSection />
+  <FieldRecord eyebrow="Field record · Industrial" />
+  <QuoteSection both title="Tell us about your project." />
 </Base>

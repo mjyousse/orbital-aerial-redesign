@@ -1,6 +1,7 @@
 ---
 import { url } from '../lib/site';
 // Official marks, stored unaltered in public/logos/ (single-color black). Heights are tuned per mark for even optical size.
+const { label = 'Industrial clients include' } = Astro.props as { label?: string };
 const logos = [
   { file: 'spacex.svg', name: 'SpaceX', h: 19, ratio: 8.212 },
   { file: 'samsung.svg', name: 'Samsung', h: 21, ratio: 6.529 },
@@ -10,9 +11,9 @@ const logos = [
   { file: 'dronedeploy.svg', name: 'DroneDeploy', h: 21, ratio: 6.121 },
 ];
 ---
-<section class="theme-light logo-band" aria-labelledby="logos-title">
+<section class="theme-light logo-band" aria-labelledby="logos-title" id="industrial-clients">
   <div class="wrap py-12 md:py-16 flex flex-col xl:flex-row xl:items-center gap-8 xl:gap-14">
-    <p id="logos-title" class="text-[14px] text-text-2 xl:max-w-[12ch] shrink-0 text-center xl:text-left">Trusted by teams at</p>
+    <p id="logos-title" class="text-[14px] text-text-2 xl:max-w-[14ch] shrink-0 text-center xl:text-left">{label}</p>
     <ul class="flex-1 grid grid-cols-2 sm:grid-cols-3 gap-x-8 gap-y-10 lg:flex lg:items-center lg:justify-between lg:gap-x-8">
       {logos.map((l) => (
         <li class="flex items-center justify-center min-w-0 py-1">
@@ -21,5 +22,5 @@ const logos = [
       ))}
     </ul>
   </div>
-  <p class="wrap -mt-4 pb-8 text-[12px] text-text-3 text-center xl:text-left">Logos are trademarks of their respective owners.</p>
+  <p class="wrap -mt-4 pb-8 text-[12px] text-text-3 text-center xl:text-left">Industrial work only. Logos are trademarks of their respective owners.</p>
 </section>

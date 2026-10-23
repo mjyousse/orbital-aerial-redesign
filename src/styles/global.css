@@ -67,6 +67,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.03em; line
 .wrap { width: min(1280px, 100% - 2.5rem); margin-inline: auto; }
 @media (min-width: 768px) { .wrap { width: min(1280px, 100% - 5rem); } }
 .section { padding-block: clamp(5rem, 10vw, 9.5rem); }
+.section-tight { padding-block: clamp(3.5rem, 7vw, 6rem); }
 
 /* Section themes */
 .theme-dark { background: var(--color-ink-900); color: var(--color-fg); color-scheme: dark; --accent: var(--color-signal); }
@@ -177,11 +178,6 @@ h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.03em; line
 .ba:has(input:focus-visible) .ba-knob { box-shadow: 0 0 0 4px var(--accent-soft), 0 0 0 6px var(--accent); }
 
 /* Leaflet treatment */
-.map-dark .leaflet-tile-pane { filter: grayscale(1) invert(1) brightness(.85) contrast(1.15); }
-.leaflet-container { background: var(--color-ink-850) !important; font-family: var(--font-sans) !important; }
-.leaflet-control-attribution { background: rgb(10 10 11 / .8) !important; color: var(--color-fg-3) !important; }
-.leaflet-control-attribution a { color: var(--color-fg-2) !important; }
-.leaflet-bar a { background: var(--color-ink-800) !important; color: var(--color-fg) !important; border-color: rgb(255 255 255 / .1) !important; }
 
 /* Form (dark sections) */
 .field label { display: block; font-size: .82rem; font-weight: 600; color: var(--color-fg-2); margin-bottom: .45rem; }

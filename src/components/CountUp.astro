@@ -1,0 +1,36 @@
+---
+// Counts from 0 to `value` when scrolled into view. The final value is in the HTML, so it reads correctly without JavaScript
+// and when prefers-reduced-motion is set (no animation at all in that case).
+const { value, prefix = '', suffix = '', class: cls = '' } = Astro.props as { value: number; prefix?: string; suffix?: string; class?: string };
+const final = `${prefix}${value.toLocaleString('en-US')}${suffix}`;
+---
+<span class={cls} data-countup data-to={value} data-prefix={prefix} data-suffix={suffix} aria-label={final}><span aria-hidden="true">{final}</span></span>
+<script>
+  const fmt = new Intl.NumberFormat('en-US');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const els = Array.from(document.querySelectorAll<HTMLElement>('[data-countup]'));
+  const render = (el: HTMLElement, n: number) => {
+    const inner = el.firstElementChild as HTMLElement;
+    inner.textContent = `${el.dataset.prefix ?? ''}${fmt.format(Math.round(n))}${el.dataset.suffix ?? ''}`;
+  };
+  if (!reduce && 'IntersectionObserver' in window) {
+    els.forEach((el) => render(el, 0));
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        io.unobserve(e.target);
+        const el = e.target as HTMLElement;
+        const to = Number(el.dataset.to);
+        const dur = 1600;
+        const t0 = performance.now();
+        const tick = (t: number) => {
+          const p = Math.min(1, (t - t0) / dur);
+          render(el, to * (1 - Math.pow(1 - p, 3)));
+          if (p < 1) requestAnimationFrame(tick); else render(el, to);
+        };
+        requestAnimationFrame(tick);
+      });
+    }, { threshold: 0.4 });
+    els.forEach((el) => io.observe(el));
+  }
+</script>

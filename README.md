@@ -10,9 +10,9 @@ Every page carries a `noindex` tag and a visible "Beta redesign" banner, so this
 
 | Path | What's on it |
 | --- | --- |
-| `/` | Industrial-first: aerial video hero, industrial deliverable mockups, interactive sample data, process, data security, how we operate, coverage map, one separate Real Estate Media band linking to `/real-estate/`, quote form |
-| `/industrial/` | Stockpile, progress and asset services with sample report screens, sample data, data security, credentials, process |
-| `/real-estate/` | Real estate media only: recent work gallery, aerial and ground packages with prices, coverage map |
+| `/` | Firm-level: aerial video hero, equal-weight Industrial / Real Estate Media fork, industrial logo strip, how we operate, data security, coverage graphic, field record, quote form |
+| `/industrial/` | Stockpile, progress and asset services with sample report screens, sample data, data security, credentials, process, field record |
+| `/real-estate/` | Real estate media only: recent work gallery, aerial and ground packages with prices, client-logo placeholders, coverage graphic |
 | `/contact/` | Multi-step quote form |
 
 ## Develop
@@ -62,7 +62,7 @@ The theme button in the header cycles **Auto → Light → Dark**. Auto follows 
 ## Performance notes
 
 - Photos are converted to AVIF and WebP at build time with responsive sizes.
-- Three.js (3D viewer) and Leaflet (coverage map) load only when their section is near the viewport. Scroll reveals use IntersectionObserver and CSS, with no animation library.
+- Three.js (3D viewer) loads only when its section is near the viewport. Scroll reveals use IntersectionObserver and CSS, with no animation library.
 - The hero video is a 14 s muted loop (960 px on phones, 1600 px on larger screens). It doesn't load when the visitor prefers reduced motion or has Data Saver on; the poster image shows instead.
 - Fonts are self-hosted. Motion is switched off when the visitor prefers reduced motion.
 
@@ -75,7 +75,7 @@ The theme button in the header cycles **Auto → Light → Dark**. Auto follows 
 - Industrial photos: licensed from Pexels ([stockpile](https://www.pexels.com/photo/aerial-view-of-quarry-with-heavy-machinery-33122147/), [construction site](https://www.pexels.com/photo/aerial-view-of-construction-site-in-quebec-city-32211979/), [storage facility](https://www.pexels.com/photo/aerial-view-of-industrial-storage-facility-33369529/)). They show the type of site, not client work.
 - Product screens (stockpile report, site viewer, observation card, listing preview) are illustrative mockups. Their values are samples, not measurements.
 - Sample data (point cloud, before/after): elevation from USGS 3DEP via [AWS Terrain Tiles](https://registry.opendata.aws/terrain-tiles/), and imagery from the [USGS National Map](https://www.usgs.gov/programs/national-geospatial-program/national-map) orthoimagery. Both are public domain US government data. Area: west Austin, TX. Not client work.
-- Coverage map tiles: USGS The National Map (public domain), rendered with [Leaflet](https://leafletjs.com/).
+- Coverage graphic: dotted state outlines generated from U.S. Census Bureau cartographic boundaries (public domain, via the us-atlas package). No map tiles or third-party map services.
 - Fonts: Inter Tight and Inter (SIL Open Font License) via Fontsource.
 
 Made by Mohammad Youssef.

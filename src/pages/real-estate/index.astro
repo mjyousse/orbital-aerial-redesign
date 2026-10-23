@@ -4,7 +4,8 @@ import Base from '../../layouts/Base.astro';
 import PhotoHero from '../../components/PhotoHero.astro';
 import SectionHead from '../../components/SectionHead.astro';
 import FactBand from '../../components/FactBand.astro';
-import CoverageMap from '../../components/CoverageMap.astro';
+import Placeholder from '../../components/Placeholder.astro';
+import CoverageGraphic from '../../components/CoverageGraphic.astro';
 import Process from '../../components/Process.astro';
 import Proof from '../../components/Proof.astro';
 import QuoteSection from '../../components/QuoteSection.astro';
@@ -145,7 +146,17 @@ const pkgSlug = (t: string) => t.split(' (')[0];
           {rePoints.map((p) => <div class="border-l-2 border-signal pl-5"><h3 class="text-lg text-white">{p.title}</h3><p class="text-fg-2 text-[15px] mt-1">{p.body}</p></div>)}
         </div>
       </div>
-      <div data-reveal style="--d:120ms"><CoverageMap division="realestate" /></div>
+      <div data-reveal style="--d:120ms"><CoverageGraphic division="realestate" /></div>
+    </div>
+  </section>
+
+  <section class="section-tight theme-light" aria-labelledby="re-clients-title">
+    <div class="wrap">
+      <p class="eyebrow" data-reveal>Real estate clients</p>
+      <h2 id="re-clients-title" class="mt-5 display-md max-w-[20ch]" data-reveal>Agents, brokerages and builders.</h2>
+      <div class="mt-10 grid grid-cols-2 lg:grid-cols-4 gap-4" data-reveal>
+        {[1, 2, 3, 4].map(() => <Placeholder label="Client logo" class="!bg-paper"><p class="text-sm">Brokerage or builder logo, added with permission.</p></Placeholder>)}
+      </div>
     </div>
   </section>
 

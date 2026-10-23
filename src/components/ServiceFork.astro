@@ -1,0 +1,44 @@
+---
+import { Picture } from 'astro:assets';
+import { url } from '../lib/site';
+import Arrow from './Arrow.astro';
+import re from '../assets/re/travis-1.jpg';
+import ind from '../assets/stock/stockpile-2560.jpg';
+// Two equal-weight entry panels. Same structure, same size, same treatment.
+const panels = [
+  { id: 'fork-industrial', href: url('industrial/'), lockup: 'Industrial', kicker: 'Mapping, volumetrics and inspection', title: 'Measure, document and model your sites.', points: ['Stockpile volumetrics and contour mapping', 'Progress digital twins and reality capture', 'Asset and infrastructure documentation'], img: ind, alt: 'Top-down view of a quarry with sand and aggregate piles (stock photo)', credit: 'Stock photo', cta: 'Explore Industrial' },
+  { id: 'fork-real-estate', href: url('real-estate/'), lockup: 'Real Estate Media', kicker: 'Aerial and ground media for listings', title: 'Show the property. Reveal the full perspective.', points: ['Aerial stills and cinematic property video', 'Ground photography in the same visit', 'Packages and prices published upfront'], img: re, alt: 'Night aerial of a high-rise amenity deck with pool in Austin, shot by Orbital', credit: 'Shot by Orbital', cta: 'Explore Real Estate Media' },
+];
+---
+<section id="services" class="section-tight theme-light scroll-mt-16" aria-labelledby="fork-title">
+  <div class="wrap">
+    <div class="max-w-2xl mb-10 md:mb-12" data-reveal>
+      <p class="eyebrow">Two services</p>
+      <h2 id="fork-title" class="mt-5 display-md">Choose the service you need.</h2>
+      <p class="mt-5 lede text-text-2">Industrial mapping and Real Estate Media are run as separate services under one aviation standard. Pick yours to see deliverables, process and pricing.</p>
+    </div>
+    <div class="grid lg:grid-cols-2 gap-5">
+      {panels.map((c, i) => (
+        <a href={c.href} id={c.id} aria-label={`${c.cta}: ${c.lockup}`} class="group relative block overflow-hidden rounded-[24px] min-h-[500px] md:min-h-[560px] text-white bg-ink-900" data-reveal style={`--d:${i * 120}ms`}>
+          <Picture src={c.img} alt={c.alt} widths={[640, 960, 1280]} sizes="(min-width: 1024px) 640px, 100vw" formats={['avif', 'webp']} pictureAttributes={{ class: 'contents' }} loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-[1.04]" />
+          <div class="absolute inset-0 bg-[linear-gradient(180deg,rgb(5_5_6/.12)_0%,rgb(5_5_6/.3)_38%,rgb(5_5_6/.94)_100%)]"></div>
+          <span class="absolute right-5 top-5 chip chip-sample">{c.credit}</span>
+          <div class="absolute inset-x-0 bottom-0 p-7 md:p-10">
+            <p class="fork-lockup"><span class="fork-mark">Orbital</span><span class="fork-rule" aria-hidden="true"></span><span>{c.lockup}</span></p>
+            <p class="mt-4 text-[14px] font-medium text-white/70">{c.kicker}</p>
+            <h3 class="mt-3 font-display text-[clamp(1.9rem,3.1vw,2.7rem)] leading-[1.04] tracking-[-0.035em] font-semibold max-w-[17ch]">{c.title}</h3>
+            <ul class="mt-5 grid gap-1.5 text-[15px] text-white/80">
+              {c.points.map((p) => <li class="flex gap-2.5"><span class="mt-[9px] w-1.5 h-1.5 rounded-full bg-signal shrink-0" aria-hidden="true"></span>{p}</li>)}
+            </ul>
+            <span class="mt-7 btn btn-white !min-h-11 !py-2.5">{c.cta}<Arrow /></span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+<style>
+  .fork-lockup { display: inline-flex; align-items: center; gap: .75rem; font-family: var(--font-display); font-size: 14px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: #f3d9b8; }
+  .fork-mark { color: #fff; }
+  .fork-rule { width: 28px; height: 1px; background: #f3d9b8; }
+</style>

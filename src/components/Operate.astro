@@ -1,25 +1,26 @@
 ---
 const record = [
-  { k: 'Flight operations', v: 'FAA Part 107 certified remote pilots with manned-aviation (private pilot) training' },
+  { k: 'Flight operations', v: 'FAA Part 107 certified remote pilots in a managed aviation training program, with structured crew training and recurrent training' },
   { k: 'Safety framework', v: 'Safety Management System: airspace review, risk assessment and checklists on every mission' },
+  { k: 'FAA clearances', v: 'We handle FAA clearances and airspace authorizations for you, including LAANC, waivers and FAA coordination where required' },
   { k: 'Data standard', v: 'Every dataset built to hold up when an engineer, owner or auditor checks it' },
 ];
-const certs = ['Microsoft Azure Fundamentals', 'Azure AI Fundamentals', 'Jamf Certified Associate', 'DoD IAT Level I'];
+const standards = ['Part 107-certified flight crew', 'NDAA-compliant fleet', '$10M aviation liability coverage', 'Documented SOPs'];
 ---
 <section id="operations" class="section theme-light scroll-mt-20" aria-labelledby="operate-title">
   <div class="wrap grid lg:grid-cols-[1fr_1fr] gap-14 lg:gap-24 items-start">
     <div data-reveal>
       <p class="eyebrow">How we operate</p>
       <h2 id="operate-title" class="mt-5 display-md max-w-[16ch]">The standard behind every flight.</h2>
-      <p class="mt-8 lede text-text-2">Our flight operations are run by FAA Part 107 certified remote pilots with manned-aviation training. Every mission goes through airspace review, a risk assessment and a standardized checklist inside a Safety Management System framework.</p>
+      <p class="mt-8 lede text-text-2">Our flight operations are run by FAA Part 107 certified remote pilots through a managed aviation training program: structured crew training, with recurrent training to keep every pilot current. Every mission goes through airspace review, a risk assessment and a standardized checklist inside a Safety Management System framework, and we take care of the FAA clearances and airspace authorizations the work requires.</p>
       <p class="mt-5 lede text-text-2">Every dataset we deliver is built to hold up when an engineer, an owner or an auditor checks it. Capture, processing and handoff are documented end to end, and the systems that store and deliver your data are held to the same standard.</p>
     </div>
     <div data-reveal style="--d:120ms">
       <dl class="border-t line">
         {record.map((r) => (<div class="grid sm:grid-cols-[180px_1fr] gap-1 sm:gap-6 py-5 border-b line"><dt class="text-[14px] text-text-3">{r.k}</dt><dd class="font-display text-xl font-semibold tracking-tight">{r.v}</dd></div>))}
       </dl>
-      <p class="mt-10 text-[14px] font-semibold">Our team holds</p>
-      <ul class="mt-4 flex flex-wrap gap-2">{certs.map((c) => <li class="px-4 py-2 rounded-full bg-paper-2 text-[14px] font-medium text-text-2">{c}</li>)}</ul>
+      <p class="mt-10 text-[14px] font-semibold">Our standards</p>
+      <ul class="mt-4 flex flex-wrap gap-2">{standards.map((c) => <li class="px-4 py-2 rounded-full bg-paper-2 text-[14px] font-medium text-text-2">{c}</li>)}</ul>
     </div>
   </div>
 </section>

@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.9.0 (design-b)
+
+- **Home restructure.** Directly under the hero there is now an equal-weight fork with two service panels, Industrial and Real Estate Media, each linking to its own page. The rest of the home is firm-level: clients, how we operate, data security, coverage and field record. Industrial-only detail (deliverables, interactive sample data, process) lives on /industrial/. The end-of-page real estate band is gone.
+- **Industrial logo strip** is now labelled "Industrial clients include" and notes that it covers industrial work only. Real Estate Media has its own client-logo placeholders on its own page.
+- **How we operate.** "Private pilot" wording removed everywhere; the copy now describes a managed aviation training program with structured crew training and recurrent training. The safety framework now says we handle FAA clearances and airspace authorizations, including LAANC, waivers and FAA coordination where required.
+- **Credentials.** The vendor certification chips were replaced by firm attributes: Part 107-certified flight crew, NDAA-compliant fleet, $10M aviation liability coverage and documented SOPs.
+- **Coverage graphic.** The tile map is replaced by a dotted, on-brand graphic with no map tiles or third-party map services: the lower 48 with Texas highlighted and Austin as home base on the home page, and Texas with the 15-mile standard coverage ring and distance rings on Real Estate Media. Leaflet is removed. The coverage text is unchanged.
+- **Field record.** New count-up numbers (they animate from 0 when scrolled into view and show the final value at once with reduced motion): 560 acres mapped every month, 2+ years of continuous operations and 13,000+ acres mapped in total. The figures live in `src/data/fieldRecord.ts`. A case-study card is built but hidden behind a flag set to off, and holds placeholder text only.
+
 ## 0.8.0 (design-b)
 
 - New navigation. **Services** is a dropdown with two separate entries: Industrial (mapping, volumetrics, reality capture and inspection, plus a "Sample deliverables" link) and Real Estate Media. **Company** is a dropdown with Operations, Data security and Coverage, which link to /#operations, /#security and /#coverage from any page. Contact, the theme toggle and Request a quote sit on the right.

@@ -1,0 +1,79 @@
+---
+import { coverageDots } from '../lib/coverageDots';
+import { SITE } from '../lib/site';
+// Tile-free coverage graphic: dotted state outlines (static geometry), home base and scale rings.
+const { division = 'industrial' } = Astro.props as { division?: 'industrial' | 'realestate' };
+const industrial = division === 'industrial';
+const d = industrial ? coverageDots.us : coverageDots.tx;
+const [ax, ay] = d.austin;
+const ppm = d.pxPerMile;
+const view = industrial ? { x: 20, y: 14, w: 920, h: 580 } : { x: 14, y: 6, w: 780, h: 752 };
+const rings = industrial ? [500, 1000, 1500] : [100, 200, 300];
+const label = (m: number) => `${m.toLocaleString('en-US')} mi`;
+const alt = industrial
+  ? 'Dotted map of the contiguous United States with Texas highlighted and Austin marked as home base. Distance rings show 500, 1,000 and 1,500 miles from Austin.'
+  : `Dotted map of Texas with Austin marked, a solid ${SITE.radiusMiles}-mile standard coverage ring, and distance rings at 100, 200 and 300 miles.`;
+---
+<figure class="panel overflow-hidden cov-fig m-0" data-division={division}>
+  <div class="cov-stage">
+    <svg viewBox={`${view.x} ${view.y} ${view.w} ${view.h}`} role="img" aria-label={alt} class="cov-svg" preserveAspectRatio="xMidYMid meet">
+      <defs>
+        <radialGradient id={`cov-halo-${division}`} cx="50%" cy="50%" r="50%">
+          <stop offset="0" stop-color="var(--cov-accent)" stop-opacity=".38" />
+          <stop offset="1" stop-color="var(--cov-accent)" stop-opacity="0" />
+        </radialGradient>
+      </defs>
+      <g class="cov-rings" fill="none">
+        {rings.map((m) => (
+          <g>
+            <circle cx={ax} cy={ay} r={m * ppm} class="cov-ring" />
+            <text x={ax + m * ppm * 0.7071 + 6} y={ay - m * ppm * 0.7071 - 4} class="cov-ring-label">{label(m)}</text>
+          </g>
+        ))}
+      </g>
+      <path d={d.others} class="cov-dot" />
+      <path d={d.texas} class={industrial ? 'cov-dot cov-dot-hi' : 'cov-dot cov-dot-tx'} />
+      {industrial ? (
+        <g>
+          <circle cx={ax} cy={ay} r="46" fill={`url(#cov-halo-${division})`} />
+          <circle cx={ax} cy={ay} r="9" class="cov-pulse" />
+          <circle cx={ax} cy={ay} r="6" class="cov-pin" />
+          <g transform={`translate(${ax - 18} ${ay + 38})`}><text class="cov-tag" text-anchor="end" x="0" y="0">HOME BASE</text><text class="cov-tag cov-tag-sub" text-anchor="end" x="0" y="17">Austin, TX</text></g>
+        </g>
+      ) : (
+        <g>
+          <circle cx={ax} cy={ay} r={SITE.radiusMiles * ppm * 1.9} class="cov-outer" fill="none" />
+          <circle cx={ax} cy={ay} r={SITE.radiusMiles * ppm * 3.2} fill={`url(#cov-halo-${division})`} />
+          <circle cx={ax} cy={ay} r={SITE.radiusMiles * ppm} class="cov-core" />
+          <circle cx={ax} cy={ay} r="4.5" class="cov-pin" />
+          <line x1={ax - 8} y1={ay + 8} x2={ax - 70} y2={ay + 74} class="cov-leader" />
+          <g transform={`translate(${ax - 76} ${ay + 92})`}><text class="cov-tag" text-anchor="end" x="0" y="0">{`${SITE.radiusMiles} MI STANDARD COVERAGE`}</text><text class="cov-tag cov-tag-sub" text-anchor="end" x="0" y="17">Downtown Austin</text></g>
+        </g>
+      )}
+    </svg>
+  </div>
+  <figcaption class="grid sm:grid-cols-2 border-t hairline text-sm">
+    <div class="p-4 flex gap-3"><span class="mt-1.5 w-3 h-3 rounded-full bg-[var(--cov-accent)] shrink-0"></span><p>{industrial ? <><strong class="text-white">Home base:</strong> <span class="text-fg-2">Austin, Texas.</span></> : <><strong class="text-white">Within {SITE.radiusMiles} miles of downtown Austin:</strong> <span class="text-fg-2">standard coverage, no travel fee.</span></>}</p></div>
+    <div class="p-4 flex gap-3 sm:border-l hairline"><span class="mt-1.5 w-3 h-3 rounded-full border-2 border-dashed border-fg-3 shrink-0"></span><p><strong class="text-white">{industrial ? 'Industrial projects nationwide:' : 'Beyond 15 miles:'}</strong> <span class="text-fg-2">{industrial ? 'travel and mobilization quoted per project.' : 'travel is quoted before you approve the scope.'}</span></p></div>
+  </figcaption>
+</figure>
+<style>
+  .cov-fig { --cov-accent: #ff6a2b; }
+  .cov-stage { background: radial-gradient(120% 100% at 50% 40%, rgb(255 255 255 / .035), transparent 70%); padding: clamp(.75rem, 2vw, 1.5rem); }
+  .cov-svg { display: block; width: 100%; height: auto; max-height: 640px; }
+  .cov-dot { fill: none; stroke: rgb(255 255 255 / .24); stroke-width: 4.4; stroke-linecap: round; }
+  .cov-dot-hi { stroke: rgb(255 255 255 / .72); }
+  .cov-dot-tx { stroke: rgb(255 255 255 / .5); stroke-width: 5.4; }
+  .cov-ring { stroke: rgb(255 255 255 / .16); stroke-width: 1; stroke-dasharray: 3 7; }
+  .cov-ring-label { fill: rgb(255 255 255 / .42); font: 600 11px var(--font-mono, ui-monospace, monospace); letter-spacing: .06em; }
+  .cov-outer { stroke: rgb(255 255 255 / .4); stroke-width: 1.2; stroke-dasharray: 4 6; }
+  .cov-core { fill: rgb(255 106 43 / .22); stroke: var(--cov-accent); stroke-width: 2; }
+  .cov-pin { fill: var(--cov-accent); stroke: #fff; stroke-width: 1.6; }
+  .cov-pulse { fill: none; stroke: var(--cov-accent); stroke-width: 2; transform-box: fill-box; transform-origin: center; animation: cov-pulse 2.6s ease-out infinite; }
+  .cov-leader { stroke: rgb(255 255 255 / .55); stroke-width: 1; }
+  .cov-tag, .cov-ring-label { paint-order: stroke; stroke: #0b0b0c; stroke-width: 4px; stroke-linejoin: round; }
+  .cov-tag { fill: #fff; font: 700 13px var(--font-mono, ui-monospace, monospace); letter-spacing: .08em; }
+  .cov-tag-sub { fill: rgb(255 255 255 / .62); font-weight: 500; letter-spacing: .02em; font-family: var(--font-sans, system-ui, sans-serif); font-size: 13px; }
+  @keyframes cov-pulse { 0% { transform: scale(1); opacity: .9; } 100% { transform: scale(4.2); opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) { .cov-pulse { animation: none; opacity: .5; transform: scale(2.4); } }
+</style>
