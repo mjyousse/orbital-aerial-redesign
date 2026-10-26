@@ -6,7 +6,7 @@ import re from '../assets/re/travis-1.jpg';
 import ind from '../assets/stock/stockpile-2560.jpg';
 // Two equal-weight entry panels. Same structure, same size, same treatment.
 const panels = [
-  { id: 'fork-industrial', href: url('industrial/'), lockup: 'Industrial', kicker: 'Survey, mapping & building inspection', title: 'Measure, document and model your sites.', points: ['Stockpile volumetrics and contour mapping', 'Progress digital twins and reality capture', 'Asset and infrastructure documentation'], img: ind, alt: 'Top-down view of a quarry with sand and aggregate piles (stock photo)', credit: 'Stock photo', cta: 'Explore Industrial' },
+  { id: 'fork-industrial', href: url('industrial/'), lockup: 'Industrial', kicker: 'Survey, mapping & building inspection', title: 'Measure, document and model your sites.', points: ['Stockpile volumetrics and contour mapping', 'Progress digital twins and reality capture', 'Asset and infrastructure documentation'], img: ind, alt: 'Top-down view of a quarry with sand and aggregate piles', credit: '', cta: 'Explore Industrial' },
   { id: 'fork-real-estate', href: url('real-estate/'), lockup: 'Real Estate Media', kicker: 'Aerial and ground media for listings', title: 'Show the property. Reveal the full perspective.', points: ['Aerial stills and cinematic property video', 'Ground photography in the same visit', 'Packages and prices published upfront'], img: re, alt: 'Night aerial of a high-rise amenity deck with pool in Austin, shot by Orbital', credit: 'Shot by Orbital', cta: 'Explore Real Estate Media' },
 ];
 ---
@@ -22,7 +22,7 @@ const panels = [
         <a href={c.href} id={c.id} aria-label={`${c.cta}: ${c.lockup}`} class="group relative block overflow-hidden rounded-[24px] min-h-[500px] md:min-h-[560px] text-white bg-ink-900" data-reveal style={`--d:${i * 120}ms`}>
           <Picture src={c.img} alt={c.alt} widths={[640, 960, 1280]} sizes="(min-width: 1024px) 640px, 100vw" formats={['avif', 'webp']} pictureAttributes={{ class: 'contents' }} loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-[1.04]" />
           <div class="absolute inset-0 bg-[linear-gradient(180deg,rgb(5_5_6/.12)_0%,rgb(5_5_6/.3)_38%,rgb(5_5_6/.94)_100%)]"></div>
-          <span class="absolute right-5 top-5 chip chip-sample">{c.credit}</span>
+          {c.credit && <span class="absolute right-5 top-5 chip chip-sample">{c.credit}</span>}
           <div class="absolute inset-x-0 bottom-0 p-7 md:p-10">
             <p class="fork-lockup"><span class="fork-mark">Orbital</span><span class="fork-rule" aria-hidden="true"></span><span>{c.lockup}</span></p>
             <p class="mt-4 text-[14px] font-medium text-white/70">{c.kicker}</p>

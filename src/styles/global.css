@@ -140,6 +140,24 @@ h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.03em; line
 .chip-sample { background: rgb(10 10 11 / .78); color: #fff; }
 .num { font-variant-numeric: tabular-nums; }
 
+/* Equal-height stacked cards: kickers, titles and bodies line up across a row */
+.stack-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.stack-card-title {
+  margin-top: 1.5rem;
+  min-height: 2.5lh;
+}
+.stack-card-body {
+  flex: 1;
+  margin-top: 0.75rem;
+}
+.sec-pillar .stack-card-title {
+  min-height: 3lh;
+}
+
 /* Editor placeholders: calm but unmistakable */
 .ph { border: 1.5px dashed #d9a3c8; background: #fdf7fb; color: #5b4453; border-radius: 16px; }
 .theme-dark .ph { border-color: rgb(255 107 214 / .55); background: rgb(255 107 214 / .05); color: #f3cfe6; }

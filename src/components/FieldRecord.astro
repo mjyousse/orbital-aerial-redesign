@@ -14,7 +14,7 @@ const { eyebrow = 'Field record' } = Astro.props as { eyebrow?: string };
       </div>
       <p class="lede text-text-2">Figures from our own flight operations. We map consistently, month after month, and we report only what we can stand behind.</p>
     </div>
-    <dl class="grid sm:grid-cols-3 border-t border-b line" data-reveal>
+    <dl class="grid sm:grid-cols-3 items-stretch border-t border-b line" data-reveal>
       {STATS.map((s, i) => (
         <div class:list={['py-10 md:py-14 sm:pr-6', i > 0 && 'max-sm:border-t sm:pl-8 sm:border-l line']}>
           <dt class="sr-only">{s.label}</dt>

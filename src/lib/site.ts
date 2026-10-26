@@ -31,7 +31,6 @@ export const industrialServices = [
     formats: 'PDF · CSV · GeoTIFF',
     image: 'stockpile',
     imageAlt: 'Aerial view of excavators working around aggregate stockpiles',
-    imageSource: 'https://www.pexels.com/photo/aerial-view-of-quarry-with-heavy-machinery-33122147/',
   },
   {
     id: 'progress',
@@ -48,7 +47,6 @@ export const industrialServices = [
     formats: 'Web · GeoTIFF · LAS',
     image: 'progress',
     imageAlt: 'Top-down aerial view of an active construction site',
-    imageSource: 'https://www.pexels.com/photo/aerial-view-of-construction-site-in-quebec-city-32211979/',
   },
   {
     id: 'assets',
@@ -65,7 +63,6 @@ export const industrialServices = [
     formats: 'PDF · JPEG · GeoJSON',
     image: 'infrastructure',
     imageAlt: 'Aerial view of an industrial storage facility',
-    imageSource: 'https://www.pexels.com/photo/aerial-view-of-industrial-storage-facility-33369529/',
   },
 ];
 
@@ -80,7 +77,7 @@ export const industrialCredentials = [
   { label: 'Safety', title: 'Aviation SMS framework', body: 'FAA Part 107 certificated remote pilots operate inside a Safety Management System framework: preflight risk analysis, airspace review and standardized mission checklists. We also handle FAA clearances and airspace authorizations, including LAANC and waivers where required.' },
   { label: 'Geospatial control', title: 'Unified coordinate engine', body: 'Deliverables align to state plane coordinates and local ground benchmarks, integrating with existing surveyor coordinates and CAD grids.' },
   { label: 'Coverage', title: '$10M aviation liability', body: '$10M in specialized aviation liability coverage backs our flight operations. Project-specific insurance requirements are confirmed during scoping.' },
-  { label: 'Enterprise fleet', title: 'RTK-enabled, matched to the contract', body: 'RTK-enabled aircraft and high-resolution imaging systems flying repeatable mapping missions matched to your control requirements. NDAA-compliant aircraft are available for contracts that require them.' },
+  { label: 'Enterprise fleet', title: 'Enterprise-grade fleet', body: 'RTK-enabled DJI Mavic 3 Enterprise and Matrice 4E aircraft, plus high-resolution imaging, fly repeatable mapping missions matched to your control requirements.' },
   { label: 'Processing', title: 'AI-driven photogrammetry', body: 'Imagery moves through air-gapped ingestion into AI-driven processing pipelines that produce orthomosaics, point clouds, surface models and volumetric reports.' },
   { label: 'Handoff', title: 'Method-aware handoffs', body: 'Every handoff documents the capture date, coordinate framework, control approach, processing method and agreed output formats. Data you can defend.' },
 ];
@@ -88,7 +85,7 @@ export const industrialCredentials = [
 export const industrialProcess = [
   { step: '01', title: 'Scope', body: 'Define the site, deliverables and deadline. Pricing and availability within one business day.' },
   { step: '02', title: 'Plan', body: 'Site access, airspace, ground control and schedule are evaluated before every mobilization. We handle FAA authorizations, including LAANC and waivers where required.' },
-  { step: '03', title: 'Capture', body: 'RTK-enabled flights executed by our in-house FAA Part 107 crew, on aircraft matched to the contract.' },
+  { step: '03', title: 'Capture', body: 'RTK-enabled flights executed by our in-house FAA Part 107 crew, on our enterprise-grade fleet.' },
   { step: '04', title: 'Process', body: 'AI-driven photogrammetry converts raw imagery into orthomosaics, surface models, point clouds and volumetric reports.' },
   { step: '05', title: 'Deliver', body: 'Georeferenced, metadata-tagged outputs in your formats, with method notes and secure cloud access.' },
 ];

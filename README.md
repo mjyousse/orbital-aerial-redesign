@@ -68,13 +68,14 @@ The theme button in the header cycles **Auto → Light → Dark**. Auto follows 
 
 ## Credits and licenses
 
+Full media attribution is in [`CREDITS.md`](CREDITS.md). It is not shown on the pages.
+
 - Code: MIT, see `LICENSE`.
 - Real estate photos: Orbital Aerial Solutions.
 - Client logos (`public/logos/`): each company's own mark, single-color, trademarks of their owners. SpaceX and OpenAI from the wordmarks on spacex.com and openai.com, Martin Marietta from martinmarietta.com, Samsung from Samsung's brand identity download, Tesla from Wikimedia Commons (`Tesla_Motors_Logo.svg`), DroneDeploy from the wordmark in the logo file on dronedeploy.com (the "from Procore" line is left out because it is unreadable at strip height).
-- Hero video: [Aerial View of Industrial Gravel Quarry](https://www.pexels.com/video/aerial-view-of-industrial-gravel-quarry-30911567/), free to use under the [Pexels license](https://www.pexels.com/license/). Trimmed and re-encoded. Stock footage, not client work.
-- Industrial photos: licensed from Pexels ([stockpile](https://www.pexels.com/photo/aerial-view-of-quarry-with-heavy-machinery-33122147/), [construction site](https://www.pexels.com/photo/aerial-view-of-construction-site-in-quebec-city-32211979/), [storage facility](https://www.pexels.com/photo/aerial-view-of-industrial-storage-facility-33369529/)). They show the type of site, not client work.
+- Hero video and industrial photos: licensed from Pexels (free to use). See `CREDITS.md` for links.
 - Product screens (stockpile report, site viewer, observation card, listing preview) are illustrative mockups. Their values are samples, not measurements.
-- Sample data (point cloud, before/after): elevation from USGS 3DEP via [AWS Terrain Tiles](https://registry.opendata.aws/terrain-tiles/), and imagery from the [USGS National Map](https://www.usgs.gov/programs/national-geospatial-program/national-map) orthoimagery. Both are public domain US government data. Area: west Austin, TX. Not client work.
+- Sample data (point cloud, before/after): USGS 3DEP elevation and National Map orthoimagery (public domain). See `CREDITS.md`.
 - Coverage graphic: dotted state outlines generated from U.S. Census Bureau cartographic boundaries (public domain, via the us-atlas package). No map tiles or third-party map services.
 - Fonts: Inter Tight and Inter (SIL Open Font License) via Fontsource.
 

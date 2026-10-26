@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.10.1 (design-b)
+
+- Fleet wording: replaced “Fleet matched to contract” (and NDAA-available claims) with “Enterprise-grade fleet” site-wide. Copy names the current aircraft — DJI Mavic 3 Enterprise and Matrice 4E — and does not claim NDAA compliance or a large fleet.
+- Removed visible stock-photo / Pexels / “not Orbital client work” captions from pages, heroes, mockups, the footer and sample-data callouts. License attribution now lives in `CREDITS.md` and the README.
+- Data security: rebalanced the five steps so they read at similar length, equalized card heights, and removed the “Request a security brief” / vendor-questionnaire line.
+- Process and other multi-card sections now use a shared stack-card layout so step numbers, headings and body copy line up across a row.
+
 ## 0.10.0 (design-b)
 
 - Industrial keeps its name and now carries the subtitle "Survey, mapping & building inspection" on the home fork panel, in the Services dropdown and in the mobile menu.
