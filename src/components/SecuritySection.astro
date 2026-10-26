@@ -1,11 +1,11 @@
 ---
 // Claims here are limited to what Orbital already states elsewhere on the site.
 const pillars = [
-  { label: 'Fleet', title: 'Enterprise-grade fleet', body: 'RTK-enabled DJI Mavic 3 Enterprise and Matrice 4E aircraft fly repeatable, survey-grade missions. NDAA-compliant aircraft are available when a contract requires them.', icon: ['M12 3l7 3v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6z', 'M9 12l2 2 4-4'] },
-  { label: 'Ingestion', title: 'Air-gapped by design', body: 'Datasets move through air-gapped ingestion pipelines from capture to handoff. No path from the aircraft to the public cloud, and no leakage between the field and your delivery.', icon: ['M3 6h6v12H3z', 'M15 6h6v12h-6z', 'M11 9v1.5M11 13.5V15M13 9v1.5M13 13.5V15'] },
-  { label: 'Handoff', title: 'Controlled, documented delivery', body: 'Files are delivered with controlled access. Each handoff records capture date, coordinate framework, control approach, processing method and the output formats you agreed.', icon: ['M7 3h7l4 4v14H7z', 'M14 3v4h4', 'M10 13l2 2 3-3.5'] },
-  { label: 'Flight crew', title: 'Part 107 crew, SMS framework', body: 'FAA Part 107-certified crew, including licensed manned-aviation pilots. Every flight runs inside an SMS: risk analysis, airspace review and checklists. We handle FAA clearances.', icon: ['M3 13.5l18-7-7 18-2.5-8.5z', 'M11.5 16l2.5-2.5'] },
-  { label: 'Coverage', title: '$10M aviation liability', body: '$10M in specialized aviation liability coverage backs every mission. Project-specific insurance requirements are confirmed during scoping, before we mobilize.', icon: ['M4 7h16v11H4z', 'M4 11h16', 'M8 15h3'] },
+  { label: 'Fleet', title: 'Multi-aircraft fleet', body: 'RTK-enabled aircraft fly repeatable, survey-grade missions on every site. NDAA-compliant aircraft are available on request for contracts that require them.', icon: ['M12 3l7 3v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6z', 'M9 12l2 2 4-4'] },
+  { label: 'Ingestion', title: 'Air-gapped by design', body: 'Datasets move through air-gapped ingestion pipelines, engineered for zero data leakage at every stage, from the moment of capture to the final handoff.', icon: ['M3 6h6v12H3z', 'M15 6h6v12h-6z', 'M11 9v1.5M11 13.5V15M13 9v1.5M13 13.5V15'] },
+  { label: 'Handoff', title: 'Controlled, documented delivery', body: 'Files are delivered with controlled access. Each handoff records the capture date, coordinate framework, control approach, processing method and agreed formats.', icon: ['M7 3h7l4 4v14H7z', 'M14 3v4h4', 'M10 13l2 2 3-3.5'] },
+  { label: 'Flight crew', title: 'Part 107 crew, SMS framework', body: 'Our FAA Part 107-certified crew includes licensed manned-aviation pilots. Every flight runs inside an SMS framework, and we handle the FAA clearances for you.', icon: ['M3 13.5l18-7-7 18-2.5-8.5z', 'M11.5 16l2.5-2.5'] },
+  { label: 'Coverage', title: '$10M aviation liability', body: '$10M in specialized aviation liability coverage backs every mission we fly. Project-specific insurance requirements are confirmed during scoping, before we mobilize.', icon: ['M4 7h16v11H4z', 'M4 11h16', 'M8 15h3'] },
 ];
 const { id = 'security' } = Astro.props as { id?: string };
 ---
@@ -18,7 +18,7 @@ const { id = 'security' } = Astro.props as { id?: string };
       </div>
       <p class="lede text-fg-2 max-w-xl">Site data is often sensitive: plant layouts, infrastructure, inventory positions. Orbital treats it that way at every step, in the air and on the ground.</p>
     </div>
-    <ol class="grid sm:grid-cols-2 lg:grid-cols-5 items-stretch border-t border-white/10">
+    <ol style="--rows:4" class="stack-grid grid sm:grid-cols-2 lg:grid-cols-5 items-stretch border-t border-white/10">
       {pillars.map((p, i) => (
         <li class="sec-pillar stack-card relative pt-6 pb-7 sm:pt-8 sm:pb-10 sm:odd:pr-6 lg:pr-7 lg:[&:not(:first-child)]:pl-7 lg:[&:not(:first-child)]:border-l border-white/10 max-sm:[&:not(:first-child)]:border-t" data-reveal style={`--d:${i * 70}ms`}>
           <div class="flex items-center justify-between">

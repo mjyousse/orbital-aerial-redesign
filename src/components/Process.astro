@@ -5,7 +5,7 @@ const { eyebrow, title, steps, tone = 'warm' } = Astro.props as { eyebrow: strin
 <section class:list={['section', tone === 'warm' ? 'theme-warm' : 'theme-light']} aria-label={title}>
   <div class="wrap">
     <SectionHead eyebrow={eyebrow} title={title} />
-    <ol class="grid gap-px bg-line rounded-[20px] overflow-hidden items-stretch" style={`grid-template-columns: repeat(auto-fit, minmax(${steps.length > 4 ? 200 : 240}px, 1fr));`}>
+    <ol class="stack-grid grid gap-px bg-line rounded-[20px] overflow-hidden items-stretch" style={`grid-template-columns: repeat(auto-fit, minmax(${steps.length > 4 ? 200 : 240}px, 1fr));`}>
       {steps.map((s, i) => (
         <li class="stack-card bg-paper p-7 md:p-8" data-reveal style={`--d:${i * 80}ms`}>
           <span class="font-display text-5xl font-semibold tracking-[-0.05em] text-signal-700">{s.step}</span>

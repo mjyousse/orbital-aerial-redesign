@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.10.2 (design-b)
+
+- Fleet wording is now “Multi-aircraft fleet, NDAA-compliant aircraft available on request” across the standards chip, hero facts, fact bands, credentials, process and meta descriptions. Replaces “Enterprise-grade fleet”. The site never says the whole fleet is NDAA-compliant.
+- Removed the aircraft model names added in 0.10.1. They were not confirmed.
+- Removed the “no path from the aircraft to the public cloud” line added to the ingestion step in 0.10.1. It was not a verified claim.
+- Data security: rewrote the five steps to similar lengths (about 150–165 characters each), keeping the detail.
+- Card grids (process, security, inspection, advantage, credentials, real-estate standards, packages and add-ons) now share rows between cards through CSS subgrid. Numbers, titles, bodies and package buttons line up in every row at every breakpoint, without the fixed title heights that left large gaps under one-line titles.
+- Home service fork: titles reserve two lines so the bottom-anchored panels line up.
+- Confirmed that no stock-footage, Pexels or “not Orbital client work” disclaimers remain on the site, and that the security brief line and its button are gone. Licensing credits stay in `CREDITS.md` and the README only.
+
 ## 0.10.1 (design-b)
 
 - Fleet wording: replaced “Fleet matched to contract” with “Enterprise-grade fleet” site-wide, plus “NDAA-compliant aircraft available on request” (or “when a contract requires them”). The copy does not say the whole fleet is NDAA-compliant, and it does not claim a large fleet. Current aircraft named in security and credentials: DJI Mavic 3 Enterprise and Matrice 4E.

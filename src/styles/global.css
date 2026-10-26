@@ -148,14 +148,26 @@ h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.03em; line
 }
 .stack-card-title {
   margin-top: 1.5rem;
-  min-height: 2.5lh;
 }
 .stack-card-body {
   flex: 1;
   margin-top: 0.75rem;
 }
-.sec-pillar .stack-card-title {
-  min-height: 3lh;
+.stack-grid { --rows: 3; }
+/* Each card spans N rows of its parent grid and shares those rows with its
+   neighbours, so numbers, titles and bodies start at the same height in every
+   card of a row, whatever the copy length or viewport. */
+@supports (grid-template-rows: subgrid) {
+  .stack-grid > .stack-card {
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-row: span var(--rows);
+    row-gap: 0;
+    align-content: start;
+    height: auto;
+  }
+  .stack-grid > .stack-card > * { align-self: start; }
+  .stack-grid > .stack-card > .stack-fill { align-self: stretch; }
 }
 
 /* Editor placeholders: calm but unmistakable */

@@ -30,7 +30,7 @@ const icons = [
   'M12 3l7 3v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6zM9 12l2 2 4-4',
 ];
 ---
-<Base title="Industrial drone mapping" division="industrial" description="Survey-grade stockpile volumetrics, site progress digital twins, asset documentation and drone building inspection of roofs, facades and envelopes. RTK-enabled enterprise-grade fleet, NDAA-compliant aircraft available on request, and air-gapped data handling. Based in Austin, TX.">
+<Base title="Industrial drone mapping" division="industrial" description="Survey-grade stockpile volumetrics, site progress digital twins, asset documentation and drone building inspection of roofs, facades and envelopes. RTK-enabled multi-aircraft fleet, NDAA-compliant aircraft available on request, and air-gapped data handling. Based in Austin, TX.">
   <PhotoHero
     image={hero}
     eyebrow="Industrial reality capture · RTK-enabled workflows"
@@ -63,7 +63,7 @@ const icons = [
         <div><p class="eyebrow">Building inspection</p><h2 id="inspection-title" class="mt-5 display-lg">Roofs, facades and envelopes, inspected from the air.</h2></div>
         <p class="lede text-text-2">We fly drone building inspections that document roof condition, facades and the full building envelope without lifts, scaffolding or roof access. Findings arrive organized and annotated, ready for owners, engineers and maintenance teams.</p>
       </div>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-line rounded-[20px] overflow-hidden items-stretch">
+      <div class="stack-grid grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-line rounded-[20px] overflow-hidden items-stretch">
         {inspectionDeliverables.map((d, i) => (
           <div class="stack-card bg-paper p-7 md:p-8" data-reveal style={`--d:${i * 80}ms`}>
             <p class="text-[13px] font-semibold text-text-3">{String(i + 1).padStart(2, '0')}</p>
@@ -98,7 +98,7 @@ const icons = [
         <div><p class="eyebrow">The Orbital advantage</p><h2 class="mt-5 display-lg">Built for precision. Engineered for scale.</h2></div>
         <p class="lede text-text-2">Orbital bridges the gap between field capture and operational insight. Outputs arrive georeferenced, metadata-tagged and ready for Autodesk, Trimble and Bentley. Final formats are confirmed during scoping.</p>
       </div>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-line rounded-[20px] overflow-hidden items-stretch">
+      <div class="stack-grid grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-line rounded-[20px] overflow-hidden items-stretch">
         {industrialPoints.map((p, i) => (
           <div class="stack-card bg-paper p-7 md:p-8" data-reveal style={`--d:${i * 80}ms`}>
             <span class="grid place-items-center w-12 h-12 rounded-xl bg-ink-900 text-signal"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d={icons[i]} /></svg></span>
@@ -119,7 +119,7 @@ const icons = [
   <FactBand items={[
     { big: '$10M', label: 'Specialized aviation liability coverage' },
     { big: 'RTK', label: 'Enabled aircraft for repeatable mapping missions' },
-    { big: 'Fleet', label: 'Enterprise-grade, NDAA-compliant aircraft available on request' },
+    { big: 'Fleet', label: 'Multi-aircraft fleet, NDAA-compliant aircraft available on request' },
     { big: '1 day', label: 'Pricing and availability after scoping' },
   ]} />
 
@@ -131,7 +131,7 @@ const icons = [
         <div><p class="eyebrow">Credentials</p><h2 class="mt-5 display-lg text-white">Structured. Insured. Documented.</h2></div>
         <p class="lede text-fg-2">Every engagement begins with structured aviation safety planning, $10M in specialized aviation liability coverage and a capture plan matched to the intended operational use.</p>
       </div>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-white/10 rounded-[20px] overflow-hidden items-stretch">
+      <div class="stack-grid grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-white/10 rounded-[20px] overflow-hidden items-stretch">
         {industrialCredentials.map((c, i) => (
           <div class="stack-card bg-ink-900 p-7 md:p-9" data-reveal style={`--d:${(i % 3) * 80}ms`}>
             <p class="text-[13px] font-semibold text-signal">{c.label}</p>
