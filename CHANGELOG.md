@@ -2,7 +2,7 @@
 
 ## 0.10.1 (design-b)
 
-- Fleet wording: replaced “Fleet matched to contract” (and NDAA-available claims) with “Enterprise-grade fleet” site-wide. Copy names the current aircraft — DJI Mavic 3 Enterprise and Matrice 4E — and does not claim NDAA compliance or a large fleet.
+- Fleet wording: replaced “Fleet matched to contract” with “Enterprise-grade fleet” site-wide, plus “NDAA-compliant aircraft available on request” (or “when a contract requires them”). The copy does not say the whole fleet is NDAA-compliant, and it does not claim a large fleet. Current aircraft named in security and credentials: DJI Mavic 3 Enterprise and Matrice 4E.
 - Removed visible stock-photo / Pexels / “not Orbital client work” captions from pages, heroes, mockups, the footer and sample-data callouts. License attribution now lives in `CREDITS.md` and the README.
 - Data security: rebalanced the five steps so they read at similar length, equalized card heights, and removed the “Request a security brief” / vendor-questionnaire line.
 - Process and other multi-card sections now use a shared stack-card layout so step numbers, headings and body copy line up across a row.
