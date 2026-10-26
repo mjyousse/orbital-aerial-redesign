@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.10.0 (design-b)
+
+- Industrial keeps its name and now carries the subtitle "Survey, mapping & building inspection" on the home fork panel, in the Services dropdown and in the mobile menu.
+- New building inspection section on /industrial/: roof condition, facade and envelope survey, high-resolution imagery and an annotated findings report.
+- The industrial hero, meta description and structured data now include building inspection. The home meta description mentions it too.
+- Thermal: replaced the "not yet offered" note with "Thermal inspection is on our roadmap" and a "Thermal inspection coming soon" chip. Thermal is not presented as available today.
+
 ## 0.9.1 (design-b)
 
 - Pilot wording: removed the managed aviation training, structured crew training and recurrent training claims. The copy now says the flight crew is FAA Part 107-certified and the team includes licensed manned-aviation pilots, bringing real airspace and aviation experience.

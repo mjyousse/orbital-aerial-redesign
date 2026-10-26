@@ -4,7 +4,7 @@ import ThemeToggle from './ThemeToggle.astro';
 const { division, tone = 'overlay' } = Astro.props as { division?: string; tone?: 'overlay' | 'light' };
 const path = Astro.url.pathname;
 const services = [
-  { href: url('industrial/'), label: 'Industrial', desc: 'Mapping, volumetrics, reality capture and inspection', key: '/industrial/', sub: { href: url('industrial/#services'), label: 'Sample deliverables' } },
+  { href: url('industrial/'), label: 'Industrial', desc: 'Survey, mapping & building inspection', key: '/industrial/', sub: { href: url('industrial/#services'), label: 'Sample deliverables' } },
   { href: url('real-estate/'), label: 'Real Estate Media', desc: 'Aerial and ground photo and video for Austin listings', key: '/real-estate/' },
 ];
 const company = [

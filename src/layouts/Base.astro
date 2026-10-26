@@ -25,11 +25,19 @@ const jsonLd = {
   image: ogImage,
   description: division === 'realestate'
     ? 'Real estate media division of Orbital Aerial Solutions: aerial photos, cinematic property video and ground photography for Austin listings.'
-    : 'Aerial intelligence firm in Austin, TX: survey-grade mapping, stockpile volumetrics, reality capture and asset inspection for industrial teams nationwide, plus a Real Estate Media division for Austin listings.',
+    : 'Aerial intelligence firm in Austin, TX: survey-grade mapping, stockpile volumetrics, reality capture, asset documentation and drone building inspection of roofs, facades and envelopes for industrial teams nationwide, plus a Real Estate Media division for Austin listings.',
   address: { '@type': 'PostalAddress', addressLocality: 'Austin', addressRegion: 'TX', addressCountry: 'US' },
   areaServed: division === 'realestate'
     ? [{ '@type': 'GeoCircle', geoMidpoint: { '@type': 'GeoCoordinates', latitude: SITE.center.lat, longitude: SITE.center.lon }, geoRadius: '24140' }]
     : [{ '@type': 'Country', name: 'United States' }],
+  ...(division === 'industrial' ? {
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Industrial survey, mapping and building inspection',
+      itemListElement: ['Stockpile measurement', 'Site progress and digital twins', 'Asset and infrastructure documentation', 'Drone building inspection: roofs, facades and building envelopes']
+        .map((name) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name } })),
+    },
+  } : {}),
   ...(division === 'realestate' ? {
     hasOfferCatalog: {
       '@type': 'OfferCatalog',

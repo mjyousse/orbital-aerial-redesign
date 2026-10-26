@@ -16,6 +16,12 @@ import SecuritySection from '../../components/SecuritySection.astro';
 import QuoteSection from '../../components/QuoteSection.astro';
 import { industrialServices, industrialPoints, industrialCredentials, industrialProcess, sectors } from '../../lib/site';
 import hero from '../../assets/stock/progress-2560.jpg';
+const inspectionDeliverables = [
+  { title: 'Roof condition', body: 'Systematic coverage of the roof surface, flashing, drains and rooftop equipment to document wear, damage and areas that need attention.' },
+  { title: 'Facade and envelope survey', body: 'Elevation-by-elevation capture of facades, joints, windows and cladding across the full building envelope.' },
+  { title: 'High-resolution imagery', body: 'Overview and close-detail stills, organized by roof section and elevation so every image can be located on the building.' },
+  { title: 'Annotated findings report', body: 'A PDF report with marked-up observations, locations and supporting images, built for owners, engineers and maintenance teams.' },
+];
 const mocks = [StockpileMock, ProgressMock, AssetMock];
 const icons = [
   'M4 6h16v12H4zM4 10h16M9 6v12',
@@ -24,14 +30,14 @@ const icons = [
   'M12 3l7 3v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6zM9 12l2 2 4-4',
 ];
 ---
-<Base title="Industrial drone mapping" division="industrial" description="Survey-grade stockpile volumetrics, site progress digital twins and asset documentation. RTK-enabled workflows, air-gapped data handling, and NDAA-compliant aircraft available for contracts that require them. Based in Austin, TX.">
+<Base title="Industrial drone mapping" division="industrial" description="Survey-grade stockpile volumetrics, site progress digital twins, asset documentation and drone building inspection of roofs, facades and envelopes. RTK-enabled workflows, air-gapped data handling, and NDAA-compliant aircraft available for contracts that require them. Based in Austin, TX.">
   <PhotoHero
     image={hero}
     credit="Stock photo (Pexels) showing the type of site we fly. Not Orbital client work."
     eyebrow="Industrial reality capture · RTK-enabled workflows"
     title="Survey-grade data."
-    accent="Stockpiles, sites, assets."
-    lede="We merge structured flight operations with AI-driven processing pipelines to capture complex physical assets as high-accuracy geospatial datasets your engineers can act on and defend."
+    accent="Sites, stockpiles, buildings."
+    lede="We merge structured flight operations with AI-driven processing pipelines to capture sites, stockpiles and buildings as high-accuracy geospatial datasets and inspection records your engineers can act on and defend."
     primary={{ href: '#quote', label: 'Request a quote' }}
     secondary={{ href: '#services', label: 'View services' }}
     notes={['In-house photogrammetry', 'State plane & local benchmarks', 'Air-gapped data handling']}
@@ -48,7 +54,29 @@ const icons = [
           return <DeliverableRow id={s.id} flip={i % 2 === 1} tag={`${s.number} · ${s.tag}`} title={s.title} body={s.body} deliverables={s.deliverables} formats={s.formats} href="#quote" cta="Scope this service"><Mock /></DeliverableRow>;
         })}
       </div>
-      <p class="mt-20 text-sm text-text-3">Photos are licensed stock that show the type of site, not Orbital client work. Product screens are sample layouts. Radiometric thermal capture is in capability development and not yet offered.</p>
+      <p class="mt-20 text-sm text-text-3">Photos are licensed stock that show the type of site, not Orbital client work. Product screens are sample layouts. Thermal inspection is on our roadmap.</p>
+    </div>
+  </section>
+
+  <section id="inspection" class="section theme-warm scroll-mt-16" aria-labelledby="inspection-title">
+    <div class="wrap">
+      <div class="grid lg:grid-cols-2 gap-10 items-end mb-16" data-reveal>
+        <div><p class="eyebrow">Building inspection</p><h2 id="inspection-title" class="mt-5 display-lg">Roofs, facades and envelopes, inspected from the air.</h2></div>
+        <p class="lede text-text-2">We fly drone building inspections that document roof condition, facades and the full building envelope without lifts, scaffolding or roof access. Findings arrive organized and annotated, ready for owners, engineers and maintenance teams.</p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-line rounded-[20px] overflow-hidden">
+        {inspectionDeliverables.map((d, i) => (
+          <div class="bg-paper p-7 md:p-8" data-reveal style={`--d:${i * 80}ms`}>
+            <p class="text-[13px] font-semibold text-text-3">{String(i + 1).padStart(2, '0')}</p>
+            <h3 class="mt-6 text-xl">{d.title}</h3>
+            <p class="mt-3 text-text-2 text-[15px]">{d.body}</p>
+          </div>
+        ))}
+      </div>
+      <div class="mt-10 flex flex-wrap items-center gap-4" data-reveal>
+        <a href="#quote" class="btn btn-primary">Scope an inspection</a>
+        <span class="px-4 py-2 rounded-full bg-paper border border-line text-[14px] font-medium text-text-2">Thermal inspection coming soon</span>
+      </div>
     </div>
   </section>
 
