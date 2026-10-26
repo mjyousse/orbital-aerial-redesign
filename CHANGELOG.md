@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.9.1 (design-b)
+
+- Pilot wording: removed the managed aviation training, structured crew training and recurrent training claims. The copy now says the flight crew is FAA Part 107-certified and the team includes licensed manned-aviation pilots, bringing real airspace and aviation experience.
+- NDAA wording: removed every claim that our aircraft or fleet is NDAA-compliant (hero facts, fact strips, standards chips, data security, credentials, process and meta descriptions). The copy now says the fleet is matched to contract requirements, with NDAA-compliant aircraft available for contracts that require them.
+- Removed the "Beta redesign" banner from every page. The header now sits flush at the top. The noindex tag and robots.txt stay.
+- Field record: 1,120 acres mapped every month, 3+ years of continuous operations and 130,000+ acres mapped. The total is labelled as cumulative, with repeat surveys counted.
+
 ## 0.9.0 (design-b)
 
 - **Home restructure.** Directly under the hero there is now an equal-weight fork with two service panels, Industrial and Real Estate Media, each linking to its own page. The rest of the home is firm-level: clients, how we operate, data security, coverage and field record. Industrial-only detail (deliverables, interactive sample data, process) lives on /industrial/. The end-of-page real estate band is gone.

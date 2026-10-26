@@ -4,7 +4,7 @@ A redesign preview of [orbitalaerial.com](https://orbitalaerial.com), built with
 
 **https://mjyousse.github.io/orbital-aerial-redesign/**
 
-Every page carries a `noindex` tag and a visible "Beta redesign" banner, so this preview doesn't compete with the live site in search.
+Every page carries a `noindex` tag (and robots.txt asks crawlers to stay out), so this preview doesn't compete with the live site in search. The visible beta banner was removed in 0.9.1.
 
 ## Pages
 

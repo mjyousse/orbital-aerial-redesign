@@ -1,9 +1,10 @@
 // Field record data for the industrial side of the site.
 //
 // STATS are real, confirmed figures from our own flight operations:
-//   - about 560 acres mapped every month
-//   - for the past 2 years of continuous operations
-//   - total derived conservatively: 560 acres x 24 months = about 13,440, written as 13,000+
+//   - 1,120 acres mapped every month
+//   - 3+ years of continuous operations
+//   - 130,000+ acres mapped in total, as supplied by the owner. This is cumulative: a site
+//     surveyed every week counts each time it is flown. It is not a count of unique acres.
 // Do not add a mission count or any figure that has not been confirmed.
 export const SHOW_STATS = true;
 
@@ -14,9 +15,9 @@ export const SHOW_CASE_STUDY = false;
 export type Stat = { value: number; prefix?: string; suffix?: string; label: string };
 
 export const STATS: Stat[] = [
-  { value: 560, label: 'acres mapped every month' },
-  { value: 2, suffix: '+', label: 'years of continuous operations' },
-  { value: 13000, suffix: '+', label: 'acres mapped in total' },
+  { value: 1120, label: 'acres mapped every month' },
+  { value: 3, suffix: '+', label: 'years of continuous operations' },
+  { value: 130000, suffix: '+', label: 'acres mapped, cumulative (repeat surveys count)' },
 ];
 
 export const CASE_STUDY = {
