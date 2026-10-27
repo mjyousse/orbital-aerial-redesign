@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.10.3 (design-b)
+
+- Shortened every NDAA fleet line to “NDAA-compliant fleet available”. This covers the standards chip, hero fact, fact bands, security and credentials fleet steps, process step 03 and the home and industrial meta descriptions.
+
 ## 0.10.2 (design-b)
 
 - Fleet wording is now “Multi-aircraft fleet, NDAA-compliant aircraft available on request” across the standards chip, hero facts, fact bands, credentials, process and meta descriptions. Replaces “Enterprise-grade fleet”. The site never says the whole fleet is NDAA-compliant.

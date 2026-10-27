@@ -77,7 +77,7 @@ export const industrialCredentials = [
   { label: 'Safety', title: 'Aviation SMS framework', body: 'FAA Part 107 certificated remote pilots operate inside a Safety Management System framework: preflight risk analysis, airspace review and standardized mission checklists. We also handle FAA clearances and airspace authorizations, including LAANC and waivers where required.' },
   { label: 'Geospatial control', title: 'Unified coordinate engine', body: 'Deliverables align to state plane coordinates and local ground benchmarks, integrating with existing surveyor coordinates and CAD grids.' },
   { label: 'Coverage', title: '$10M aviation liability', body: '$10M in specialized aviation liability coverage backs our flight operations. Project-specific insurance requirements are confirmed during scoping.' },
-  { label: 'Fleet', title: 'Multi-aircraft, RTK-enabled fleet', body: 'RTK-enabled aircraft and high-resolution imaging systems fly repeatable mapping missions matched to your control requirements. NDAA-compliant aircraft are available on request.' },
+  { label: 'Fleet', title: 'Multi-aircraft, RTK-enabled fleet', body: 'RTK-enabled aircraft and high-resolution imaging systems fly repeatable mapping missions matched to your control requirements. NDAA-compliant fleet available.' },
   { label: 'Processing', title: 'AI-driven photogrammetry', body: 'Imagery moves through air-gapped ingestion into AI-driven processing pipelines that produce orthomosaics, point clouds, surface models and volumetric reports.' },
   { label: 'Handoff', title: 'Method-aware handoffs', body: 'Every handoff documents the capture date, coordinate framework, control approach, processing method and agreed output formats. Data you can defend.' },
 ];
@@ -85,7 +85,7 @@ export const industrialCredentials = [
 export const industrialProcess = [
   { step: '01', title: 'Scope', body: 'Define the site, deliverables and deadline. Pricing and availability within one business day.' },
   { step: '02', title: 'Plan', body: 'Site access, airspace, ground control and schedule are evaluated before every mobilization. We handle FAA authorizations, including LAANC and waivers where required.' },
-  { step: '03', title: 'Capture', body: 'RTK-enabled flights executed by our in-house FAA Part 107 crew on our multi-aircraft fleet. NDAA-compliant aircraft available on request.' },
+  { step: '03', title: 'Capture', body: 'RTK-enabled flights executed by our in-house FAA Part 107 crew. NDAA-compliant fleet available.' },
   { step: '04', title: 'Process', body: 'AI-driven photogrammetry converts raw imagery into orthomosaics, surface models, point clouds and volumetric reports.' },
   { step: '05', title: 'Deliver', body: 'Georeferenced, metadata-tagged outputs in your formats, with method notes and secure cloud access.' },
 ];
