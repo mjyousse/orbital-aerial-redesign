@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.11.0
+
+- Added a Client portal link to the header and mobile menu. It opens the portal sign-in page.
+- This design is now the only branch, `main`. The earlier design is kept as the `v1-archive` tag.
+
 ## 0.10.3 (design-b)
 
 - Shortened every NDAA fleet line to “NDAA-compliant fleet available”. This covers the standards chip, hero fact, fact bands, security and credentials fleet steps, process step 03 and the home and industrial meta descriptions.

@@ -16,6 +16,7 @@ const menus = [
   { id: 'services', label: 'Services', items: services, active: services.some((x) => path.includes(x.key)) },
   { id: 'company', label: 'Company', items: company, active: false },
 ];
+const portalHref = 'https://portal.orbitalaerial.com/sign-in';
 const quoteHref = url(division ? `contact/?division=${division}` : 'contact/');
 ---
 <header class="site-header" id="site-header" data-tone={tone} data-solid="false">
@@ -50,6 +51,7 @@ const quoteHref = url(division ? `contact/?division=${division}` : 'contact/');
     </nav>
     <div class="hidden md:flex items-center gap-3 lg:gap-5 text-[15px] font-medium">
       <a href={url('contact/')} class="nav-link">Contact</a>
+      <a href={portalHref} class="nav-link inline-flex items-center gap-1.5"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Client portal</a>
       <ThemeToggle />
       <a href={quoteHref} class="btn hdr-cta !min-h-10 !py-2 !px-5 text-[14px]">Request a quote</a>
     </div>
@@ -78,6 +80,7 @@ const quoteHref = url(division ? `contact/?division=${division}` : 'contact/');
       <p class="mob-h mt-8">Company</p>
       {company.map((l) => <a href={l.href} class="py-3.5 font-display text-2xl font-semibold tracking-tight border-b border-white/10">{l.label}</a>)}
       <a href={url('contact/')} class="mt-8 py-3.5 font-display text-2xl font-semibold tracking-tight border-b border-white/10">Contact</a>
+      <a href={portalHref} class="py-3.5 font-display text-2xl font-semibold tracking-tight border-b border-white/10">Client portal</a>
       <a href={quoteHref} class="btn btn-primary mt-8">Request a quote</a>
     </div>
 </nav>
