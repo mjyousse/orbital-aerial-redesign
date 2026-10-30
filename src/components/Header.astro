@@ -20,15 +20,15 @@ const portalHref = 'https://portal.orbitalaerial.com/sign-in';
 const quoteHref = url(division ? `contact/?division=${division}` : 'contact/');
 ---
 <header class="site-header" id="site-header" data-tone={tone} data-solid="false">
-  <div class="wrap h-full flex items-center justify-between gap-4 lg:gap-6">
-    <a href={url('')} class="flex items-center gap-3 shrink-0" aria-label="Orbital Aerial Solutions home">
+  <div class="wrap hdr-row">
+    <a href={url('')} class="hdr-brand" aria-label="Orbital Aerial Solutions home">
       <img src={url('brand/logo-dark.svg')} alt="" width="97" height="68" class="hdr-logo logo-on-dark" />
       <img src={url('brand/logo-light.svg')} alt="" width="97" height="68" class="hdr-logo logo-on-light" />
     </a>
-    <nav aria-label="Main" class="hidden md:flex items-center gap-2 lg:gap-4 text-[15px] font-medium">
+    <nav aria-label="Main" class="hdr-nav">
       {menus.map((m) => (
         <div class="nav-dd relative" data-dd>
-          <button type="button" class="nav-link nav-dd-btn inline-flex items-center gap-1.5 px-2 py-2" aria-expanded="false" aria-controls={`dd-${m.id}`} data-current={m.active ? 'true' : undefined}>
+          <button type="button" class="nav-link nav-dd-btn" aria-expanded="false" aria-controls={`dd-${m.id}`} data-current={m.active ? 'true' : undefined}>
             {m.label}
             <svg class="nav-dd-chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
           </button>
@@ -48,12 +48,12 @@ const quoteHref = url(division ? `contact/?division=${division}` : 'contact/');
           </div>
         </div>
       ))}
+      <a href={url('contact/')} class="nav-link" aria-current={path.includes('/contact/') ? 'page' : undefined}>Contact</a>
     </nav>
-    <div class="hidden md:flex items-center gap-3 lg:gap-5 text-[15px] font-medium">
-      <a href={url('contact/')} class="nav-link">Contact</a>
-      <a href={portalHref} class="nav-link inline-flex items-center gap-1.5"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Client portal</a>
+    <div class="hdr-actions">
+      <a href={portalHref} class="hdr-portal" aria-label="Client portal" title="Client portal"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span class="hdr-portal-label">Client portal</span></a>
       <ThemeToggle />
-      <a href={quoteHref} class="btn hdr-cta !min-h-10 !py-2 !px-5 text-[14px]">Request a quote</a>
+      <a href={quoteHref} class="btn hdr-cta">Request a quote</a>
     </div>
     <div class="md:hidden flex items-center gap-1"><ThemeToggle />
     <button id="menu-btn" class="md:hidden inline-flex items-center justify-center w-11 h-11 -mr-2" aria-expanded="false" aria-controls="mobile-menu">
@@ -80,8 +80,10 @@ const quoteHref = url(division ? `contact/?division=${division}` : 'contact/');
       <p class="mob-h mt-8">Company</p>
       {company.map((l) => <a href={l.href} class="py-3.5 font-display text-2xl font-semibold tracking-tight border-b border-white/10">{l.label}</a>)}
       <a href={url('contact/')} class="mt-8 py-3.5 font-display text-2xl font-semibold tracking-tight border-b border-white/10">Contact</a>
-      <a href={portalHref} class="py-3.5 font-display text-2xl font-semibold tracking-tight border-b border-white/10">Client portal</a>
-      <a href={quoteHref} class="btn btn-primary mt-8">Request a quote</a>
+      <div class="mt-8 grid gap-3">
+        <a href={quoteHref} class="btn btn-primary">Request a quote</a>
+        <a href={portalHref} class="btn btn-ghost"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Client portal</a>
+      </div>
     </div>
 </nav>
 <script>
