@@ -1,32 +1,39 @@
 ---
-// Counts from 0 to `value` when scrolled into view. The final value is in the HTML, so it reads correctly without JavaScript
-// and when prefers-reduced-motion is set (no animation at all in that case).
+// Counts up to `value` when scrolled into view. The final value is always real text in the HTML,
+// so crawlers, screen readers, no-JS visitors and reduced-motion visitors all get the true number.
+// The animation runs in a separate aria-hidden overlay that is empty until it starts, so no
+// scraper or assistive tech ever sees an intermediate or zero value at rest.
 const { value, prefix = '', suffix = '', class: cls = '' } = Astro.props as { value: number; prefix?: string; suffix?: string; class?: string };
 const final = `${prefix}${value.toLocaleString('en-US')}${suffix}`;
 ---
-<span class={cls} data-countup data-to={value} data-prefix={prefix} data-suffix={suffix} aria-label={final}><span aria-hidden="true">{final}</span></span>
+<span class:list={['countup', cls]} data-countup data-to={value} data-prefix={prefix} data-suffix={suffix}><span data-final>{final}</span><span class="countup-anim" data-anim aria-hidden="true"></span></span>
+<style is:global>
+  .countup { position: relative; display: inline-block; font-variant-numeric: tabular-nums; }
+  .countup-anim { position: absolute; inset: 0; white-space: nowrap; pointer-events: none; }
+  .countup.is-counting [data-final] { opacity: 0; }
+</style>
 <script>
   const fmt = new Intl.NumberFormat('en-US');
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const els = Array.from(document.querySelectorAll<HTMLElement>('[data-countup]'));
-  const render = (el: HTMLElement, n: number) => {
-    const inner = el.firstElementChild as HTMLElement;
-    inner.textContent = `${el.dataset.prefix ?? ''}${fmt.format(Math.round(n))}${el.dataset.suffix ?? ''}`;
-  };
+  const text = (el: HTMLElement, n: number) => `${el.dataset.prefix ?? ''}${fmt.format(Math.round(n))}${el.dataset.suffix ?? ''}`;
   if (!reduce && 'IntersectionObserver' in window) {
-    els.forEach((el) => render(el, 0));
     const io = new IntersectionObserver((entries) => {
       entries.forEach((e) => {
         if (!e.isIntersecting) return;
         io.unobserve(e.target);
         const el = e.target as HTMLElement;
+        const anim = el.querySelector<HTMLElement>('[data-anim]')!;
         const to = Number(el.dataset.to);
         const dur = 1600;
         const t0 = performance.now();
+        el.classList.add('is-counting');
+        anim.textContent = text(el, 0);
+        const finish = () => { el.classList.remove('is-counting'); anim.textContent = ''; };
         const tick = (t: number) => {
           const p = Math.min(1, (t - t0) / dur);
-          render(el, to * (1 - Math.pow(1 - p, 3)));
-          if (p < 1) requestAnimationFrame(tick); else render(el, to);
+          anim.textContent = text(el, to * (1 - Math.pow(1 - p, 3)));
+          if (p < 1) requestAnimationFrame(tick); else finish();
         };
         requestAnimationFrame(tick);
       });
