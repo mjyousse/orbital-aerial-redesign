@@ -59,13 +59,8 @@ export function initQuoteForm(form: HTMLFormElement) {
   }
   function valid(n: number) {
     const fields = Array.from(steps[n].querySelectorAll<HTMLInputElement | HTMLSelectElement>('[required]'));
-    fields.forEach((f) => f.removeAttribute('aria-invalid'));
     for (const f of fields) {
-      if (!f.checkValidity()) {
-        const label = f.labels?.[0]?.textContent?.trim() || f.name;
-        error.textContent = f.value.trim() && f.validity.typeMismatch ? `Enter a valid ${label.toLowerCase()} address.` : `Please complete: ${label}.`;
-        f.setAttribute('aria-invalid', 'true'); f.focus(); return false;
-      }
+      if (!f.checkValidity()) { error.textContent = `Please complete: ${f.labels?.[0]?.textContent?.trim() || f.name}.`; f.focus(); return false; }
     }
     return true;
   }

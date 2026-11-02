@@ -67,19 +67,19 @@ export const industrialServices = [
 ];
 
 export const industrialPoints = [
-  { title: 'Your whole site, from anywhere', body: '3D maps in a secure, cloud-hosted workspace. Operations teams, superintendents and remote engineers track completed work from anywhere, with no GIS expertise needed.' },
-  { title: 'One consistent reference model', body: 'Drone, LiDAR and GPS rover inputs are aligned to the agreed coordinate framework, so every team works from the same model.' },
-  { title: 'Plans overlaid on the site', body: 'PDF plans, blueprints and TIN surfaces are overlaid on the reality model so you can verify progress, spot utility clashes and check design conformance.' },
+  { title: 'Your entire site in your pocket', body: 'High-fidelity 3D maps in a secure, cloud-hosted workspace. Operations teams, superintendents and remote engineers track completed work from anywhere, with no GIS expertise required.' },
+  { title: 'Hardware-agnostic data engine', body: 'Drone, LiDAR and GPS rover inputs are aligned to the agreed coordinate framework, so every team works from one consistent reference model.' },
+  { title: 'Design overlays on reality', body: 'PDF plans, blueprints and TIN surfaces overlaid directly on the reality model to verify progress, surface utility clashes and inspect design conformance.' },
   { title: 'Air-gapped by design', body: 'Datasets move through air-gapped ingestion pipelines, engineered for zero data leakage from capture to handoff.' },
 ];
 
 export const industrialCredentials = [
   { label: 'Safety', title: 'Aviation SMS framework', body: 'FAA Part 107 certificated remote pilots operate inside a Safety Management System framework: preflight risk analysis, airspace review and standardized mission checklists. We also handle FAA clearances and airspace authorizations, including LAANC and waivers where required.' },
-  { label: 'Geospatial control', title: 'Matched to your coordinates', body: 'Deliverables align to state plane coordinates and local ground benchmarks, integrating with existing surveyor coordinates and CAD grids.' },
+  { label: 'Geospatial control', title: 'Unified coordinate engine', body: 'Deliverables align to state plane coordinates and local ground benchmarks, integrating with existing surveyor coordinates and CAD grids.' },
   { label: 'Coverage', title: '$10M aviation liability', body: '$10M in specialized aviation liability coverage backs our flight operations. Project-specific insurance requirements are confirmed during scoping.' },
   { label: 'Fleet', title: 'Multi-aircraft, RTK-enabled fleet', body: 'RTK-enabled aircraft and high-resolution imaging systems fly repeatable mapping missions matched to your control requirements. NDAA-compliant fleet available.' },
   { label: 'Processing', title: 'AI-driven photogrammetry', body: 'Imagery moves through air-gapped ingestion into AI-driven processing pipelines that produce orthomosaics, point clouds, surface models and volumetric reports.' },
-  { label: 'Handoff', title: 'Documented handoffs', body: 'Every handoff documents the capture date, coordinate framework, control approach, processing method and agreed output formats. Data you can defend.' },
+  { label: 'Handoff', title: 'Method-aware handoffs', body: 'Every handoff documents the capture date, coordinate framework, control approach, processing method and agreed output formats. Data you can defend.' },
 ];
 
 export const industrialProcess = [

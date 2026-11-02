@@ -11,14 +11,13 @@ const posterImg = await getImage({ src: poster, width: 1600, format: 'webp', qua
   <div class="absolute inset-0" aria-hidden="true">
     <video id="hero-video" class="absolute inset-0 w-full h-full object-cover" autoplay muted loop playsinline preload="metadata" poster={posterImg.src}
       data-src-sm={url('media/hero-quarry-960.mp4')} data-src-lg={url('media/hero-quarry.mp4')}></video>
-    <div class="absolute inset-0 bg-ink-950/30 md:hidden"></div>
     <div class="absolute inset-0 bg-[linear-gradient(90deg,rgb(5_5_6/.82)_0%,rgb(5_5_6/.55)_45%,rgb(5_5_6/.15)_100%)]"></div>
     <div class="absolute inset-0 bg-[linear-gradient(180deg,rgb(5_5_6/.55)_0%,transparent_22%,transparent_55%,rgb(5_5_6/.9)_100%)]"></div>
   </div>
   <div class="wrap relative pt-36 pb-8 md:pb-10">
     <p class="eyebrow !text-white/85">{eyebrow}</p>
     <h1 id="hero-title" class="mt-6 display-xl max-w-[15ch] text-white">{title}</h1>
-    <p class="mt-8 max-w-xl lede text-white/90 [text-shadow:0_1px_14px_rgb(0_0_0/.45)]">{lede}</p>
+    <p class="mt-8 max-w-xl lede text-white/85">{lede}</p>
     <div class="mt-10 flex flex-wrap gap-3">
       <a href={primary.href} class="btn btn-white text-base !px-7">{primary.label}<Arrow /></a>
       {secondary && <a href={secondary.href} class="btn btn-ghost text-base !px-7">{secondary.label}</a>}
