@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.11.3
+
+- Tightened the first paragraph of How we operate around aviation experience beyond drones and sites near airports.
+
 ## 0.11.2
 
 - How we operate now says some of the team flies airplanes. The Flight operations line reads "FAA Part 107 certified, with licensed airplane pilots on the team".
