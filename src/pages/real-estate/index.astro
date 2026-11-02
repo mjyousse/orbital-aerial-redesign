@@ -24,14 +24,14 @@ const spans = ['lg:col-span-7 lg:row-span-2', 'lg:col-span-5', 'lg:col-span-5', 
 const large = await Promise.all(gallery.map((g) => getImage({ src: g, width: 1800, format: 'webp' })));
 const pkgSlug = (t: string) => t.split(' (')[0];
 ---
-<Base title="Real estate drone photography Austin" division="realestate" description="48 MP aerial stills and 4K property motion for Austin listings, with ground photography in the same visit. Published prices from $150. FAA Part 107 certificated, $10M aviation liability coverage.">
+<Base title="Real estate drone photography Austin" division="realestate" description="48 MP aerial stills and 4K property motion for Austin listings, plus ground photography in the same visit. Prices from $150. $10M aviation liability coverage.">
   <PhotoHero
     image={hero}
     credit="Photo: Orbital Aerial Solutions."
     eyebrow="Aerial media for Austin properties"
     title="Show the property."
     accent="Reveal the full perspective."
-    lede="Purposeful aerial photos and cinematic motion that establish scale, setting and arrival, paired with ground coverage when the story calls for it."
+    lede="Aerial photos and cinematic video that show the lot, the setting and the way in, with ground photography in the same visit when the listing needs it."
     primary={{ href: '#quote', label: 'Request a quote' }}
     secondary={{ href: '#packages', label: 'View packages' }}
     notes={['FAA-compliant operations', 'Within 15 miles of Austin', 'Delivery as soon as 24 hours']}
@@ -77,8 +77,8 @@ const pkgSlug = (t: string) => t.split(' (')[0];
   <section id="standards" class="section theme-dark">
     <div class="wrap">
       <div class="grid lg:grid-cols-2 gap-10 items-end mb-16" data-reveal>
-        <div><p class="eyebrow">The Orbital standard</p><h2 class="mt-5 display-lg text-white">Purpose-built media for high-performing listings.</h2></div>
-        <p class="lede text-fg-2">Every flight and ground session is engineered for visual impact, MLS compliance and rapid turnaround.</p>
+        <div><p class="eyebrow">What you get</p><h2 class="mt-5 display-lg text-white">Media built to sell the listing.</h2></div>
+        <p class="lede text-fg-2">We plan every flight and ground session for strong visuals, MLS rules and a fast turnaround.</p>
       </div>
       <div class="stack-grid grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-white/10 rounded-[20px] overflow-hidden items-stretch">
         {reStandards.map((s, i) => (
@@ -98,7 +98,7 @@ const pkgSlug = (t: string) => t.split(' (')[0];
       {[aerialPackages, groundPackages].map((group, gi) => (
         <>
           {gi === 1 && <div class="mt-24"><SectionHead eyebrow="Ground photography" title="Interior and exterior coverage, same upfront pricing." lede="Choose the coverage that fits the property. We confirm access, scope and final price before the session." /></div>}
-          <div style="--rows:6" class="stack-grid grid md:grid-cols-3 gap-4 items-stretch">
+          <div style="--rows:6" class="stack-grid grid lg:grid-cols-3 gap-4 items-stretch">
             {group.map((p, i) => (
               <article class:list={['stack-card rounded-[22px] p-8 relative', p.featured ? 'bg-ink-900 text-white pkg-featured' : 'bg-paper']} data-reveal style={`--d:${i * 80}ms`}>
                 <span class:list={['self-start chip', p.featured ? 'bg-signal text-black' : 'bg-paper-2 text-text-2']}>{p.badge}</span>
