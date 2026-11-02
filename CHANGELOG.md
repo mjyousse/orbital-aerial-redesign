@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.11.1
+
+- Rewrote the first paragraph of How we operate around aviation experience and sites near airports. Every pilot is described as FAA Part 107 certified, with no named certificates.
+- The Flight operations line in that section now reads "FAA Part 107 certified pilots with manned aviation experience".
+
 ## 0.11.0
 
 - Added a Client portal link to the header and mobile menu. It opens the portal sign-in page.
