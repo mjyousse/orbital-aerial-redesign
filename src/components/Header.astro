@@ -55,7 +55,7 @@ const quoteHref = url(division ? `contact/?division=${division}` : 'contact/');
       <ThemeToggle />
       <a href={quoteHref} class="btn hdr-cta">Request a quote</a>
     </div>
-    <div class="md:hidden flex items-center gap-1"><ThemeToggle />
+    <div class="md:hidden ml-auto flex items-center gap-1"><ThemeToggle />
     <button id="menu-btn" class="md:hidden inline-flex items-center justify-center w-11 h-11 -mr-2" aria-expanded="false" aria-controls="mobile-menu">
       <span class="sr-only">Menu</span>
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg>
@@ -97,7 +97,16 @@ const quoteHref = url(division ? `contact/?division=${division}` : 'contact/');
     btn.addEventListener('click', () => set(true));
     close.addEventListener('click', () => { set(false); btn.focus(); });
     menu.addEventListener('click', (e) => { if ((e.target as HTMLElement).closest('a')) set(false); });
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !menu.classList.contains('hidden')) { set(false); btn.focus(); } });
+    document.addEventListener('keydown', (e) => {
+      if (menu.classList.contains('hidden')) return;
+      if (e.key === 'Escape') { set(false); btn.focus(); return; }
+      // Keep Tab inside the open menu so keyboard users can't land on the page behind it
+      if (e.key !== 'Tab') return;
+      const items = menu.querySelectorAll<HTMLElement>('a[href], button');
+      const first = items[0], last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    });
 
     // Desktop dropdowns: click or hover to open, Esc / outside click / focus leaving to close
     const dds = Array.from(document.querySelectorAll<HTMLElement>('[data-dd]'));

@@ -1,6 +1,7 @@
 // Scroll reveals with IntersectionObserver and CSS transitions. Elements that
 // start in view are shown immediately; reduced motion skips the effect.
 export function initReveal() {
+  document.documentElement.setAttribute('data-reveal-ready', '');
   const els = Array.from(document.querySelectorAll<HTMLElement>('[data-reveal]'));
   if (!els.length || !('IntersectionObserver' in window)) { els.forEach((e) => e.classList.add('is-in')); return; }
   const io = new IntersectionObserver((entries) => {

@@ -64,6 +64,9 @@ const jsonLd = {
       (function () {
         var d = document.documentElement, KEY = 'oas-theme', mode = 'auto';
         d.classList.add('js');
+        // Content waits hidden for the scroll reveal. If its script never runs
+        // (blocked, failed to load), show everything once the page has loaded.
+        window.addEventListener('load', function () { if (!d.hasAttribute('data-reveal-ready')) d.classList.remove('js'); });
         try { var s = localStorage.getItem(KEY); if (s === 'light' || s === 'dark' || s === 'auto') mode = s; } catch (e) {}
         var mq = window.matchMedia('(prefers-color-scheme: dark)');
         function apply() {
