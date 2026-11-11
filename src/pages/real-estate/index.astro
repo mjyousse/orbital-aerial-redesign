@@ -10,7 +10,7 @@ import Process from '../../components/Process.astro';
 import Proof from '../../components/Proof.astro';
 import QuoteSection from '../../components/QuoteSection.astro';
 import Arrow from '../../components/Arrow.astro';
-import { url, aerialPackages, groundPackages, reStandards, reProcess, reAddons, rePoints } from '../../lib/site';
+import { url, aerialPackages, groundPackages, reStandards, reProcess, reAddons, rePoints, realEstateFacts } from '../../lib/site';
 import hero from '../../assets/re/hero-aerial.jpg';
 import t1 from '../../assets/re/travis-1.jpg';
 import t2 from '../../assets/re/travis-2.jpg';
@@ -138,12 +138,7 @@ const pkgSlug = (t: string) => t.split(' (')[0];
     </div>
   </section>
 
-  <FactBand items={[
-    { big: '48 MP', label: 'High-resolution aerial stills' },
-    { big: '4K', label: 'Cinematic property motion' },
-    { big: '$150', label: 'Published packages start here' },
-    { big: '24 h', label: 'Delivery, as soon as the next day' },
-  ]} />
+  <FactBand items={realEstateFacts} />
 
   <Process eyebrow="How we shoot" title="Arrival, context, detail, delivery." steps={reProcess} />
 

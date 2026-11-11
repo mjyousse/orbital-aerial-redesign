@@ -7,6 +7,10 @@ export const SITE = {
   radiusMiles: 15,
 };
 
+// The NDAA fleet line, written once and reused everywhere it appears,
+// so a wording change is a single edit.
+export const NDAA = 'NDAA-compliant fleet available';
+
 export const url = (path = '') => {
   const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   const clean = path.replace(/^\//, '');
@@ -77,7 +81,7 @@ export const industrialCredentials = [
   { label: 'Safety', title: 'Aviation SMS framework', body: 'FAA Part 107 certificated remote pilots operate inside a Safety Management System framework: preflight risk analysis, airspace review and standardized mission checklists. We also handle FAA clearances and airspace authorizations, including LAANC and waivers where required.' },
   { label: 'Geospatial control', title: 'Unified coordinate engine', body: 'Deliverables align to state plane coordinates and local ground benchmarks, integrating with existing surveyor coordinates and CAD grids.' },
   { label: 'Coverage', title: '$10M aviation liability', body: '$10M in specialized aviation liability coverage backs our flight operations. Project-specific insurance requirements are confirmed during scoping.' },
-  { label: 'Fleet', title: 'Multi-aircraft, RTK-enabled fleet', body: 'RTK-enabled aircraft and high-resolution imaging systems fly repeatable mapping missions matched to your control requirements. NDAA-compliant fleet available.' },
+  { label: 'Fleet', title: 'Multi-aircraft, RTK-enabled fleet', body: `RTK-enabled aircraft and high-resolution imaging systems fly repeatable mapping missions matched to your control requirements. ${NDAA}.` },
   { label: 'Processing', title: 'AI-driven photogrammetry', body: 'Imagery moves through air-gapped ingestion into AI-driven processing pipelines that produce orthomosaics, point clouds, surface models and volumetric reports.' },
   { label: 'Handoff', title: 'Method-aware handoffs', body: 'Every handoff documents the capture date, coordinate framework, control approach, processing method and agreed output formats. Data you can defend.' },
 ];
@@ -85,7 +89,7 @@ export const industrialCredentials = [
 export const industrialProcess = [
   { step: '01', title: 'Scope', body: 'Define the site, deliverables and deadline. Pricing and availability within one business day.' },
   { step: '02', title: 'Plan', body: 'Site access, airspace, ground control and schedule are evaluated before every mobilization. We handle FAA authorizations, including LAANC and waivers where required.' },
-  { step: '03', title: 'Capture', body: 'RTK-enabled flights executed by our in-house FAA Part 107 crew. NDAA-compliant fleet available.' },
+  { step: '03', title: 'Capture', body: `RTK-enabled flights executed by our in-house FAA Part 107 crew. ${NDAA}.` },
   { step: '04', title: 'Process', body: 'AI-driven photogrammetry converts raw imagery into orthomosaics, surface models, point clouds and volumetric reports.' },
   { step: '05', title: 'Deliver', body: 'Georeferenced, metadata-tagged outputs in your formats, with method notes and secure cloud access.' },
 ];
@@ -150,4 +154,54 @@ export const serviceOptions: Record<Division, string[]> = {
     'Asset & Infrastructure Documentation',
     'Not sure, I need guidance',
   ],
+};
+
+// Home and industrial "How we operate" section.
+export const operateRecord = [
+  { k: 'Flight operations', v: 'FAA Part 107 certified, with licensed airplane pilots on the team' },
+  { k: 'Safety framework', v: 'Safety Management System: airspace review, risk assessment and checklists on every mission' },
+  { k: 'FAA clearances', v: 'We handle FAA clearances and airspace authorizations for you, including LAANC, waivers and FAA coordination where required' },
+  { k: 'Data standard', v: 'Every dataset built to hold up when an engineer, owner or auditor checks it' },
+];
+export const operateStandards = ['Part 107-certified flight crew', NDAA, '$10M aviation liability coverage', 'Documented SOPs'];
+
+// Data security section. Claims here are limited to what Orbital already states elsewhere on the site.
+export const securityPillars = [
+  { label: 'Fleet', title: 'Multi-aircraft fleet', body: `RTK-enabled aircraft fly repeatable, survey-grade missions on every site. ${NDAA}.`, icon: ['M12 3l7 3v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6z', 'M9 12l2 2 4-4'] },
+  { label: 'Ingestion', title: 'Air-gapped by design', body: 'Datasets move through air-gapped ingestion pipelines, engineered for zero data leakage at every stage, from the moment of capture to the final handoff.', icon: ['M3 6h6v12H3z', 'M15 6h6v12h-6z', 'M11 9v1.5M11 13.5V15M13 9v1.5M13 13.5V15'] },
+  { label: 'Handoff', title: 'Controlled, documented delivery', body: 'Files are delivered with controlled access. Each handoff records the capture date, coordinate framework, control approach, processing method and agreed formats.', icon: ['M7 3h7l4 4v14H7z', 'M14 3v4h4', 'M10 13l2 2 3-3.5'] },
+  { label: 'Flight crew', title: 'Part 107 crew, SMS framework', body: 'Our FAA Part 107-certified crew includes licensed manned-aviation pilots. Every flight runs inside an SMS framework, and we handle the FAA clearances for you.', icon: ['M3 13.5l18-7-7 18-2.5-8.5z', 'M11.5 16l2.5-2.5'] },
+  { label: 'Coverage', title: '$10M aviation liability', body: '$10M in specialized aviation liability coverage backs every mission we fly. Project-specific insurance requirements are confirmed during scoping, before we mobilize.', icon: ['M4 7h16v11H4z', 'M4 11h16', 'M8 15h3'] },
+];
+
+// Hero facts and fact bands.
+export const homeHeroFacts = [
+  { k: 'Flight crew', v: 'Part 107 · Manned-aviation pilots' },
+  { k: 'Fleet', v: NDAA },
+  { k: 'Data handling', v: 'Air-gapped ingestion' },
+  { k: 'Liability coverage', v: '$10M aviation-specific' },
+];
+export const homeFacts = [
+  { big: '$10M', label: 'Specialized aviation liability coverage' },
+  { big: 'Part 107', label: 'FAA-certified flight crew, with licensed manned-aviation pilots on the team' },
+  { big: 'Fleet', label: NDAA },
+  { big: '1 day', label: 'Scoped pricing and availability, within one business day' },
+];
+export const industrialFacts = [
+  { big: '$10M', label: 'Specialized aviation liability coverage' },
+  { big: 'RTK', label: 'Enabled aircraft for repeatable mapping missions' },
+  { big: 'Fleet', label: NDAA },
+  { big: '1 day', label: 'Pricing and availability after scoping' },
+];
+export const realEstateFacts = [
+  { big: '48 MP', label: 'High-resolution aerial stills' },
+  { big: '4K', label: 'Cinematic property motion' },
+  { big: '$150', label: 'Published packages start here' },
+  { big: '24 h', label: 'Delivery, as soon as the next day' },
+];
+
+// Meta descriptions.
+export const meta = {
+  home: `Orbital Aerial Solutions is an Austin, TX aerial intelligence firm: industrial survey, mapping, reality capture and building inspection nationwide, plus Real Estate Media for Austin listings. ${NDAA}, $10M aviation liability coverage.`,
+  industrial: `Survey-grade stockpile volumetrics, site progress digital twins, asset documentation and drone building inspection of roofs, facades and envelopes. RTK-enabled aircraft, ${NDAA}, and air-gapped data handling. Based in Austin, TX.`,
 };

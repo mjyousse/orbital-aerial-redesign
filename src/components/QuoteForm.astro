@@ -25,12 +25,12 @@ const { division: initial = 'industrial', id = 'quote' } = Astro.props as { divi
     <div class="grid sm:grid-cols-2 gap-3" role="radiogroup" aria-label="Division">
       <label class="choice panel relative p-4 block">
         <input type="radio" name="division_choice" value="industrial" checked={initial === 'industrial'} />
-        <span class="tele !text-cyan">Industrial</span>
+        <span class="tele !text-signal">Industrial</span>
         <span class="block mt-1 text-white font-semibold">Mapping, volumes, site data</span>
       </label>
       <label class="choice panel relative p-4 block">
         <input type="radio" name="division_choice" value="realestate" checked={initial === 'realestate'} />
-        <span class="tele !text-amber">Real Estate</span>
+        <span class="tele !text-signal">Real Estate</span>
         <span class="block mt-1 text-white font-semibold">Listing photos and video</span>
       </label>
     </div>

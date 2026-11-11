@@ -14,7 +14,7 @@ import FieldRecord from '../../components/FieldRecord.astro';
 import LogoBand from '../../components/LogoBand.astro';
 import SecuritySection from '../../components/SecuritySection.astro';
 import QuoteSection from '../../components/QuoteSection.astro';
-import { industrialServices, industrialPoints, industrialCredentials, industrialProcess, sectors } from '../../lib/site';
+import { industrialServices, industrialPoints, industrialCredentials, industrialProcess, sectors, industrialFacts, meta } from '../../lib/site';
 import hero from '../../assets/stock/progress-2560.jpg';
 const inspectionDeliverables = [
   { title: 'Roof condition', body: 'Systematic coverage of the roof surface, flashing, drains and rooftop equipment to document wear, damage and areas that need attention.' },
@@ -30,7 +30,7 @@ const icons = [
   'M12 3l7 3v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6zM9 12l2 2 4-4',
 ];
 ---
-<Base title="Industrial drone mapping" division="industrial" description="Survey-grade stockpile volumetrics, site progress digital twins, asset documentation and drone building inspection of roofs, facades and envelopes. RTK-enabled aircraft, NDAA-compliant fleet available, and air-gapped data handling. Based in Austin, TX.">
+<Base title="Industrial drone mapping" division="industrial" description={meta.industrial}>
   <PhotoHero
     image={hero}
     eyebrow="Industrial reality capture · RTK-enabled workflows"
@@ -116,12 +116,7 @@ const icons = [
 
   <SecuritySection />
 
-  <FactBand items={[
-    { big: '$10M', label: 'Specialized aviation liability coverage' },
-    { big: 'RTK', label: 'Enabled aircraft for repeatable mapping missions' },
-    { big: 'Fleet', label: 'NDAA-compliant fleet available' },
-    { big: '1 day', label: 'Pricing and availability after scoping' },
-  ]} />
+  <FactBand items={industrialFacts} />
 
   <Process eyebrow="Process" title="Scope to defensible deliverable in five steps." steps={industrialProcess} />
 
