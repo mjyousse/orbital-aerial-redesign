@@ -41,8 +41,10 @@ const posterImg = await getImage({ src: poster, width: 1600, format: 'webp', qua
     const save = (navigator as any).connection?.saveData;
     if (reduce || save) { v.removeAttribute('autoplay'); }
     else {
-      v.src = window.innerWidth < 900 ? v.dataset.srcSm! : v.dataset.srcLg!;
-      v.play().catch(() => {});
+      // Start the video once the page has loaded, so it doesn't compete with
+      // the poster, fonts and styles. The poster shows until then.
+      const go = () => { v.src = window.innerWidth < 900 ? v.dataset.srcSm! : v.dataset.srcLg!; v.play().catch(() => {}); };
+      if (document.readyState === 'complete') go(); else window.addEventListener('load', go, { once: true });
     }
   }
 </script>

@@ -1,5 +1,8 @@
 ---
 import '../styles/global.css';
+// The two fonts used above the fold, preloaded so text renders in them sooner
+import fontBody from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
+import fontDisplay from '@fontsource-variable/inter-tight/files/inter-tight-latin-wght-normal.woff2?url';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE, url } from '../lib/site';
@@ -88,6 +91,8 @@ const jsonLd = {
         apply();
       })();
     </script>
+    <link rel="preload" href={fontDisplay} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={fontBody} as="font" type="font/woff2" crossorigin />
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href={url('brand/logo-dark.svg')} />
     <link rel="sitemap" href={url('sitemap-index.xml')} />
