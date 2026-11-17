@@ -53,6 +53,7 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      - run: npm run check
       - run: npm run build
       - if: steps.pick.outputs.deploy == 'true'
         uses: actions/upload-pages-artifact@v3

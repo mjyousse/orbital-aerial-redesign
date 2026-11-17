@@ -1,5 +1,9 @@
 # Changelog
 
+
+## 0.11.4
+
+- No visible change. Every build now runs Astro's type check first (`npm run check`), with the three.js types added so the 3D viewer passes it. The README describes publishing from `main` now that the second design branch is gone.
 ## 0.11.3
 
 - Tightened the first paragraph of How we operate around aviation experience beyond drones and sites near airports.

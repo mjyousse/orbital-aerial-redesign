@@ -20,34 +20,13 @@ Every page carries a `noindex` tag (and robots.txt asks crawlers to stay out), s
 ```bash
 npm install
 npm run dev      # http://localhost:4321/orbital-aerial-redesign/
+npm run check    # type check
 npm run build    # static output in dist/
 ```
 
-Every push builds the site with `.github/workflows/deploy.yml`, on any branch. Only one branch is published to GitHub Pages: the one named in the `PAGES_BRANCH` repository variable (`main` if the variable isn't set).
+## Publishing
 
-## Choosing which design is live
-
-Each design lives on its own branch:
-
-| Branch | Design |
-| --- | --- |
-| `main` | Design A: dark, terrain-contour hero |
-| `design-b` | Design B: full-bleed aerial video, light and dark sections, product-style deliverable mockups |
-
-To switch the live site:
-
-1. Go to **Settings → Secrets and variables → Actions → Variables** and set `PAGES_BRANCH` to the branch you want (for example `main` or `design-b`).
-2. Go to **Actions → Deploy to GitHub Pages → Run workflow** and click **Run workflow** with the branch box left blank. It publishes whatever `PAGES_BRANCH` says. (Pushing to that branch also publishes it.)
-
-To try a branch once without changing the variable, type its name in the branch box on **Run workflow**. The next push to the `PAGES_BRANCH` branch puts that branch back.
-
-From a terminal, one line:
-
-```bash
-gh variable set PAGES_BRANCH --body design-b -R mjyousse/orbital-aerial-redesign && gh workflow run deploy.yml -R mjyousse/orbital-aerial-redesign
-```
-
-The `github-pages` environment allows deployments from `main` and from any branch named `design-*`. A new design branch only needs that name.
+Every push builds the site, on any branch, and runs `npm run check` (Astro's type check) first. A push to `main` publishes it. The `PAGES_BRANCH` repository variable can point GitHub Pages at another branch instead; the `github-pages` environment accepts `main` and any branch named `design-*`. Leave it unset to publish `main`.
 
 ## Editing content
 
