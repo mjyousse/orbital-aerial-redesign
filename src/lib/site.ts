@@ -7,6 +7,9 @@ export const SITE = {
   radiusMiles: 15,
 };
 
+// The glass website preview that the Look pill links to.
+export const GLASS_PREVIEW_URL = 'https://mjyousse.github.io/orbital-aerial-glass/';
+
 // The NDAA fleet line, written once and reused everywhere it appears,
 // so a wording change is a single edit.
 export const NDAA = 'NDAA-compliant fleet available';

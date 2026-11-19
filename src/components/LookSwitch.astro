@@ -1,0 +1,31 @@
+---
+// Preview-only pill that flips between this design (Classic) and the glass
+// website preview, like the Classic / New pill on the portal's sign-in.
+import { GLASS_PREVIEW_URL } from '../lib/site';
+interface Props { aboveCta?: boolean }
+const { aboveCta = false } = Astro.props;
+---
+<nav class="look-switch" data-above-cta={aboveCta ? '' : undefined} aria-label="Site look">
+  <span class="look-label">Look</span>
+  <span class="look-on" aria-current="page">Classic</span>
+  <a href={GLASS_PREVIEW_URL}>Glass</a>
+</nav>
+<style>
+  .look-switch {
+    position: fixed; z-index: 45; left: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+    display: flex; align-items: center; gap: 2px; padding: 4px 4px 4px 12px; border-radius: 999px;
+    background: rgba(18, 19, 22, .62); -webkit-backdrop-filter: blur(18px) saturate(160%); backdrop-filter: blur(18px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, .16); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .1), 0 12px 32px rgba(0, 0, 0, .28);
+    color: #fff; font: 500 13px/1 var(--font-sans, system-ui, sans-serif);
+  }
+  .look-switch[data-above-cta] { bottom: calc(88px + env(safe-area-inset-bottom, 0px)); }
+  @media (min-width: 768px) { .look-switch, .look-switch[data-above-cta] { left: 20px; bottom: 20px; } }
+  .look-label { font: 500 10.5px/1 var(--font-mono, ui-monospace, monospace); letter-spacing: .12em; text-transform: uppercase; color: rgba(255, 255, 255, .6); margin-right: 6px; }
+  .look-switch a, .look-on { padding: 8px 14px; border-radius: 999px; text-decoration: none; }
+  .look-switch a { color: rgba(255, 255, 255, .82); }
+  .look-switch a:hover { background: rgba(255, 255, 255, .1); color: #fff; }
+  .look-on { background: #f3f3f1; color: #08090b; }
+  .look-switch a:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+  @media (prefers-reduced-transparency: reduce) { .look-switch { background: #121316; } }
+  @media print { .look-switch { display: none; } }
+</style>

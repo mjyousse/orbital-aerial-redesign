@@ -5,6 +5,7 @@ import fontBody from '@fontsource-variable/inter/files/inter-latin-wght-normal.w
 import fontDisplay from '@fontsource-variable/inter-tight/files/inter-tight-latin-wght-normal.woff2?url';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import LookSwitch from '../components/LookSwitch.astro';
 import { SITE, url } from '../lib/site';
 
 interface Props {
@@ -116,6 +117,7 @@ const jsonLd = {
       <slot />
     </main>
     <Footer division={division} />
+    <LookSwitch aboveCta={!hideStickyCta} />
     {!hideStickyCta && (
       <div class="md:hidden fixed inset-x-0 bottom-0 z-40 p-3 bg-paper/90 backdrop-blur border-t border-line flex gap-2" style="padding-bottom: max(.75rem, env(safe-area-inset-bottom));">
         <a href={url(division ? `contact/?division=${division}` : 'contact/')} class="btn btn-dark flex-1">Request a quote</a>
