@@ -17,6 +17,8 @@ const menus = [
   { id: 'company', label: 'Company', items: company, active: false },
 ];
 const portalHref = 'https://portal.orbitalaerial.com/sign-in';
+// The client portal is for industrial clients only, so real estate pages do not link to it.
+const showPortal = division !== 'realestate' && !path.includes('/real-estate/');
 const quoteHref = url(division ? `contact/?division=${division}` : 'contact/');
 ---
 <header class="site-header" id="site-header" data-tone={tone} data-solid="false">
@@ -51,7 +53,7 @@ const quoteHref = url(division ? `contact/?division=${division}` : 'contact/');
       <a href={url('contact/')} class="nav-link" aria-current={path.includes('/contact/') ? 'page' : undefined}>Contact</a>
     </nav>
     <div class="hdr-actions">
-      <a href={portalHref} class="hdr-portal" aria-label="Client portal" title="Client portal"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span class="hdr-portal-label">Client portal</span></a>
+      {showPortal && <a href={portalHref} class="hdr-portal" aria-label="Client portal" title="Client portal"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span class="hdr-portal-label">Client portal</span></a>}
       <ThemeToggle />
       <a href={quoteHref} class="btn hdr-cta">Request a quote</a>
     </div>
@@ -82,7 +84,7 @@ const quoteHref = url(division ? `contact/?division=${division}` : 'contact/');
       <a href={url('contact/')} class="mt-8 py-3.5 font-display text-2xl font-semibold tracking-tight border-b border-white/10">Contact</a>
       <div class="mt-8 grid gap-3">
         <a href={quoteHref} class="btn btn-primary">Request a quote</a>
-        <a href={portalHref} class="btn btn-ghost"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Client portal</a>
+        {showPortal && <a href={portalHref} class="btn btn-ghost"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Client portal</a>}
       </div>
     </div>
 </nav>
