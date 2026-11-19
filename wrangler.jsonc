@@ -1,0 +1,11 @@
+// The Cloudflare copy of the preview, served as static files by a Worker at
+// https://orbital-redesign.mjyousse.workers.dev. The deploy workflow builds it
+// with BASE_PATH=/ and publishes it with `wrangler deploy` on every push to main.
+{
+  "name": "orbital-redesign",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "404-page"
+  }
+}

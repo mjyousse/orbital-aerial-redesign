@@ -1,6 +1,10 @@
 # Changelog
 
 
+## 0.11.6
+
+- No visible change on GitHub Pages. The deploy can now also publish the Cloudflare copy at orbital-redesign.mjyousse.workers.dev, built from the root, with its Classic / Glass pill opening the glass copy on Cloudflare. It runs once the CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID repository secrets are added, and skips until then.
+
 ## 0.11.5
 
 - Preview only. A small Classic / Glass pill sits in the bottom left corner of every page and opens the glass version of the site. Nothing else changed.

@@ -73,3 +73,49 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+
+  # The Cloudflare copy at orbital-redesign.mjyousse.workers.dev. It is built
+  # again from the root (BASE_PATH=/) and its Look pill points at the glass
+  # copy on Cloudflare. It runs only when the published branch is pushed and
+  # the CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID repository secrets exist.
+  cloudflare:
+    needs: build
+    if: needs.build.outputs.deploy == 'true'
+    runs-on: ubuntu-latest
+    concurrency:
+      group: cloudflare
+      cancel-in-progress: false
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+    steps:
+      - id: secrets
+        name: Check the Cloudflare secrets are set
+        run: |
+          if [ -n "$CLOUDFLARE_API_TOKEN" ] && [ -n "$CLOUDFLARE_ACCOUNT_ID" ]; then
+            echo "ok=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ok=false" >> "$GITHUB_OUTPUT"
+            echo "Skipped the Cloudflare copy: add the CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID repository secrets to publish it." >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - if: steps.secrets.outputs.ok == 'true'
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.build.outputs.ref }}
+      - if: steps.secrets.outputs.ok == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - if: steps.secrets.outputs.ok == 'true'
+        run: npm ci
+      - if: steps.secrets.outputs.ok == 'true'
+        name: Build from the root for workers.dev
+        env:
+          SITE_URL: https://orbital-redesign.mjyousse.workers.dev
+          BASE_PATH: /
+          PUBLIC_GLASS_URL: https://orbital-glass.mjyousse.workers.dev/
+        run: npm run build
+      - if: steps.secrets.outputs.ok == 'true'
+        name: Publish to the orbital-redesign Worker
+        run: npx --yes wrangler@4 deploy
