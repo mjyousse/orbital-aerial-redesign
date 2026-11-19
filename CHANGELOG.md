@@ -1,6 +1,10 @@
 # Changelog
 
 
+## 0.11.8
+
+- Preview only. On the real estate page, the Glass side of the Classic / Glass pill now opens the glass real estate page instead of the glass home page. Every other page still opens the glass home page.
+
 ## 0.11.7
 
 - The real estate page no longer shows the Client portal link in the header or the phone menu, since the portal is for industrial clients only. Every other page keeps it.

@@ -4,11 +4,14 @@
 import { GLASS_PREVIEW_URL } from '../lib/site';
 interface Props { aboveCta?: boolean }
 const { aboveCta = false } = Astro.props;
+// Real estate pages open the glass real estate page; every other page opens the glass home page.
+const glassBase = GLASS_PREVIEW_URL.endsWith('/') ? GLASS_PREVIEW_URL : `${GLASS_PREVIEW_URL}/`;
+const glassHref = Astro.url.pathname.includes('/real-estate') ? `${glassBase}real-estate/` : glassBase;
 ---
 <nav class="look-switch" data-above-cta={aboveCta ? '' : undefined} aria-label="Site look">
   <span class="look-label">Look</span>
   <span class="look-on" aria-current="page">Classic</span>
-  <a href={GLASS_PREVIEW_URL}>Glass</a>
+  <a href={glassHref}>Glass</a>
 </nav>
 <style>
   .look-switch {
